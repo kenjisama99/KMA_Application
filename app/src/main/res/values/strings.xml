@@ -1,0 +1,69 @@
+<resources>
+    <!--main    -->
+    <string name="app_name">Trường Mầm Non KMA</string>
+    <string name="avatar">Avatar</string>
+    <string name="info">Nguyễn Minh Anh-Lớp Họa My</string>
+    <string name="func1">Thông tin của bé</string>
+    <string name="func2">Hoạt động hằng ngày</string>
+    <string name="func3">Liên hệ giáo viên</string>
+    <string name="home">Trang chủ</string>
+    <string name="calendar">Lịch</string>
+    <string name="notifications">Thông báo</string>
+    <string name="user">Cá nhân</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="new1">Thông báo nghỉ học ngày 20/11 - Ngày nhà giáo Việt Nam</string>
+    <string name="new2">Thông báo buổi học ngoại khóa toàn trường</string>
+
+    <!--login-->
+    <string name="title_activity_login">Login</string>
+    <string name="logo">logo</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgetpassword">Quên mật khẩu</string>
+    <string name="help">Help</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="action_sign_in_short">Sign in</string>
+
+    <!--user    -->
+    <string name="userInfo">Thông tin cá nhân</string>
+    <string name="nickname">Tên hiển thị</string>
+    <string name="id">ID</string>
+    <string name="Sdt">SDT di động</string>
+    <string name="pass">Sửa đổi mật khẩu</string>
+    <!--contact-->
+    <string name="contact">Cô Thanh - Lớp họa mi</string>
+    <string name="call">Gọi điện cho giáo viên</string>
+    <string name="chat">Nhắn tin cho giáo viên</string>
+    <string name="back">Quay về</string>
+
+    <!--    chat-->
+
+    <string name="teacher">Cô Thanh - Lớp họa mi</string>
+
+
+    <!--    Change PassWord-->
+    <string name="changePassword">Thay đổi mật khẩu</string>
+    <string name="oldPassword">Mật khẩu hiện tại*</string>
+    <string name="EnterOldPassword">Nhập mật khẩu cũ</string>
+    <string name="newPassword">Mật khẩu mới*</string>
+    <string name="EnterNewPassword">Nhập mật khẩu mới</string>
+    <string name="confirmNewPassword">Xác nhận mật khẩu mới*</string>
+    <string name="EnterConfirmNewPassword">Nhập lại mật khẩu mới</string>
+    <string name="change">Hoàn thành</string>
+
+<!--    Calendar-->
+    <string name="calendars">Lịch</string>
+
+<!--    BabyInfomation-->
+    ><string name="babyInfo">Thông tin của bé</string>
+    <string name="name">Họ và tên:</string>
+    <string name="birth">Ngày sinh:</string>
+    <string name="yourClass">Lớp học:</string>
+    <string name="height">Chiều cao:</string>
+    <string name="weight">Cân nặng:</string>
+    <string name="ratio">Tỷ lệ cơ thể:</string>
+    
+</resources>
