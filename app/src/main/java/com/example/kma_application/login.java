@@ -10,12 +10,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.LoginTask;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+
+import java.net.URISyntaxException;
 
 public class login extends AppCompatActivity {
 
     EditText txtPhone,txtPassword;
     Button btLogin;
-
+    Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket("http://192.168.1.68:3000");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onStop() {
@@ -27,7 +39,9 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        
+
+
+        mSocket.connect();
         //Init view
         txtPhone = (EditText)findViewById(R.id.editTextPhone);
         txtPassword = (EditText)findViewById(R.id.editTextTextPassword);
