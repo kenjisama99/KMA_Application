@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user">
+    android:layout_weight="10"
+    android:orientation="vertical"
+    tools:context=".contact">
 
     <com.google.android.material.appbar.AppBarLayout
 
@@ -26,111 +28,48 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="605dp"
-        android:layout_gravity="bottom"
-        app:layout_anchorGravity="center">
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:id="@+id/listviewChat"></ListView>
 
-        <RelativeLayout
-            android:id="@+id/viewChat"
-            android:layout_width="match_parent"
-            android:layout_height="523dp"
-            android:layout_marginBottom="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        </RelativeLayout>
+        <EditText
+            android:id="@+id/editextContent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="8"
+            android:hint="Soạn tin nhắn" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:layout_below="@+id/viewChat"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp">
+        <ImageButton
+            android:id="@+id/buttonCall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/phone_35px" />
 
-            <EditText
-                android:id="@+id/editTextTextMultiLine"
-                android:layout_width="322dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toStartOf="@+id/imageButton"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:textSize="18sp" />
+        <ImageButton
+            android:id="@+id/buttonSend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/send_letter_35px" />
 
-            <Button
-                android:id="@+id/imageButton"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="0dp"
-                android:backgroundTint="#FFFFFF"
-                android:drawableEnd="@drawable/send_letter_35px"
-                android:padding="0dp"
-                android:paddingLeft="0dp"
-                android:paddingTop="0dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="14sp"
-                app:iconPadding="0dp"
-                app:srcCompat="@drawable/send_letter_25px" />
+    </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/editTextTextMultiLine"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="-8dp"
-                android:backgroundTint="#FFFFFF"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                app:srcCompat="@drawable/camera_25px" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/editTextTextMultiLine"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="-8dp"
-                android:layout_toEndOf="@+id/imageButton3"
-                android:backgroundTint="#FFFFFF"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                app:srcCompat="@drawable/picture_25px" />
 
-            <Button
-                android:id="@+id/buttonPhone"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_above="@+id/editTextTextMultiLine"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="-8dp"
-                android:layout_toEndOf="@+id/imageButton4"
-                android:backgroundTint="#FFFFFF"
-                android:drawableBottom="@drawable/phone_25px"
-                android:text="Button" />
 
-        </RelativeLayout>
-    </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
