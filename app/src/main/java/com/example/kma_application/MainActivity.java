@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onClickBtChat() {
-//        Intent data = getIntent();
-//        String phone = data.getStringExtra("phone");
-//        //Toast.makeText(this,""+phone,Toast.LENGTH_LONG).show();
-//        Intent chatActivity = new Intent(this,contact.class);
-//        chatActivity.putExtra("phone", phone);
-//        startActivity(chatActivity);
+        Intent data = getIntent();
+        String phone = data.getStringExtra("phone");
+        //Toast.makeText(this,""+phone,Toast.LENGTH_LONG).show();
+        Intent chatActivity = new Intent(this,contact.class);
+        chatActivity.putExtra("phone", phone);
+        startActivity(chatActivity);
     }
 
     private void onClickBtInfo() {
