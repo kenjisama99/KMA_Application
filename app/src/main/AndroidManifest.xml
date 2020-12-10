@@ -17,7 +17,9 @@
 
         </activity>
         <activity android:name=".contact"></activity>
-        <activity android:name=".chat" />
+        <activity android:name=".chat">
+
+        </activity>
         <activity android:name=".user"/>
 
         <activity android:name=".login" >

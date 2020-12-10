@@ -8,61 +8,70 @@
     android:orientation="vertical"
     tools:context=".contact">
 
-    <com.google.android.material.appbar.AppBarLayout
-
-        android:id="@+id/appBarLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="top"
-        android:background="#E68B8B"
-        android:contextClickable="true">
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
 
-        <TextView
-            android:id="@+id/textView4"
+        <LinearLayout
+            android:layout_weight="10"
+            android:background="#bcb4b4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/contact"
-            android:textColor="#000000"
-            android:textSize="28sp" />
+            android:layout_height="match_parent">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <TextView
+                android:id="@+id/textNameTeacher"
+                android:text="@string/teacher"
+                android:textColor="#000000"
+                android:textSize="36dp"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"/>
+
+            <ImageButton
+                android:id="@+id/buttonCall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/phone_35px" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_weight="8.4"
         android:id="@+id/listviewChat"></ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.8">
 
         <EditText
             android:id="@+id/editextContent"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:layout_weight="8"
-            android:hint="Soạn tin nhắn" />
+            android:layout_weight="8.5"
+            android:hint="Soạn tin nhắn"
+            android:background="#e6e6e6"/>
 
-        <ImageButton
-            android:id="@+id/buttonCall"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/phone_35px" />
 
         <ImageButton
             android:id="@+id/buttonSend"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:background="@null"
             android:src="@drawable/send_letter_35px" />
 
