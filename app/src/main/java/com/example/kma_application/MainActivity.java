@@ -7,8 +7,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.kma_application.AsyncTask.LoadInfosTask;
+import com.example.kma_application.Models.Admin;
+import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Parent;
+import com.example.kma_application.Models.Teacher;
+
+public class MainActivity extends AppCompatActivity implements LoadInfosTask.AsyncResponse {
     Button btInfo,btChat;
+    String phone;
+    String role;
+
+    InfoModel infoModel;
+    Admin admin;
+    Teacher teacher;
+    Parent parent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
         btInfo = (Button)findViewById(R.id.buttonInfo);
         btChat = (Button)findViewById(R.id.buttonChat);
+
+        Intent data = getIntent();
+        phone = data.getStringExtra("phone");
+        role = data.getStringExtra("role");
+
+        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this);
+
+        loadInfosTask.execute();
 
         btInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,20 +55,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onClickBtChat() {
-        Intent data = getIntent();
-        String phone = data.getStringExtra("phone");
-        //Toast.makeText(this,""+phone,Toast.LENGTH_LONG).show();
+        //Admin admin = (Admin) infoModel;
+        //Parent parent = (Parent) infoModel;
+//        Toast.makeText(this,"Role: "+parent.get_class(),Toast.LENGTH_LONG).show();
         Intent chatActivity = new Intent(this,contact.class);
-        chatActivity.putExtra("phone", phone);
+        chatActivity.putExtra("role", role);
+        chatActivity.putExtra("info", infoModel);
         startActivity(chatActivity);
     }
 
     private void onClickBtInfo() {
-        Intent data = getIntent();
-        String phone = data.getStringExtra("phone");
+
         //Toast.makeText(this,""+phone,Toast.LENGTH_LONG).show();
         Intent userActivity = new Intent(this,user.class);
-        userActivity.putExtra("phone", phone);
+        userActivity.putExtra("role", role);
+        userActivity.putExtra("info", infoModel);
         startActivity(userActivity);
     }
+
+
+    @Override
+    public void processFinish(InfoModel output) {
+        infoModel = output;
+    }
+
 }

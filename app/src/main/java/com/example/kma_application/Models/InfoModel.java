@@ -1,6 +1,8 @@
 package com.example.kma_application.Models;
 
-public class InfoModel {
+import java.io.Serializable;
+
+public class InfoModel implements Serializable {
     private String _id;
     private String phone;
     private String name;

@@ -43,7 +43,7 @@
 
 
             <ImageView
-                android:id="@+id/logo"
+                android:id="@+id/avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/avatar"
@@ -68,7 +68,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/buttonEditAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_alignParentTop="true"
