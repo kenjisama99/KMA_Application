@@ -4,22 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.LoginTask;
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+
+import java.net.URISyntaxException;
 
 public class login extends AppCompatActivity {
 
     EditText txtPhone,txtPassword;
     Button btLogin;
+    Socket mSocket;
 
 
     @Override
     protected void onStop() {
         super.onStop();
+        //mSocket.close();
     }
 
     @Override
@@ -27,7 +36,26 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        
+//        try {
+//            //mSocket = IO.socket("http://still-temple-93427.herokuapp.com");
+//            mSocket = IO.socket("http://192.168.1.68:3000");
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//
+//        mSocket.connect();
+//        mSocket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+//
+//            @Override
+//            public void call(Object... args) {
+//                Log.d("TAG", "Socket Connected!");
+//                //mSocket.disconnect();
+//            }
+//
+//        });
+//        if (mSocket.connected())
+//            Toast.makeText(this,"da ket noi",Toast.LENGTH_LONG).show();
+
         //Init view
         txtPhone = (EditText)findViewById(R.id.editTextPhone);
         txtPassword = (EditText)findViewById(R.id.editTextTextPassword);

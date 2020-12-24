@@ -13,7 +13,7 @@ exports.checkInfo = (phone, callback) =>
 				callback({'response':"info not exist",'res':false});
 
 			} else {
-					console.log(infos[0]);
+					//console.log(infos[0]);
 				    callback(infos[0]);
 
 			}
