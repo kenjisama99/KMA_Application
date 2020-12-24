@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import com.example.kma_application.Models.ResponseModel;
-import com.example.kma_application.user;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -38,24 +37,19 @@ public class ChangePassTask extends AsyncTask<String,Void,String> {
         return null;
     }
 
-    @Override
-    protected void onPostExecute(String postResponse) {
-        Gson gson = new Gson();
-        ResponseModel responseModel = gson.fromJson(postResponse,ResponseModel.class);
+//    @Override
+//    protected void onPostExecute(String postResponse) {
+//        Gson gson = new Gson();
+//        ResponseModel responseModel = gson.fromJson(postResponse,ResponseModel.class);
+//
+//        if (responseModel.getRes()){
+//            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+//            startUserActivities();
+//        }else
+//            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+//
+//    }
 
-        if (responseModel.getRes()){
-            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
-            startUserActivities();
-        }else
-            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
-
-    }
-    private void startUserActivities() {
-        Intent userActivity = new Intent(this.context, user.class);
-        userActivity.putExtra("phone", this.phone);
-        context.startActivity(userActivity);
-        ((Activity)context).finish();
-    }
     // post request code here
 
     public static final MediaType JSON

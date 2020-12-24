@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    tools:context=".user">
+    tools:context=".userFragment">
 
     <com.google.android.material.appbar.AppBarLayout
 
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="top"
-        android:background="#BFBCBF"
+        android:background="#bce9fe"
         android:contextClickable="true">
 
         <TextView
@@ -30,7 +30,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="605dp"
+        android:layout_height="736dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="0dp"
         app:layout_anchorGravity="center">
@@ -38,17 +38,19 @@
         <RelativeLayout
             android:id="@+id/RelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#DA6363">
+            android:layout_height="220dp"
+            android:background="@drawable/avatar_background">
 
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:contentDescription="@string/avatar"
-                android:visibility="visible"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/avatar2"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/textView"
@@ -57,13 +59,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="126dp"
-                android:layout_marginEnd="0dp"
+                android:layout_marginTop="195dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="0dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/info"
-                android:textColor="#001DAE"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -93,27 +95,27 @@
         </RelativeLayout>
 
         <EditText
-            android:enabled="false"
             android:id="@+id/editTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/RelativeLayout"
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/button7"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/editName"
             android:ems="10"
-            android:textColor="#000000"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="@string/nickname" />
+            android:text="@string/nickname"
+            android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/editName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/RelativeLayout"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="#d9daee"
             android:drawableRight="@drawable/edit_25px"
@@ -133,19 +135,19 @@
             app:iconPadding="0dp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/editTextPersonID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextPersonName"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/button7"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/editName"
             android:ems="10"
-            android:textColor="#000000"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="@string/id" />
+            android:text="@string/id"
+            android:textColor="#000000" />
 
         <EditText
             android:id="@+id/editTextPersonPhone"
@@ -154,38 +156,13 @@
             android:layout_below="@+id/editTextPersonID"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/button7"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/editName"
             android:ems="10"
-            android:textColor="#000000"
             android:enabled="false"
             android:inputType="textPersonName"
-            android:text="@string/Sdt" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button7"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#d9daee"
-            android:drawableRight="@drawable/edit_25px"
-            android:drawablePadding="0dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:padding="0dp"
-            android:paddingStart="0dp"
-            android:paddingLeft="0dp"
-            android:paddingTop="0dp"
-            android:paddingEnd="0dp"
-            android:paddingRight="0dp"
-            android:paddingBottom="0dp"
-            android:text="Edit"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            app:iconPadding="0dp" />
+            android:text="@string/Sdt"
+            android:textColor="#000000" />
 
         <EditText
             android:id="@+id/editTextTextPersonName5"
@@ -194,21 +171,21 @@
             android:layout_below="@+id/editTextPersonPhone"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/button7"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/buttonChangePass"
             android:ems="10"
-            android:textColor="#000000"
             android:enabled="false"
             android:inputType="textPersonName"
-            android:text="@string/pass" />
+            android:text="@string/pass"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/buttonChangePass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button9"
+            android:layout_below="@+id/editName"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="132dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="#d9daee"
             android:drawableRight="@drawable/edit_25px"
@@ -230,7 +207,7 @@
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_below="@+id/editTextTextPersonName5"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -238,7 +215,11 @@
             android:layout_marginStart="130dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="130dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="165dp"
+            android:background="@null"
+            android:backgroundTint="#DA6363"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Đăng Xuất"
             android:textSize="18sp" />
 
