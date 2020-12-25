@@ -22,13 +22,13 @@
         <activity android:name=".infomation" />
         <activity android:name=".absent" />
         <activity android:name=".changePassword" />
-        <activity android:name=".login" />
 
+        <activity android:name=".MainActivity"/>
 
         <activity android:name=".contact"></activity>
         <activity android:name=".user"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
