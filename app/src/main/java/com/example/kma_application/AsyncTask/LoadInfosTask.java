@@ -37,35 +37,30 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     private InfoModel infoModel;
 
     public interface AsyncResponse {
-        void processFinish(InfoModel output);
+        void processFinish(InfoModel output, String role);
 //        void processFinish(Admin output);
 //        void processFinish(Teacher output);
 //        void processFinish(Parent output);
 
     }
 
-    public AsyncResponse delegate = null;
+    public AsyncResponse mainActivity, homeFrag, contactFrag, notifiFrag, userFrag;
 
-    public LoadInfosTask(Context context) {
-        this.context = context;
-    }
 
-    public LoadInfosTask(String phone, String role) {
+    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity) {
         this.phone = phone;
         this.role = role;
+        this.mainActivity = mainActivity;
     }
 
-    public LoadInfosTask(String phone, String role, AsyncResponse delegate) {
+    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity, AsyncResponse homeFrag, AsyncResponse contactFrag, AsyncResponse notifiFrag, AsyncResponse userFrag) {
         this.phone = phone;
         this.role = role;
-        this.delegate = delegate;
-    }
-
-    public LoadInfosTask(Context context, EditText txtName, EditText txtPhone, EditText txtId) {
-        this.context = context;
-        this.txtName = txtName;
-        this.txtPhone = txtPhone;
-        this.txtId = txtId;
+        this.mainActivity = mainActivity;
+        this.homeFrag = homeFrag;
+        this.contactFrag = contactFrag;
+        this.notifiFrag = notifiFrag;
+        this.userFrag = userFrag;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -89,16 +84,19 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
         if (role.equals("admin")) {
+
             Admin admin = gson.fromJson(postResponse, Admin.class);
-            delegate.processFinish(admin);
+            passInfo(admin, role);
         }
         else if (role.equals("parent")) {
+
             Parent parent = gson.fromJson(postResponse, Parent.class);
-            delegate.processFinish(parent);
+            passInfo(parent, role);
         }
         else if (role.equals("teacher")) {
+
             Teacher teacher= gson.fromJson(postResponse, Teacher.class);
-            delegate.processFinish(teacher);
+            passInfo(teacher, role);
         }else
             Toast.makeText(this.context, "Role: "+role, Toast.LENGTH_LONG).show();
 //        if (infoModel.getRes()){
@@ -110,6 +108,14 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
 //        txtName.setText(infoModel.getName());
 //        txtId.setText(infoModel.getId());
 //        txtPhone.setText(infoModel.getPhone());
+    }
+
+    private void passInfo(InfoModel infoModel, String role) {
+        mainActivity.processFinish(infoModel, role);
+        homeFrag.processFinish(infoModel, role);
+        contactFrag.processFinish(infoModel, role);
+        notifiFrag.processFinish(infoModel, role);
+        userFrag.processFinish(infoModel, role);
     }
 
     // post request code here

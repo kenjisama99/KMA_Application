@@ -26,14 +26,18 @@ import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
 
 public class MainActivity extends AppCompatActivity implements LoadInfosTask.AsyncResponse {
-    Button btInfo,btChat;
+    //data
     String phone;
     String role;
 
+    //model
     InfoModel infoModel;
-    Admin admin;
-    Teacher teacher;
-    Parent parent;
+
+    //fragment
+    homeFragment homeFragment;
+    contactFragment contactFragment;
+    notificationFragment notificationFragment;
+    userFragment userFragment;
 
 
     @Override
@@ -43,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         Intent data = getIntent();
         phone = data.getStringExtra("phone");
         role = data.getStringExtra("role");
+
+        homeFragment = new homeFragment();
+        contactFragment = new contactFragment();
+        notificationFragment = new notificationFragment();
+        userFragment = new userFragment();
 
         LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this);
 
@@ -60,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         bottomNav.setOnNavigationItemReselectedListener(navListener);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft_add = fm.beginTransaction();
-        ft_add.add(R.id.framelayout_container, new homeFragment()).commit();
+        ft_add.add(R.id.framelayout_container, homeFragment).commit();
     }
 
 
@@ -70,19 +79,19 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new homeFragment();
+                    selectedFragment = homeFragment;
                     break;
                 case R.id.nav_contact:
-                    selectedFragment = new contactFragment();
+                    selectedFragment = contactFragment;
                     break;
                 case R.id.nav_notification:
-                    selectedFragment = new notificationFragment();
+                    selectedFragment = notificationFragment;
                     break;
                 case R.id.nav_user:
-                    selectedFragment = new userFragment();
+                    selectedFragment = userFragment;
                     break;
                 default:
-                    selectedFragment = new homeFragment();
+                    selectedFragment = homeFragment;
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_container, selectedFragment).commit();
@@ -111,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 
 
     @Override
-    public void processFinish(InfoModel output) {
+    public void processFinish(InfoModel output, String role) {
         infoModel = output;
     }
 

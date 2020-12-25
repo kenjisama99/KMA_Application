@@ -13,9 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.kma_application.AsyncTask.LoadInfosTask;
+import com.example.kma_application.Models.InfoModel;
 
 
-public class userFragment extends Fragment {
+public class userFragment extends Fragment implements LoadInfosTask.AsyncResponse{
 
     @Nullable
     @Override
@@ -23,6 +24,11 @@ public class userFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false);
+    }
+
+    @Override
+    public void processFinish(InfoModel output, String role) {
+
     }
 
 //    Button btLogout, btChangePassword;
