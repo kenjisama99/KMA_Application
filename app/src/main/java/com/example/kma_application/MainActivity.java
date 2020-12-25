@@ -3,7 +3,10 @@ package com.example.kma_application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Transition;
@@ -15,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.security.KeyStore;
 
+import static com.example.kma_application.R.id.button;
+import static com.example.kma_application.R.id.health;
 import static com.example.kma_application.R.id.nav_notification;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.Admin;
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     Button btInfo,btChat;
     String phone;
     String role;
+    Button btHealth;
 
     InfoModel infoModel;
     Admin admin;
@@ -52,9 +58,22 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 //
 //            }
 //        });
+        this.btHealth = (Button)this.findViewById(health);
+        btHealth.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent_health = new Intent(MainActivity.this, health.class);
+                MainActivity.this.startActivity(intent_health);
+            }
+        });
+
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemReselectedListener(navListener);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft_add = fm.beginTransaction();
+        ft_add.add(R.id.framelayout_container, new homeFragment()).commit();
     }
 
 

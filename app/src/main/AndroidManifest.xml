@@ -18,9 +18,10 @@
         <activity android:name=".child_health"></activity>
         <activity android:name=".class_health" />
         <activity android:name=".medicine" />
-        <activity android:name=".infomation" />
+        <activity android:name=".health" />
         <activity android:name=".absent" />
         <activity android:name=".changePassword" />
+
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
