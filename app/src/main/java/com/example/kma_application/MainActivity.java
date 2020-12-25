@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 
         loadInfosTask.execute();
 
-        btInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickBtInfo();
-
-            }
-        });
+//        btInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickBtInfo();
+//
+//            }
+//        });
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemReselectedListener(navListener);

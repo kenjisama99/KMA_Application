@@ -50,7 +50,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_birth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_hight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -207,7 +207,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/edit_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -223,9 +223,25 @@
             android:textColor="#000000"
             android:textSize="14sp" />
 
+        <Button
+            android:id="@+id/button_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_comment"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="125dp"
+            android:backgroundTint="#FD4E49"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Hoàn thành"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
     </RelativeLayout>
-
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

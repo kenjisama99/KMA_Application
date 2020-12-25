@@ -6,15 +6,10 @@
     <string name="func1">Sức khỏe của bé</string>
     <string name="func2">Xin nghỉ cho con</string>
     <string name="func3">Dặn thuốc cho con</string>
-    <string name="func5">Liên hệ giáo viên</string>
-    <string name="func6">Thông báo</string>
-    <string name="func7">Thông tin tài khoản</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="new1">Thông báo nghỉ học ngày 20/11 - Ngày nhà giáo Việt Nam</string>
-    <string name="new2">Thông báo buổi học ngoại khóa toàn trường</string>
 
     <!--login-->
     <string name="title_activity_login">Login</string>
@@ -57,7 +52,7 @@
     <string name="calendars">Lịch</string>
 
     <!--    BabyInfomation-->
-    >
+    <string name="classHealth">Sức khỏe của lớp</string>
     <string name="babyInfo">Thông tin của bé</string>
     <string name="name">Họ và tên:</string>
     <string name="birth">Ngày sinh:</string>
@@ -65,7 +60,5 @@
     <string name="height">Chiều cao:</string>
     <string name="weight">Cân nặng:</string>
     <string name="ratio">Tỷ lệ cơ thể:</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
