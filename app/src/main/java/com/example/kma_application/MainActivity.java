@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.security.KeyStore;
 
+import static com.example.kma_application.R.id.button;
+import static com.example.kma_application.R.id.health;
 import static com.example.kma_application.R.id.nav_notification;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.Admin;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     //data
     String phone;
     String role;
+    Button btHealth;
 
     //model
     InfoModel infoModel;
@@ -64,6 +67,16 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 //
 //            }
 //        });
+        this.btHealth = (Button)this.findViewById(health);
+        btHealth.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent_health = new Intent(MainActivity.this, health.class);
+                MainActivity.this.startActivity(intent_health);
+            }
+        });
+
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemReselectedListener(navListener);
