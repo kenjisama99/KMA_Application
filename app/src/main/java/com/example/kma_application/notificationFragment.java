@@ -24,7 +24,7 @@ public class notificationFragment extends Fragment implements LoadInfosTask.Asyn
     }
 
     @Override
-    public void processFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(InfoModel output, String role) {
 
     }
 }

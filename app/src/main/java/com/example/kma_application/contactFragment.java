@@ -24,7 +24,7 @@ public class contactFragment extends Fragment implements LoadInfosTask.AsyncResp
     }
 
     @Override
-    public void processFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(InfoModel output, String role) {
 
     }
 }

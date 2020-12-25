@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 
 
     @Override
-    public void processFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(InfoModel output, String role) {
         infoModel = output;
     }
 

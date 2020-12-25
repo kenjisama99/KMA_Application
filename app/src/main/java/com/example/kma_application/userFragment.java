@@ -27,7 +27,7 @@ public class userFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     @Override
-    public void processFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(InfoModel output, String role) {
 
     }
 

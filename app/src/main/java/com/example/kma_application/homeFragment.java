@@ -26,7 +26,7 @@ public class homeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     @Override
-    public void processFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(InfoModel output, String role) {
         this.infoModel = output;
         this.role = role;
         if (infoModel == null){

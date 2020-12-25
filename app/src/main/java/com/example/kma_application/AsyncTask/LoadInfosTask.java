@@ -1,20 +1,15 @@
 package com.example.kma_application.AsyncTask;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-import com.example.kma_application.MainActivity;
 import com.example.kma_application.Models.Admin;
 import com.example.kma_application.Models.InfoModel;
 import com.example.kma_application.Models.Parent;
-import com.example.kma_application.Models.ResponseModel;
 import com.example.kma_application.Models.Teacher;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -37,7 +32,7 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     private InfoModel infoModel;
 
     public interface AsyncResponse {
-        void processFinish(InfoModel output, String role);
+        void onLoadInfoTaskFinish(InfoModel output, String role);
 //        void processFinish(Admin output);
 //        void processFinish(Teacher output);
 //        void processFinish(Parent output);
@@ -111,11 +106,11 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     }
 
     private void passInfo(InfoModel infoModel, String role) {
-        mainActivity.processFinish(infoModel, role);
-        homeFrag.processFinish(infoModel, role);
-        contactFrag.processFinish(infoModel, role);
-        notifiFrag.processFinish(infoModel, role);
-        userFrag.processFinish(infoModel, role);
+        mainActivity.onLoadInfoTaskFinish(infoModel, role);
+        homeFrag.onLoadInfoTaskFinish(infoModel, role);
+        contactFrag.onLoadInfoTaskFinish(infoModel, role);
+        notifiFrag.onLoadInfoTaskFinish(infoModel, role);
+        userFrag.onLoadInfoTaskFinish(infoModel, role);
     }
 
     // post request code here
