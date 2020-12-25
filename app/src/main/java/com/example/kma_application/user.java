@@ -6,12 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,14 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.kma_application.AsyncTask.ChangePassTask;
-import com.example.kma_application.AsyncTask.LoadInfosTask;
-import com.example.kma_application.AsyncTask.LoginTask;
 import com.example.kma_application.Models.InfoModel;
 import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.engineio.client.Transport;
 import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Manager;
 import com.github.nkzawa.socketio.client.Socket;
 
 
@@ -164,7 +156,7 @@ public class user extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        //setContentView(R.layout.activity_user);
 
         btLogout = (Button)findViewById(R.id.buttonLogout);
         btChangePassword = (Button)findViewById(R.id.buttonChangePass);

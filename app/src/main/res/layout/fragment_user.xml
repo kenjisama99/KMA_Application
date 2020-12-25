@@ -43,17 +43,11 @@
 
 
             <ImageView
-<<<<<<< HEAD:app/src/main/res/layout/fragment_user.xml
-                android:id="@+id/logo"
+                android:id="@+id/avatar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-=======
-                android:id="@+id/avatar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
->>>>>>> e641362806d285afc72a8e480ea115fdc832ee39:app/src/main/res/layout/activity_user.xml
                 android:contentDescription="@string/avatar"
                 android:src="@drawable/avatar2"
                 android:visibility="visible" />

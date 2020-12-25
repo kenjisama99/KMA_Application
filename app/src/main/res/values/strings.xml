@@ -40,7 +40,7 @@
 
     <!--    chat-->
 
-    <string name="teacher">Vô danh</string>
+    <string name="teacher">Unknown</string>
 
 
     <!--    Change PassWord-->

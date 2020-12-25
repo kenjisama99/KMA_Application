@@ -4,19 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.security.KeyStore;
 
 import static com.example.kma_application.R.id.nav_notification;
-
-
-<<<<<<< HEAD
-public class MainActivity extends AppCompatActivity {
-=======
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.Admin;
 import com.example.kma_application.Models.InfoModel;
@@ -32,23 +31,38 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     Admin admin;
     Teacher teacher;
     Parent parent;
->>>>>>> e641362806d285afc72a8e480ea115fdc832ee39
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent data = getIntent();
+        phone = data.getStringExtra("phone");
+        role = data.getStringExtra("role");
+
+        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this);
+
+        loadInfosTask.execute();
+
+        btInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtInfo();
+
+            }
+        });
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemReselectedListener(navListener);
     }
 
-<<<<<<< HEAD
+
     private  BottomNavigationView.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
         @Override
         public void onNavigationItemReselected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new homeFragment();
                     break;
@@ -64,29 +78,12 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
                 default:
                     selectedFragment = new homeFragment();
                     break;
-=======
-        Intent data = getIntent();
-        phone = data.getStringExtra("phone");
-        role = data.getStringExtra("role");
-
-        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this);
-
-        loadInfosTask.execute();
-
-        btInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickBtInfo();
->>>>>>> e641362806d285afc72a8e480ea115fdc832ee39
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_container, selectedFragment).commit();
-
         }
     };
 
-<<<<<<< HEAD
 
-=======
     private void onClickBtChat() {
         //Admin admin = (Admin) infoModel;
         //Parent parent = (Parent) infoModel;
@@ -112,5 +109,5 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         infoModel = output;
     }
 
->>>>>>> e641362806d285afc72a8e480ea115fdc832ee39
+
 }
