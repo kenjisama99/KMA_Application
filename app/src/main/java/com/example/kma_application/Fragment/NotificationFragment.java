@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Fragment;
 
 import android.os.Bundle;
 
@@ -11,16 +11,17 @@ import android.view.ViewGroup;
 
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.R;
 
 
-public class contactFragment extends Fragment implements LoadInfosTask.AsyncResponse {
+public class NotificationFragment extends Fragment implements LoadInfosTask.AsyncResponse{
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        return inflater.inflate(R.layout.fragment_notification, container, false);
     }
 
     @Override

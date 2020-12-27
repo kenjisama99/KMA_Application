@@ -1,10 +1,12 @@
-package com.example.kma_application;
+package com.example.kma_application.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class class_health extends AppCompatActivity {
+import com.example.kma_application.R;
+
+public class ClassHealthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

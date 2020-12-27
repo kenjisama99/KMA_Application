@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,10 @@ import android.widget.EditText;
 
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.R;
 
 
-public class userFragment extends Fragment implements LoadInfosTask.AsyncResponse{
+public class UserFragment extends Fragment implements LoadInfosTask.AsyncResponse{
 
     @Nullable
     @Override

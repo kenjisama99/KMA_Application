@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_weight="10"
     android:orientation="vertical"
-    tools:context=".medicine">
+    tools:context=".Activity.MedicineActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

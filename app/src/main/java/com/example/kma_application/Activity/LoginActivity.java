@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.LoginTask;
+import com.example.kma_application.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -18,7 +19,7 @@ import com.github.nkzawa.socketio.client.Socket;
 
 import java.net.URISyntaxException;
 
-public class login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText txtPhone,txtPassword;
     Button btLogin;

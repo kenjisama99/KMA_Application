@@ -15,23 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
-        <activity android:name=".child_health"></activity>
-        <activity android:name=".class_health" />
-        <activity android:name=".medicine" />
-        <activity android:name=".health" />
-        <activity android:name=".absent" />
-        <activity android:name=".changePassword" />
+        <activity android:name=".Activity.ChildHealthActivity"></activity>
+        <activity android:name=".Activity.ClassHealthActivity" />
+        <activity android:name=".Activity.MedicineActivity" />
+        <activity android:name=".Activity.HealthActivity" />
+        <activity android:name=".Activity.AbsentActivity" />
+        <activity android:name=".Activity.ChangePasswordActivity" />
 
-        <activity android:name=".login">
+        <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".contact" />
+        <activity android:name=".Activity.ContactActivity" />
         <activity android:name=".user" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.MainActivity" />
     </application>
 
 </manifest>

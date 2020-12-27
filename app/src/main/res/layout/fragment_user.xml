@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    tools:context=".userFragment">
+    tools:context=".Fragment.UserFragment">
 
     <com.google.android.material.appbar.AppBarLayout
 
@@ -53,7 +53,7 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textHomeChildName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"

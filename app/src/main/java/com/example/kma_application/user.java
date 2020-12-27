@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.kma_application.Activity.ChangePasswordActivity;
+import com.example.kma_application.Activity.LoginActivity;
 import com.example.kma_application.Models.InfoModel;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -233,13 +235,13 @@ public class user extends AppCompatActivity {
     private void onClickChangePass() {
         Intent data = getIntent();
         String phone = data.getStringExtra("phone");
-        Intent changePassActivity = new Intent(this,changePassword.class);
+        Intent changePassActivity = new Intent(this, ChangePasswordActivity.class);
         changePassActivity.putExtra("phone",phone);
         startActivity(changePassActivity);
     }
 
     private void onClickBtLogout() {
-        Intent loginActivity = new Intent(this,login.class);
+        Intent loginActivity = new Intent(this, LoginActivity.class);
         startActivity(loginActivity);
         finish();
     }

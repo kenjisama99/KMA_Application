@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,30 +12,27 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.kma_application.MessageAdapter;
 import com.example.kma_application.Models.InfoModel;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
+import com.example.kma_application.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
-public class contact extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity {
     String phone, role;
     InfoModel infoModel;
     EditText editText;
@@ -61,7 +58,7 @@ public class contact extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_contact);
+        setContentView(R.layout.activity_contact);
         anhxa();
 
         getInfo();
@@ -101,18 +98,6 @@ public class contact extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         mSocket.connect();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mSocket.connect();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mSocket.disconnect();
     }
 
     private Emitter.Listener onRetrieveData = new Emitter.Listener() {
