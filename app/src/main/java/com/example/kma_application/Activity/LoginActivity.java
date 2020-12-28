@@ -37,25 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        try {
-//            //mSocket = IO.socket("http://still-temple-93427.herokuapp.com");
-//            mSocket = IO.socket("http://192.168.1.68:3000");
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//
-//        mSocket.connect();
-//        mSocket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-//
-//            @Override
-//            public void call(Object... args) {
-//                Log.d("TAG", "Socket Connected!");
-//                //mSocket.disconnect();
-//            }
-//
-//        });
-//        if (mSocket.connected())
-//            Toast.makeText(this,"da ket noi",Toast.LENGTH_LONG).show();
 
         //Init view
         txtPhone = (EditText)findViewById(R.id.editTextPhone);

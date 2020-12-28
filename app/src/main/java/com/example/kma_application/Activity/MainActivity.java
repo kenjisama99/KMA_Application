@@ -43,20 +43,20 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         notificationFragment = new NotificationFragment();
         userFragment = new UserFragment();
 
-        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this);
-
+        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this,homeFragment,notificationFragment,userFragment);
+        homeFragment.setLoadInfosTask(loadInfosTask);
         loadInfosTask.execute();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemReselectedListener(navListener);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft_add = fm.beginTransaction();
         ft_add.add(R.id.framelayout_container, homeFragment).commit();
     }
 
-    private  BottomNavigationView.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
+    private  BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public void onNavigationItemReselected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.nav_home:
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
                     break;
                 case R.id.nav_contact:
                     onClickBtChat();
-                    return;
+                    return true;
                 case R.id.nav_notification:
                     selectedFragment = notificationFragment;
                     break;
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft_replay = fm.beginTransaction();
             ft_replay.replace(R.id.framelayout_container, selectedFragment).commit();
+            return true;
         }
     };
 

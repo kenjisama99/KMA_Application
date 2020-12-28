@@ -30,7 +30,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="736dp"
+        android:layout_height="603dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="0dp"
         app:layout_anchorGravity="center">
@@ -53,7 +53,7 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/textHomeChildName"
+                android:id="@+id/textInfoChildName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -207,15 +207,13 @@
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="wrap_content"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/editTextTextPersonName5"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="130dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="130dp"
-            android:layout_marginBottom="165dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="129dp"
             android:background="@null"
             android:backgroundTint="#DA6363"
             android:insetTop="0dp"

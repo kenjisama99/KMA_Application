@@ -50,7 +50,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,8 +60,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="25dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="Nguyễn Minh Anh"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -81,7 +80,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_birth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,8 +90,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="25dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="01/01/2017"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -112,7 +110,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,8 +120,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="25dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="Lớp họa my"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -143,7 +140,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_hight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -156,8 +152,8 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="-75dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="92cm"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -176,7 +172,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -187,8 +182,8 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="-45dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="12kg"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -207,7 +202,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -218,8 +212,8 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="-45dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
-            android:text="Phát triển bình thường"
             android:textColor="#000000"
             android:textSize="14sp" />
 

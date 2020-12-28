@@ -200,16 +200,6 @@ public class user extends AppCompatActivity {
         mSocket.connect();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mSocket.connect();
-    }
-    protected void onPause() {
-        super.onPause();
-        mSocket.disconnect();
-    }
-
     String infoJson(String phone) {
         return "{\"phone\":\"" + phone +"\"}";
     }
