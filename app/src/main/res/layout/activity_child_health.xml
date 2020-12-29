@@ -50,7 +50,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="true"
+            android:enabled="false"
             android:id="@+id/edit_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="true"
+            android:enabled="false"
             android:id="@+id/edit_birth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="true"
+            android:enabled="false"
             android:id="@+id/edit_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

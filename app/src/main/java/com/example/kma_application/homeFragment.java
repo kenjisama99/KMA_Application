@@ -12,8 +12,6 @@ import android.widget.Button;
 
 public class homeFragment extends Fragment {
 
-    private Button health;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

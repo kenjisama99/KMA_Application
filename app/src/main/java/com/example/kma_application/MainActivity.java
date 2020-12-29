@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     Button btInfo,btChat;
     String phone;
     String role;
-    Button btHealth;
-
+//    Button btHealth;
+//
     InfoModel infoModel;
     Admin admin;
     Teacher teacher;
@@ -58,28 +58,30 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
 //
 //            }
 //        });
-        this.btHealth = (Button)this.findViewById(health);
-        btHealth.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent_health = new Intent(MainActivity.this, health.class);
-                MainActivity.this.startActivity(intent_health);
-            }
-        });
+
+        
+//        this.btHealth = (Button)this.findViewById(health);
+//        btHealth.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent_health = new Intent(MainActivity.this, health.class);
+//                MainActivity.this.startActivity(intent_health);
+//            }
+//        });
 
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemReselectedListener(navListener);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft_add = fm.beginTransaction();
         ft_add.add(R.id.framelayout_container, new homeFragment()).commit();
     }
 
 
-    private  BottomNavigationView.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
+    private  BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public void onNavigationItemReselected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.nav_home:
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_container, selectedFragment).commit();
+            return true;
         }
     };
 
