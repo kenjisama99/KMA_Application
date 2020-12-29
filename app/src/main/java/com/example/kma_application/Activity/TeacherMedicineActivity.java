@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.kma_application.R;
 
-public class MedicineActivity extends AppCompatActivity {
+public class TeacherMedicineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine);
+        setContentView(R.layout.activity_teacher_medicine);
     }
 }

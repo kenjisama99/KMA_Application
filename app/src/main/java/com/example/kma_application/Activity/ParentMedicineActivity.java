@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.example.kma_application.R;
+
 import java.util.Calendar;
 
-public class medicine_user extends AppCompatActivity {
+public class ParentMedicineActivity extends AppCompatActivity {
 
     private EditText edit_content;
     private EditText edit_dateStart;
@@ -27,7 +29,7 @@ public class medicine_user extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine_user);
+        setContentView(R.layout.activity_parent_medicine);
 
         this.edit_content = (EditText)this.findViewById(R.id.edit_content);
         this.edit_dateStart = (EditText)this.findViewById(R.id.edit_dateStart);
