@@ -75,7 +75,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
         txtStillThinkAboutTheName = (TextView) view.findViewById(R.id.textInfoChildName);
 
         txtName.setText(infoModel.getName());
-        txtId.setText(infoModel.getId());
+        txtId.setText("Id: "+infoModel.getId());
         txtPhone.setText(infoModel.getPhone());
 
         if (role.equals("parent")){
