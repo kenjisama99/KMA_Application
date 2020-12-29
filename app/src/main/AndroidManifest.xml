@@ -15,14 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.ChildHealthActivity"></activity>
+        <activity android:name=".Activity.ChildMedicineActivity"></activity>
+        <activity android:name=".Activity.ChildHealthActivity" />
         <activity android:name=".Activity.ClassHealthActivity" />
         <activity android:name=".Activity.TeacherMedicineActivity" />
         <activity android:name=".Activity.ParentMedicineActivity" />
         <activity android:name=".Activity.HealthActivity" />
         <activity android:name=".Activity.AbsentActivity" />
         <activity android:name=".Activity.ChangePasswordActivity" />
-
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
