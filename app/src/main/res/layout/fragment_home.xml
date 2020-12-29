@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_weight="10"
     android:orientation="vertical"
-    tools:context=".homeFragment">
+    tools:context=".Fragment.HomeFragment">
 
 
     <LinearLayout
@@ -78,7 +78,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/health"
+                android:id="@+id/buttonHealth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -94,6 +94,7 @@
                 app:iconPadding="0dp" />
 
             <Button
+                android:id="@+id/buttonMedicine"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -107,9 +108,10 @@
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
-                app:iconPadding="0dp"/>
+                app:iconPadding="0dp" />
 
             <Button
+                android:id="@+id/textHomeChildName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
