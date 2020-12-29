@@ -1,20 +1,20 @@
 package com.example.kma_application.AsyncTask;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-import com.example.kma_application.MainActivity;
+import com.example.kma_application.Activity.MainActivity;
+import com.example.kma_application.Fragment.HomeFragment;
+import com.example.kma_application.Fragment.NotificationFragment;
+import com.example.kma_application.Fragment.UserFragment;
 import com.example.kma_application.Models.Admin;
 import com.example.kma_application.Models.InfoModel;
 import com.example.kma_application.Models.Parent;
-import com.example.kma_application.Models.ResponseModel;
 import com.example.kma_application.Models.Teacher;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -27,45 +27,40 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     private Context context;
     private String phone;
     private String role;
+    TextView txtName;
 
-    EditText txtName, txtPhone, txtId;
+    public void setTxtName(TextView txtName) {
+        this.txtName = txtName;
+    }
 
+    private InfoModel infoModel;
     public InfoModel getInfoModel() {
         return infoModel;
     }
 
-    private InfoModel infoModel;
-
     public interface AsyncResponse {
-        void processFinish(InfoModel output);
-//        void processFinish(Admin output);
-//        void processFinish(Teacher output);
-//        void processFinish(Parent output);
-
+        void onLoadInfoTaskFinish(InfoModel output, String role);
     }
 
-    public AsyncResponse delegate = null;
+    public AsyncResponse mainActivity;
+    public AsyncResponse homeFrag;
+    public AsyncResponse notifiFrag;
+    public AsyncResponse userFrag;
 
-    public LoadInfosTask(Context context) {
-        this.context = context;
-    }
 
-    public LoadInfosTask(String phone, String role) {
+    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity) {
         this.phone = phone;
         this.role = role;
+        this.mainActivity = mainActivity;
     }
 
-    public LoadInfosTask(String phone, String role, AsyncResponse delegate) {
+    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity, AsyncResponse homeFrag, AsyncResponse notifiFrag, AsyncResponse userFrag) {
         this.phone = phone;
         this.role = role;
-        this.delegate = delegate;
-    }
-
-    public LoadInfosTask(Context context, EditText txtName, EditText txtPhone, EditText txtId) {
-        this.context = context;
-        this.txtName = txtName;
-        this.txtPhone = txtPhone;
-        this.txtId = txtId;
+        this.mainActivity = mainActivity;
+        this.homeFrag = homeFrag;
+        this.notifiFrag = notifiFrag;
+        this.userFrag = userFrag;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -89,16 +84,22 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
         if (role.equals("admin")) {
+
             Admin admin = gson.fromJson(postResponse, Admin.class);
-            delegate.processFinish(admin);
+            passInfo(admin, role);
+            txtName.setText("Admin: "+admin.getName());
         }
         else if (role.equals("parent")) {
+
             Parent parent = gson.fromJson(postResponse, Parent.class);
-            delegate.processFinish(parent);
+            passInfo(parent, role);
+            txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
         }
         else if (role.equals("teacher")) {
+
             Teacher teacher= gson.fromJson(postResponse, Teacher.class);
-            delegate.processFinish(teacher);
+            passInfo(teacher, role);
+            txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
         }else
             Toast.makeText(this.context, "Role: "+role, Toast.LENGTH_LONG).show();
 //        if (infoModel.getRes()){
@@ -110,6 +111,13 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
 //        txtName.setText(infoModel.getName());
 //        txtId.setText(infoModel.getId());
 //        txtPhone.setText(infoModel.getPhone());
+    }
+
+    private void passInfo(InfoModel infoModel, String role) {
+        mainActivity.onLoadInfoTaskFinish(infoModel, role);
+        homeFrag.onLoadInfoTaskFinish(infoModel, role);
+        notifiFrag.onLoadInfoTaskFinish(infoModel, role);
+        userFrag.onLoadInfoTaskFinish(infoModel, role);
     }
 
     // post request code here

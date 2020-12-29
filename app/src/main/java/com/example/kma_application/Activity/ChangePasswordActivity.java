@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,9 @@ import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.ChangePassTask;
 import com.example.kma_application.AsyncTask.LoginTask;
+import com.example.kma_application.R;
 
-public class changePassword extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
     Button btDoneChangePass;
     EditText txtOldPassword, txtNewPassword, txtNewPasswordPart2;
 
