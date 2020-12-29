@@ -21,7 +21,7 @@
         <activity android:name=".Activity.TeacherMedicineActivity" />
         <activity android:name=".Activity.ParentMedicineActivity" />
         <activity android:name=".Activity.HealthActivity" />
-        <activity android:name=".Activity.AbsentActivity" />
+        <activity android:name=".Activity.ParentAbsentActivity" />
         <activity android:name=".Activity.ChangePasswordActivity" />
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
