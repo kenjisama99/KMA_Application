@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kma_application.Activity.ClassHealthActivity;
-import com.example.kma_application.Activity.HealthActivity;
+import com.example.kma_application.Activity.TeacherHealthActivity;
+import com.example.kma_application.Activity.ParentHealthActivity;
 import com.example.kma_application.Activity.ParentMedicineActivity;
 import com.example.kma_application.Activity.TeacherMedicineActivity;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
@@ -62,9 +62,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     private void onClickBtHealth() {
-        Intent intent = new Intent(getActivity(), HealthActivity.class);
+        Intent intent = new Intent(getActivity(), ParentHealthActivity.class);
         if (role.equals("teacher"))
-            intent = new Intent(getActivity(), ClassHealthActivity.class);
+            intent = new Intent(getActivity(), TeacherHealthActivity.class);
 
         intent.putExtra("info", infoModel);
         startActivity(intent);

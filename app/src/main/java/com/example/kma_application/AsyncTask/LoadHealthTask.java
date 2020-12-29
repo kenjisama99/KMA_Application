@@ -56,9 +56,9 @@ public class LoadHealthTask extends AsyncTask<Void,Void,String> {
 
         if (child != null){
             //Toast.makeText(this.context, "Class: "+child.get_class(), Toast.LENGTH_LONG).show();
-            String birth = invertedDate(child.getBirth());
+            //String birth = invertedDate(child.getBirth());
             txtName.setText(child.getName());
-            txtBirth.setText(birth);
+            txtBirth.setText(child.getBirth());
             txtClass.setText(child.get_class());
             txtHeight.setText(child.getHeight());
             txtWeight.setText(child.getWeight());
