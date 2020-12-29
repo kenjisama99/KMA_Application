@@ -79,32 +79,22 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_dateStart"
-            android:layout_width="226dp"
+            android:layout_width="383dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateStart"
             android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
             android:ems="10"
-            android:textColor="#000000"
+            android:enabled="false"
             android:hint="dd/mm/yyyy"
             android:inputType="datetime"
-            android:textSize="18sp"/>
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/selectDateStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="60dp"
-            android:layout_toEndOf="@+id/edit_dateStart"
-            android:backgroundTint="#914A4A"
-            android:text="Chọn ngày"
-            android:textAllCaps="false"
-            app:cornerRadius="6dp" />
 
         <TextView
             android:id="@+id/dateFinished"
@@ -119,50 +109,22 @@
             android:textSize="18sp" />
 
         <EditText
-            android:enabled="false"
             android:id="@+id/edit_dateFinished"
-            android:layout_width="226dp"
+            android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateFinished"
             android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
             android:ems="10"
-            android:textColor="#000000"
+            android:enabled="false"
             android:hint="dd/mm/yy"
             android:inputType="datetime"
-            android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/selectDateFinished"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/selectDateStart"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="60dp"
-            android:layout_toEndOf="@+id/edit_dateFinished"
-            android:backgroundTint="#914A4A"
-            android:text="Chọn ngày"
-            android:textAllCaps="false"
-            app:cornerRadius="6dp" />
-
-        <Button
-            android:id="@+id/submitMedicine"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_below="@+id/edit_dateFinished"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="130dp"
-            android:backgroundTint="#bce9fe"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Gửi yêu cầu"
-            android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="20sp"
-            app:cornerRadius="6dp" />
+            android:textSize="18sp" />
+
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
