@@ -46,7 +46,7 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/logo"
@@ -78,7 +78,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonHealth"
+                android:id="@+id/buttonHomeHealth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -94,7 +94,7 @@
                 app:iconPadding="0dp" />
 
             <Button
-                android:id="@+id/buttonMedicine"
+                android:id="@+id/buttonHomeAbsent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -111,7 +111,7 @@
                 app:iconPadding="0dp" />
 
             <Button
-                android:id="@+id/textHomeChildName"
+                android:id="@+id/buttonHomeMedicine"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"

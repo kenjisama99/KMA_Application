@@ -18,6 +18,7 @@
         <activity android:name=".Activity.ChildHealthActivity"></activity>
         <activity android:name=".Activity.ClassHealthActivity" />
         <activity android:name=".Activity.TeacherMedicineActivity" />
+        <activity android:name=".Activity.ParentMedicineActivity" />
         <activity android:name=".Activity.HealthActivity" />
         <activity android:name=".Activity.AbsentActivity" />
         <activity android:name=".Activity.ChangePasswordActivity" />
