@@ -15,8 +15,7 @@ import java.util.Calendar;
 
 public class ParentAbsentActivity extends AppCompatActivity {
 
-    private EditText edit_content;
-    private EditText edit_dateStart;
+
     private EditText edit_dateFinished;
     private Button selectDateStart;
     private Button selectDateFinished;
@@ -31,8 +30,6 @@ public class ParentAbsentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_absent);
 
-        this.edit_content = (EditText)this.findViewById(R.id.edit_content);
-        this.edit_dateStart = (EditText)this.findViewById(R.id.edit_dateStart);
         this.edit_dateFinished = (EditText)this.findViewById(R.id.edit_dateFinished);
         this.selectDateStart = (Button)this.findViewById(R.id.selectDateStart);
         this.selectDateFinished = (Button)this.findViewById(R.id.selectDateFinished);

@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_weight="10"
@@ -47,18 +47,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="582dp" />
+        android:layout_height="0dp"
+        android:layout_weight="8" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8">
+        android:layout_weight="1">
         <ImageButton
             android:id="@+id/buttonSendImage"
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
-
             android:layout_weight="1.5"
             android:background="@null"
             android:src="@drawable/ic_image_black_24dp" />
@@ -68,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
-            android:layout_weight="8.5"
+            android:layout_weight="7"
             android:hint="Soạn tin nhắn"
             android:background="#e6e6e6"/>
 
