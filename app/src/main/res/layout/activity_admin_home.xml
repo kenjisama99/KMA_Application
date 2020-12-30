@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    tools:context=".Activity.ParentMedicineActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="top"
+        android:background="#bce9fe"
+        android:contextClickable="true">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Quản lý phần mềm"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:gravity="center_horizontal"
+        app:layout_anchor="@+id/relativeLayout2"
+        app:layout_anchorGravity="center|center_horizontal">
+
+        <Button
+            android:id="@+id/buttonUserManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/edit_profile_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:text="Quản lý tài khoản người dùng"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonNotificationManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@+id/buttonUserManage"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/bell_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý thông báo"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonAlbumManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_below="@+id/buttonUserManage"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/ios_photos_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý ảnh"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonHealthManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_below="@+id/buttonNotificationManage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@+id/buttonAlbumManage"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/mental_health_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý sức khỏe của bé"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonAbsentManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_below="@+id/buttonAlbumManage"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/banned_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý xin nghỉ cho bé"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonMedicineManage"
+            android:layout_width="170dp"
+            android:layout_height="125dp"
+            android:layout_below="@+id/buttonHealthManage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@+id/buttonAbsentManage"
+            android:backgroundTint="#914A4A"
+            android:drawableTop="@drawable/pill_50px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý dặn thuốc"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonAdminManage"
+            android:layout_width="152dp"
+            android:layout_height="78dp"
+            android:layout_below="@+id/buttonMedicineManage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="135dp"
+            android:backgroundTint="#1F5F7E"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Quản lý tài khoản Admin"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp" />
+
+    </RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
