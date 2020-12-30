@@ -5,8 +5,7 @@ import android.os.AsyncTask;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.kma_application.Models.Medicine;
-import com.example.kma_application.Models.Medicine;
+import com.example.kma_application.Models.Absent;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -17,14 +16,14 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
+public class LoadAbsentTask extends AsyncTask<Void,Void,String> {
     Context context;
     String phone;
     private EditText txtContent;
     private EditText txtStartDate;
     private EditText txtEndDate;
 
-    public LoadMedicineTask(Context context, String phone, EditText txtContent, EditText txtStartDate, EditText txtEndDate) {
+    public LoadAbsentTask(Context context, String phone, EditText txtContent, EditText txtStartDate, EditText txtEndDate) {
         this.context = context;
         this.phone = phone;
         this.txtContent = txtContent;
@@ -37,7 +36,7 @@ public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/getMedicine", userJson(phone));
+            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/getAbsent", userJson(phone));
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
         } catch (IOException e) {
@@ -49,25 +48,25 @@ public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
-        Medicine medicine = null;
+        Absent absent = null;
         ResponseModel responseModel= null;
         try {
             responseModel = gson.fromJson(postResponse,ResponseModel.class);
-            medicine = gson.fromJson(postResponse,Medicine.class);
+            absent = gson.fromJson(postResponse,Absent.class);
         }catch (Exception e){
             e.printStackTrace();
         }
         if (responseModel.getResponse() == null){
             if (true){
-                if (medicine != null){
-                    //Toast.makeText(this.context, "Class: "+medicine.get_class(), Toast.LENGTH_LONG).show();
-                    //String birth = invertedDate(medicine.getBirth());
-                    txtContent.setText(medicine.getContent());
-                    txtStartDate.setText(medicine.getStartDate());
-                    txtEndDate.setText(medicine.getEndDate());
+                if (absent != null){
+                    //Toast.makeText(this.context, "Class: "+absent.get_class(), Toast.LENGTH_LONG).show();
+                    //String birth = invertedDate(absent.getBirth());
+                    txtContent.setText(absent.getContent());
+                    txtStartDate.setText(absent.getStartDate());
+                    txtEndDate.setText(absent.getEndDate());
 
                 }else
-                    Toast.makeText(this.context, "Medicine: "+medicine, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.context, "Absent: "+absent, Toast.LENGTH_LONG).show();
             }
 
         }else

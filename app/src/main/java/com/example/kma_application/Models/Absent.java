@@ -2,7 +2,7 @@ package com.example.kma_application.Models;
 
 import java.io.Serializable;
 
-public class Medicine implements Serializable {
+public class Absent implements Serializable {
     private String _id;
     private String phone;
     private String name;
@@ -12,7 +12,7 @@ public class Medicine implements Serializable {
     private String content;
     private String __v;
 
-    public Medicine(String _id, String phone, String name, String _class, String startDate, String endDate, String content, String __v) {
+    public Absent(String _id, String phone, String name, String _class, String startDate, String endDate, String content, String __v) {
         this._id = _id;
         this.phone = phone;
         this.name = name;

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kma_application.Activity.ParentAbsentActivity;
+import com.example.kma_application.Activity.TeacherAbsentActivity;
 import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Activity.ParentHealthActivity;
 import com.example.kma_application.Activity.ParentMedicineActivity;
@@ -58,6 +60,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickBtMedicine();
             }
         });
+        btAbsent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtAbsent();
+            }
+        });
         return view;
     }
 
@@ -78,9 +86,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         startActivity(intent);
     }
     private void onClickBtAbsent() {
-        Intent intent = new Intent(getActivity(), ParentMedicineActivity.class);
+        Intent intent = new Intent(getActivity(), ParentAbsentActivity.class);
         if (role.equals("teacher"))
-            intent = new Intent(getActivity(), TeacherMedicineActivity.class);
+            intent = new Intent(getActivity(), TeacherAbsentActivity.class);
 
         intent.putExtra("info", infoModel);
         startActivity(intent);

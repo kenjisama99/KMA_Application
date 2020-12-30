@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import java.io.IOException;
-
-import com.example.kma_application.Activity.MainActivity;
-import com.example.kma_application.Models.Medicine;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -18,14 +14,13 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-public class LoginTask extends AsyncTask<String,Void,String> {
-    private Context context;
-    private String phone;
-    private String role;
+import java.io.IOException;
 
-    public LoginTask(Context context, String phone) {
+public class SubmitMedicineTask extends AsyncTask<String,Void,String> {
+    private Context context;
+
+    public SubmitMedicineTask(Context context) {
         this.context = context;
-        this.phone = phone;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -33,7 +28,7 @@ public class LoginTask extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... jsons) {
         try {
-            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/login", jsons[0]);
+            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/submitMedicine", jsons[0]);
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
         } catch (IOException e) {
@@ -55,22 +50,10 @@ public class LoginTask extends AsyncTask<String,Void,String> {
         }
 
         if (responseModel != null){
-            if (responseModel.getRes()){
-                Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
-                this.role = responseModel.getRole();
-                startMainActivities();
-            }else
-                Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
         }
     }
-    private void startMainActivities() {
-        Intent mainActivity = new Intent(this.context, MainActivity.class);
-        mainActivity.putExtra("phone", this.phone);
-        mainActivity.putExtra("role", this.role);
-        context.startActivity(mainActivity);
-        ((Activity)context).finish();
-        //this.cancel(true);
-    }
+
     // post request code here
 
     public static final MediaType JSON
