@@ -40,7 +40,7 @@
                 android:src="@drawable/phone_35px" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
     </LinearLayout>
 

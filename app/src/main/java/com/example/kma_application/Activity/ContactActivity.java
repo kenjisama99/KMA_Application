@@ -53,7 +53,12 @@ public class ContactActivity extends AppCompatActivity {
 
 
     {
-
+        try {
+            mSocket = IO.socket("https://nodejscloudkenji.herokuapp.com");
+            //mSocket = IO.socket("http://192.168.1.68:3000");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +67,10 @@ public class ContactActivity extends AppCompatActivity {
         anhxa();
 
         getInfo();
-        try {
-            mSocket = IO.socket("https://nodejscloudkenji.herokuapp.com");
-            //mSocket = IO.socket("http://192.168.1.68:3000");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+
         mSocket.connect();
         mSocket.on(SERVER_SEND_CHAT,onRetrieveData);
+        mSocket.on("ping",onRetrieveHeartBeat);
 
         messageAdapter = new MessageAdapter(phone, getLayoutInflater());
         recyclerView.setAdapter(messageAdapter);
@@ -91,15 +92,21 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mSocket.disconnect();
+        //mSocket.disconnect();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        mSocket.connect();
+        //mSocket.connect();
     }
 
+    private Emitter.Listener onRetrieveHeartBeat = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            mSocket.emit("pong","{beat: 1}");
+        }
+    };
     private Emitter.Listener onRetrieveData = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
