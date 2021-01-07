@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.kma_application.MessageAdapter;
+import com.example.kma_application.Adapter.MessageAdapter;
 import com.example.kma_application.Models.InfoModel;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;

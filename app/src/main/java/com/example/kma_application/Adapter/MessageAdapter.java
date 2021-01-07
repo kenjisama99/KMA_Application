@@ -1,4 +1,4 @@
-package com.example.kma_application;
+package com.example.kma_application.Adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kma_application.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
