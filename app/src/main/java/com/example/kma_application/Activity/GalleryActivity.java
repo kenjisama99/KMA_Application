@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
@@ -29,15 +30,15 @@ import java.io.InputStream;
 public class GalleryActivity extends AppCompatActivity {
     String role;
     Teacher teacher;
-    Button btAdd;
-    private  final int IMAGE_REQUEST_ID = 1;
+    ImageButton btAdd;
+    private final int IMAGE_REQUEST_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        btAdd = (Button)findViewById(R.id.buttonAddImage);
+        btAdd = (ImageButton) findViewById(R.id.buttonAddImage);
 
         Intent data = getIntent();
         role = data.getStringExtra("role");
@@ -54,14 +55,16 @@ public class GalleryActivity extends AppCompatActivity {
             }
         });
     }
-    private  void  choosePicture(){
+
+    private void choosePicture() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent,IMAGE_REQUEST_ID);
+        startActivityForResult(intent, IMAGE_REQUEST_ID);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("TAG", "RQ code: "+requestCode+"\tRS code: "+resultCode);
+        Log.d("TAG", "RQ code: " + requestCode + "\tRS code: " + resultCode);
         //Toast.makeText(this,"RQ code: "+requestCode+"\tRS code: "+resultCode,Toast.LENGTH_LONG).show();
         if (requestCode == IMAGE_REQUEST_ID && resultCode == RESULT_OK) {
             try {
@@ -70,39 +73,29 @@ public class GalleryActivity extends AppCompatActivity {
                 Bitmap originalBitmap = BitmapFactory.decodeStream(inputStream);
                 //imgAvatar.setImageBitmap(bitmap);
                 Bitmap resizeBitmap = resize(originalBitmap, 100, 100);
-                sendImage(originalBitmap,resizeBitmap);
+                sendImage(originalBitmap, resizeBitmap);
                 getImagesFromServer();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-        } else if (requestCode == IMAGE_REQUEST_ID && resultCode == RESULT_OK) {
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
         }
     }
 
     private void sendImage(Bitmap originalBitmap, Bitmap resizeBitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        originalBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
-        String originalBase64 = Base64.encodeToString(outputStream.toByteArray(),Base64.DEFAULT);
+        originalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        String originalBase64 = Base64.encodeToString(outputStream.toByteArray(), Base64.NO_WRAP);
 
-        resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
-        String resizeBase64 = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+        ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
+        resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream2);
+        String resizeBase64 = Base64.encodeToString(outputStream2.toByteArray(), Base64.NO_WRAP);
+        System.out.println(resizeBase64);
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    doPostRequest(
-                        "https://nodejscloudkenji.herokuapp.com/sendImage",
-                        imagesJson(teacher.get_class(),originalBase64,resizeBase64));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        SubmitImageTask submitImageTask = new SubmitImageTask(
+                originalBase64,
+                resizeBase64
+        );
+        submitImageTask.execute();
     }
 
     private void getImagesFromServer() {
@@ -119,9 +112,9 @@ public class GalleryActivity extends AppCompatActivity {
             int finalWidth = maxWidth;
             int finalHeight = maxHeight;
             if (ratioMax > ratioBitmap) {
-                finalWidth = (int) ((float)maxHeight * ratioBitmap);
+                finalWidth = (int) ((float) maxHeight * ratioBitmap);
             } else {
-                finalHeight = (int) ((float)maxWidth / ratioBitmap);
+                finalHeight = (int) ((float) maxWidth / ratioBitmap);
             }
             image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
             return image;
@@ -133,9 +126,10 @@ public class GalleryActivity extends AppCompatActivity {
     // post request code here
     String imagesJson(String _class, String originalBase64, String resizeBase64) {
         return "{\"_class\":\"" + _class + "\","
-                +"\"originalBase64\":\"" + originalBase64 +"\","
-                +"\"resizeBase64\":\"" + resizeBase64 +"\"}";
+                + "\"originalBase64\":\"" + originalBase64 + "\","
+                + "\"resizeBase64\":\"" + resizeBase64 + "\"}";
     }
+
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
@@ -146,7 +140,33 @@ public class GalleryActivity extends AppCompatActivity {
                 .post(body)
                 .build();
         OkHttpClient client = new OkHttpClient();
-        client.newCall(request).execute();
+        Response res = client.newCall(request).execute();
         //return response.body().string();
+    }
+
+    public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
+
+
+        private String originalBase64;
+        private String resizeBase64;
+
+        public SubmitImageTask(String originalBase64, String resizeBase64) {
+            this.originalBase64 = originalBase64;
+            this.resizeBase64 = resizeBase64;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                doPostRequest(
+                "https://nodejscloudkenji.herokuapp.com/submitImage",
+                    imagesJson(teacher.get_class(), originalBase64, resizeBase64));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
     }
 }

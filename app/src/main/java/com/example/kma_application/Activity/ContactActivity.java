@@ -92,13 +92,13 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //mSocket.disconnect();
+        mSocket.disconnect();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        //mSocket.connect();
+        mSocket.connect();
     }
 
     private Emitter.Listener onRetrieveHeartBeat = new Emitter.Listener() {
