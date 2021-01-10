@@ -7,13 +7,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageButton;
 
+import com.example.kma_application.AsyncTask.LoadClassImageTask;
+import com.example.kma_application.AsyncTask.SubmitImageTask;
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
 import com.squareup.okhttp.MediaType;
@@ -31,6 +33,7 @@ public class GalleryActivity extends AppCompatActivity {
     String role;
     Teacher teacher;
     ImageButton btAdd;
+    GridView gridView;
     private final int IMAGE_REQUEST_ID = 1;
 
     @Override
@@ -39,6 +42,7 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
 
         btAdd = (ImageButton) findViewById(R.id.buttonAddImage);
+        gridView = (GridView) findViewById(R.id.gridViewGallery);
 
         Intent data = getIntent();
         role = data.getStringExtra("role");
@@ -46,6 +50,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         if (role.equals("parent"))
             btAdd.setVisibility(View.INVISIBLE);
+
+        getImagesFromServer();
 
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,14 +98,18 @@ public class GalleryActivity extends AppCompatActivity {
         System.out.println(resizeBase64);
 
         SubmitImageTask submitImageTask = new SubmitImageTask(
+                teacher,
                 originalBase64,
-                resizeBase64
+                resizeBase64,
+                "Gallery"
         );
         submitImageTask.execute();
     }
 
     private void getImagesFromServer() {
-
+        new LoadClassImageTask(
+            this,gridView,teacher.get_class(),"gallery")
+                .execute();
     }
 
     private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
@@ -123,50 +133,4 @@ public class GalleryActivity extends AppCompatActivity {
         }
     }
 
-    // post request code here
-    String imagesJson(String _class, String originalBase64, String resizeBase64) {
-        return "{\"_class\":\"" + _class + "\","
-                + "\"originalBase64\":\"" + originalBase64 + "\","
-                + "\"resizeBase64\":\"" + resizeBase64 + "\"}";
-    }
-
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
-
-    void doPostRequest(String url, String json) throws IOException {
-        RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
-        OkHttpClient client = new OkHttpClient();
-        Response res = client.newCall(request).execute();
-        //return response.body().string();
-    }
-
-    public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
-
-
-        private String originalBase64;
-        private String resizeBase64;
-
-        public SubmitImageTask(String originalBase64, String resizeBase64) {
-            this.originalBase64 = originalBase64;
-            this.resizeBase64 = resizeBase64;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                doPostRequest(
-                "https://nodejscloudkenji.herokuapp.com/submitImage",
-                    imagesJson(teacher.get_class(), originalBase64, resizeBase64));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }
 }

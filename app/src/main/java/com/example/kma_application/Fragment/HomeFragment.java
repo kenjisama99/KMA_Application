@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,17 +22,20 @@ import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Activity.ParentHealthActivity;
 import com.example.kma_application.Activity.ParentMedicineActivity;
 import com.example.kma_application.Activity.TeacherMedicineActivity;
+import com.example.kma_application.AsyncTask.LoadClassImageTask;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
+import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
 
 
 public class HomeFragment extends Fragment implements LoadInfosTask.AsyncResponse{
     String role, phone;
-    InfoModel infoModel;
+    Person person;
     Context context = getActivity();
     Button btHealth, btAbsent, btMedicine;
     TextView txtName, btViewGallery;
+    GridView gridView;
 
     public void setLoadInfosTask(LoadInfosTask loadInfosTask) {
         this.loadInfosTask = loadInfosTask;
@@ -47,6 +52,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         btMedicine = (Button)view.findViewById(R.id.buttonHomeMedicine);
         txtName = (TextView) view.findViewById(R.id.textHome);
         btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
+        gridView = (GridView) view.findViewById(R.id.gridViewHome);
 
         loadInfosTask.setTxtName(txtName);
 
@@ -74,13 +80,17 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickBtViewGallery();
             }
         });
+
+        if (person != null)
+            loadPreviewGallery();
+
         return view;
     }
 
     private void onClickBtViewGallery() {
         Intent intent = new Intent(getActivity(), GalleryActivity.class);
 
-        intent.putExtra("info", infoModel);
+        intent.putExtra("info", person);
         intent.putExtra("role", role);
         startActivity(intent);
     }
@@ -90,7 +100,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherHealthActivity.class);
 
-        intent.putExtra("info", infoModel);
+        intent.putExtra("info", person);
         startActivity(intent);
     }
     private void onClickBtMedicine() {
@@ -98,7 +108,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherMedicineActivity.class);
 
-        intent.putExtra("info", infoModel);
+        intent.putExtra("info", person);
         startActivity(intent);
     }
     private void onClickBtAbsent() {
@@ -106,18 +116,29 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherAbsentActivity.class);
 
-        intent.putExtra("info", infoModel);
+        intent.putExtra("info", person);
         startActivity(intent);
     }
 
-    @Override
-    public void onLoadInfoTaskFinish(InfoModel output, String role) {
-        this.infoModel = output;
-        this.role = role;
-        if (infoModel == null){
-            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
-        }else
-            this.phone = infoModel.getPhone();
 
+    @Override
+    public void onLoadInfoTaskFinish(Person output, String role) {
+        this.person = output;
+        this.role = role;
+        if (person == null){
+            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
+        }else{
+            this.phone = person.getPhone();
+            loadPreviewGallery();
+        }
+    }
+    private void loadPreviewGallery(){
+        Teacher teacher = (Teacher) person;
+        new LoadClassImageTask(
+                getActivity(),
+                gridView,
+                teacher.get_class(),
+                "main"
+        ).execute();
     }
 }

@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kma_application.Adapter.MessageAdapter;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
@@ -34,7 +34,7 @@ import java.net.URISyntaxException;
 
 public class ContactActivity extends AppCompatActivity {
     String phone, role;
-    InfoModel infoModel;
+    Person person;
     EditText editText;
     ImageButton btnCall, btnSend, btnSendImage;
     RecyclerView recyclerView;
@@ -126,13 +126,13 @@ public class ContactActivity extends AppCompatActivity {
         txtChatName = (TextView)findViewById(R.id.textChatName);
         Intent data = getIntent();
         role = data.getStringExtra("role");
-        infoModel = (InfoModel) data.getSerializableExtra("info");
-        phone = infoModel.getPhone();
+        person = (Person) data.getSerializableExtra("info");
+        phone = person.getPhone();
         if (role.equals("parent")){
-            Parent parent = (Parent) infoModel;
+            Parent parent = (Parent) person;
             txtChatName.setText("Cô "+parent.getTeacherName()+" - Lớp "+parent.get_class());
         }else {
-            Teacher teacher = (Teacher) infoModel;
+            Teacher teacher = (Teacher) person;
             txtChatName.setText("Phụ huynh lớp "+teacher.get_class());
         }
     }

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kma_application.AsyncTask.LoadInfosTask;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.R;
 
 
@@ -25,7 +25,7 @@ public class NotificationFragment extends Fragment implements LoadInfosTask.Asyn
     }
 
     @Override
-    public void onLoadInfoTaskFinish(InfoModel output, String role) {
+    public void onLoadInfoTaskFinish(Person output, String role) {
 
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +16,7 @@ import com.example.kma_application.Fragment.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.kma_application.AsyncTask.LoadInfosTask;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 
 public class MainActivity extends AppCompatActivity implements LoadInfosTask.AsyncResponse {
     //data
@@ -23,18 +24,26 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     String role;
 
     //model
-    InfoModel infoModel;
+    Person person;
 
     //fragment
     HomeFragment homeFragment;
     NotificationFragment notificationFragment;
     UserFragment userFragment;
 
-
+    // a static variable to get a reference of our application context
+    public static Context contextOfApplication;
+    public static Context getContextOfApplication()
+    {
+        return contextOfApplication;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        contextOfApplication = getApplicationContext();
+
         Intent data = getIntent();
         phone = data.getStringExtra("phone");
         role = data.getStringExtra("role");
@@ -79,31 +88,15 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         }
     };
 
-
     private void onClickBtChat() {
-        //Admin admin = (Admin) infoModel;
-        //Parent parent = (Parent) infoModel;
-//        Toast.makeText(this,"Role: "+parent.get_class(),Toast.LENGTH_LONG).show();
         Intent chatActivity = new Intent(this, ContactActivity.class);
         chatActivity.putExtra("role", role);
-        chatActivity.putExtra("info", infoModel);
+        chatActivity.putExtra("info", person);
         startActivity(chatActivity);
     }
 
-//    private void onClickBtInfo() {
-//
-//        //Toast.makeText(this,""+phone,Toast.LENGTH_LONG).show();
-//        Intent userActivity = new Intent(this, user.class);
-//        userActivity.putExtra("role", role);
-//        userActivity.putExtra("info", infoModel);
-//        startActivity(userActivity);
-//    }
-
-
     @Override
-    public void onLoadInfoTaskFinish(InfoModel output, String role) {
-        infoModel = output;
+    public void onLoadInfoTaskFinish(Person output, String role) {
+        person = output;
     }
-
-
 }

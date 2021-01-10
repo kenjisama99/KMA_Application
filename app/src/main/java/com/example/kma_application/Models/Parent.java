@@ -2,23 +2,14 @@ package com.example.kma_application.Models;
 
 import java.io.Serializable;
 
-public class Parent extends InfoModel implements Serializable {
+public class Parent extends Teacher implements Serializable {
     private String childName;
     private String teacherName;
-    private String _class;
 
-    public Parent(String phone, String name, String id, String childName, String teacherName, String _class) {
-        super(phone, name, id);
+    public Parent(String phone, String name, String email, String _class, String childName, String teacherName) {
+        super(phone, name, email, _class);
         this.childName = childName;
         this.teacherName = teacherName;
-        this._class = _class;
-    }
-
-    public Parent(String _id, String phone, String name, String id, String childName, String teacherName, String _class) {
-        super(_id, phone, name, id);
-        this.childName = childName;
-        this.teacherName = teacherName;
-        this._class = _class;
     }
 
     public String getChildName() {
@@ -37,11 +28,4 @@ public class Parent extends InfoModel implements Serializable {
         this.teacherName = teacherName;
     }
 
-    public String get_class() {
-        return _class;
-    }
-
-    public void set_class(String _class) {
-        this._class = _class;
-    }
 }

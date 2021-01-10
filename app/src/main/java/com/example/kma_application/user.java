@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.kma_application.Activity.ChangePasswordActivity;
 import com.example.kma_application.Activity.LoginActivity;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -36,7 +36,7 @@ public class user extends AppCompatActivity {
     ImageView imgAvatar;
     Emitter.Listener onNewImage;
     String phone, role;
-    InfoModel infoModel;
+    Person person;
     private  final  String CLIENT_SEND_IMAGE = "CLIENT_SEND_IMAGE";
     private  final  String CLIENT_SEND_PHONE = "CLIENT_SEND_PHONE";
     private  final  String CLIENT_SEND_REQUEST = "CLIENT_SEND_REQUEST";
@@ -204,17 +204,17 @@ public class user extends AppCompatActivity {
         return "{\"phone\":\"" + phone +"\"}";
     }
     private void loadInfos(){
-        phone = infoModel.getPhone();
+        phone = person.getPhone();
         getImageFromServer();
         Intent data = getIntent();
         role = data.getStringExtra("role");
-        infoModel = (InfoModel) data.getSerializableExtra("info");
+        person = (Person) data.getSerializableExtra("info");
 
         //loadInfosTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         //loadInfosTask.execute(infoJson(phone));
-                txtName.setText(infoModel.getName());
-        txtId.setText(infoModel.getId());
-        txtPhone.setText(infoModel.getPhone());
+                txtName.setText(person.getName());
+        txtId.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
 
     }
     private String getPhone(){

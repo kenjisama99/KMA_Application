@@ -2,20 +2,11 @@ package com.example.kma_application.Models;
 
 import java.io.Serializable;
 
-public class  Teacher extends InfoModel implements Serializable {
+public class  Teacher extends Person implements Serializable {
     private String _class;
 
-    public Teacher(String phone, String name, String id) {
-        super(phone, name, id);
-    }
-
-    public Teacher(String phone, String name, String id, String _class) {
-        super(phone, name, id);
-        this._class = _class;
-    }
-
-    public Teacher(String _id, String phone, String name, String id, String _class) {
-        super(_id, phone, name, id);
+    public Teacher(String phone, String name, String email, String _class) {
+        super(phone, name, email);
         this._class = _class;
     }
 

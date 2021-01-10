@@ -1,11 +1,17 @@
 package com.example.kma_application.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,31 +22,31 @@ import android.widget.TextView;
 
 import com.example.kma_application.Activity.ChangePasswordActivity;
 import com.example.kma_application.Activity.LoginActivity;
+import com.example.kma_application.Activity.MainActivity;
+import com.example.kma_application.AsyncTask.LoadImageTask;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.AsyncTask.SubmitImageTask;
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.Socket;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class UserFragment extends Fragment implements LoadInfosTask.AsyncResponse{
     Button btLogout, btChangePassword, btEditAvatar;
     EditText txtName, txtPhone, txtId;
-    Socket mSocket;
     ImageView imgAvatar;
-    Emitter.Listener onNewImage;
     String phone, role;
-    InfoModel infoModel;
+    Person person;
     TextView txtStillThinkAboutTheName;
-    
-    private  final  String CLIENT_SEND_IMAGE = "CLIENT_SEND_IMAGE";
-    private  final  String CLIENT_SEND_PHONE = "CLIENT_SEND_PHONE";
-    private  final  String CLIENT_SEND_REQUEST = "CLIENT_SEND_REQUEST";
-    private  final  String SERVER_SEND_IMAGE = "SERVER_SEND_IMAGE";
-    private final int REQUEST_TAKE_PHOTO = 123;
-    private final int REQUEST_CHOOSE_PHOTO = 321;
+
+    private final int IMAGE_REQUEST_ID = 1;
 
     @Nullable
     @Override
@@ -63,30 +69,46 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickChangePass();
             }
         });
+
+        btEditAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickEditAvatar();
+            }
+        });
         return view;
     }
 
     private void loadInfoToView(View view) {
         btLogout = (Button)view.findViewById(R.id.buttonLogout);
         btChangePassword = (Button)view.findViewById(R.id.buttonChangePass);
+        btEditAvatar = (Button)view.findViewById(R.id.buttonEditAvatar);
         txtPhone = (EditText)view.findViewById(R.id.editTextPersonPhone);
         txtId = (EditText)view.findViewById(R.id.editTextPersonID);
         txtName = (EditText)view.findViewById(R.id.editTextPersonName);
         txtStillThinkAboutTheName = (TextView) view.findViewById(R.id.textInfoChildName);
+        imgAvatar = (ImageView)view.findViewById(R.id.avatar);
 
-        txtName.setText(infoModel.getName());
-        txtId.setText("Id: "+infoModel.getId());
-        txtPhone.setText(infoModel.getPhone());
+        txtName.setText(person.getName());
+        txtId.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
 
         if (role.equals("parent")){
-            Parent parent = (Parent) infoModel;
+            Parent parent = (Parent) person;
             txtStillThinkAboutTheName.setText(parent.getChildName()+" - Lớp "+parent.get_class());
         }else if (role.equals("teacher")){
-            Teacher teacher = (Teacher) infoModel;
+            Teacher teacher = (Teacher) person;
             txtStillThinkAboutTheName.setText("Lớp "+teacher.get_class());
         }else
             txtStillThinkAboutTheName.setText("Admin");
 
+        getImagesFromServer();
+    }
+
+    private void onClickEditAvatar() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_REQUEST_ID);
     }
 
     private void onClickChangePass() {
@@ -100,9 +122,77 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
         startActivity(loginActivity);
         getActivity().finish();
     }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("TAG", "RQ code: " + requestCode + "\tRS code: " + resultCode);
+        //Toast.makeText(this,"RQ code: "+requestCode+"\tRS code: "+resultCode,Toast.LENGTH_LONG).show();
+        if (requestCode == IMAGE_REQUEST_ID && resultCode == RESULT_OK) {
+            try {
+                Uri imageURI = data.getData();
+                Context applicationContext = MainActivity.getContextOfApplication();
+
+                InputStream inputStream =
+                    applicationContext.getContentResolver().openInputStream(imageURI);
+                Bitmap originalBitmap = BitmapFactory.decodeStream(inputStream);
+                Bitmap resizeBitmap = resize(originalBitmap, 100, 100);
+
+                sendImage(resizeBitmap);
+                getImagesFromServer();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void sendImage(Bitmap resizeBitmap) {
+
+        ByteArrayOutputStream outputStream2 = new ByteArrayOutputStream();
+        resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream2);
+        String resizeBase64 = Base64.encodeToString(outputStream2.toByteArray(), Base64.NO_WRAP);
+        System.out.println(resizeBase64);
+
+        SubmitImageTask submitImageTask = new SubmitImageTask(
+                (Teacher) person,
+                resizeBase64,
+                "",
+                "main"
+        );
+        submitImageTask.execute();
+    }
+
+    private void getImagesFromServer() {
+        new LoadImageTask(
+                getActivity(),
+                imgAvatar,
+                person.getPhone(),
+                "main"
+        ).execute();
+    }
+
+    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+        if (maxHeight > 0 && maxWidth > 0) {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            float ratioBitmap = (float) width / (float) height;
+            float ratioMax = (float) maxWidth / (float) maxHeight;
+
+            int finalWidth = maxWidth;
+            int finalHeight = maxHeight;
+            if (ratioMax > ratioBitmap) {
+                finalWidth = (int) ((float) maxHeight * ratioBitmap);
+            } else {
+                finalHeight = (int) ((float) maxWidth / ratioBitmap);
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+            return image;
+        } else {
+            return image;
+        }
+    }
     @Override
-    public void onLoadInfoTaskFinish(InfoModel output, String role) {
-        this.infoModel = output;
+    public void onLoadInfoTaskFinish(Person output, String role) {
+        this.person = output;
         this.role = role;
     }
 

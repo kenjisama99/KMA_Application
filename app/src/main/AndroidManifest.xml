@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.GalleryActivity"></activity>
+        <activity android:name=".Activity.ViewImageActivity"></activity>
+        <activity android:name=".Activity.GalleryActivity" />
         <activity android:name=".Activity.AdminUserManageActivity" />
         <activity android:name=".Activity.AdminHomeActivity" />
         <activity android:name=".Activity.TeacherChildAbsentActivity" />

@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.kma_application.AsyncTask.LoadHealthTask;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.R;
 
 public class ParentHealthActivity extends AppCompatActivity {
     EditText txtName, txtBirth, txtClass, txtHeight, txtWeight, txtBodyRatio;
-    InfoModel infoModel;
+    Person person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,9 @@ public class ParentHealthActivity extends AppCompatActivity {
         txtBodyRatio = (EditText)findViewById(R.id.edit_comment);
 
         Intent data = getIntent();
-        infoModel = (InfoModel) data.getSerializableExtra("info");
+        person = (Person) data.getSerializableExtra("info");
 
-        LoadHealthTask loadHealthTask = new LoadHealthTask(this,infoModel.getPhone(),txtName,txtBirth,txtClass,txtHeight,txtWeight,txtBodyRatio);
+        LoadHealthTask loadHealthTask = new LoadHealthTask(this, person.getPhone(),txtName,txtBirth,txtClass,txtHeight,txtWeight,txtBodyRatio);
         loadHealthTask.execute();
     }
 }

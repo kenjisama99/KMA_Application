@@ -2,18 +2,13 @@ package com.example.kma_application.AsyncTask;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-import com.example.kma_application.Activity.MainActivity;
-import com.example.kma_application.Fragment.HomeFragment;
-import com.example.kma_application.Fragment.NotificationFragment;
-import com.example.kma_application.Fragment.UserFragment;
 import com.example.kma_application.Models.Admin;
-import com.example.kma_application.Models.InfoModel;
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
 import com.google.gson.Gson;
@@ -33,13 +28,13 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
         this.txtName = txtName;
     }
 
-    private InfoModel infoModel;
-    public InfoModel getInfoModel() {
-        return infoModel;
+    private Person person;
+    public Person getPerson() {
+        return person;
     }
 
     public interface AsyncResponse {
-        void onLoadInfoTaskFinish(InfoModel output, String role);
+        void onLoadInfoTaskFinish(Person output, String role);
     }
 
     public AsyncResponse mainActivity;
@@ -113,11 +108,11 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
 //        txtPhone.setText(infoModel.getPhone());
     }
 
-    private void passInfo(InfoModel infoModel, String role) {
-        mainActivity.onLoadInfoTaskFinish(infoModel, role);
-        homeFrag.onLoadInfoTaskFinish(infoModel, role);
-        notifiFrag.onLoadInfoTaskFinish(infoModel, role);
-        userFrag.onLoadInfoTaskFinish(infoModel, role);
+    private void passInfo(Person person, String role) {
+        mainActivity.onLoadInfoTaskFinish(person, role);
+        homeFrag.onLoadInfoTaskFinish(person, role);
+        notifiFrag.onLoadInfoTaskFinish(person, role);
+        userFrag.onLoadInfoTaskFinish(person, role);
     }
 
     // post request code here
