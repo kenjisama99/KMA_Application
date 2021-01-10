@@ -29,140 +29,193 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_child_health"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="738dp"
         android:layout_marginTop="55dp"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
+            android:id="@+id/textMedicineName"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="200dp"
-            android:text="Nội dung"
+            android:text="Tên thuốc"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/edit_content"
-            android:layout_width="wrap_content"
+            android:id="@+id/editTextMedicineName"
+            android:layout_width="386dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/content"
+            android:layout_below="@+id/textMedicineName"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/dateStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:text="Ngày bắt đầu"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp" />
 
-        <EditText
-            android:enabled="false"
-            android:id="@+id/edit_dateStart"
-            android:layout_width="226dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dateStart"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:textColor="#000000"
-            android:hint="dd/mm/yyyy"
-            android:inputType="datetime"
-            android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/selectDateStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="60dp"
-            android:layout_toEndOf="@+id/edit_dateStart"
-            android:backgroundTint="#914A4A"
-            android:text="Chọn ngày"
-            android:textAllCaps="false"
-            app:cornerRadius="6dp" />
-
         <TextView
-            android:id="@+id/dateFinished"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtDosage"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_dateStart"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:text="Ngày kết thúc"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <EditText
-            android:enabled="false"
-            android:id="@+id/edit_dateFinished"
-            android:layout_width="226dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dateFinished"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="21dp"
-            android:ems="10"
-            android:textColor="#000000"
-            android:hint="dd/mm/yy"
-            android:inputType="datetime"
-            android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/selectDateFinished"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/selectDateStart"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="60dp"
-            android:layout_toEndOf="@+id/edit_dateFinished"
-            android:backgroundTint="#914A4A"
-            android:text="Chọn ngày"
-            android:textAllCaps="false"
-            app:cornerRadius="6dp" />
-
-        <Button
-            android:id="@+id/submitMedicine"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_below="@+id/edit_dateFinished"
+            android:layout_below="@+id/editTextMedicineName"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="130dp"
-            android:backgroundTint="#bce9fe"
-            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="200dp"
+            android:text="Liều dùng"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDosage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/textTime"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextTextMultiLine2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="200dp"
+            android:text="Thời gian dùng thuốc"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTime"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonSelectTime"
+            android:layout_width="109dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/textTime"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@+id/editTextTime"
+            android:backgroundTint="#914A4A"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Chọn"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonAddMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_below="@+id/editTextTime"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="dp"
+            android:layout_marginEnd="140dp"
+            android:backgroundTint="#1D5B9E"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Thêm thuốc"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp"
+            app:layout_anchorGravity="center" />
+
+
+        <TextView
+            android:id="@+id/txtMedicineList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonAddMedicine"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:text="Danh sách thuốc"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/medicineList"
+            android:layout_width="match_parent"
+            android:layout_height="173dp"
+            android:layout_below="@+id/txtMedicineList"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="0dp"
+            android:background="@color/blue" />
+
+        <Button
+            android:id="@+id/buttonSendRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_below="@+id/medicineList"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="75dp"
+            android:backgroundTint="#EA94B3"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Gửi yêu cầu"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="20sp"
-            app:cornerRadius="6dp" />
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
     </RelativeLayout>
+
+
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
