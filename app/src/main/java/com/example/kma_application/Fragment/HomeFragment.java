@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kma_application.Activity.GalleryActivity;
 import com.example.kma_application.Activity.ParentAbsentActivity;
 import com.example.kma_application.Activity.TeacherAbsentActivity;
 import com.example.kma_application.Activity.TeacherHealthActivity;
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     InfoModel infoModel;
     Context context = getActivity();
     Button btHealth, btAbsent, btMedicine;
-    TextView txtName;
+    TextView txtName, btViewGallery;
 
     public void setLoadInfosTask(LoadInfosTask loadInfosTask) {
         this.loadInfosTask = loadInfosTask;
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         btAbsent = (Button)view.findViewById(R.id.buttonHomeAbsent);
         btMedicine = (Button)view.findViewById(R.id.buttonHomeMedicine);
         txtName = (TextView) view.findViewById(R.id.textHome);
+        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
 
         loadInfosTask.setTxtName(txtName);
 
@@ -66,7 +68,21 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickBtAbsent();
             }
         });
+        btViewGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtViewGallery();
+            }
+        });
         return view;
+    }
+
+    private void onClickBtViewGallery() {
+        Intent intent = new Intent(getActivity(), GalleryActivity.class);
+
+        intent.putExtra("info", infoModel);
+        intent.putExtra("role", role);
+        startActivity(intent);
     }
 
     private void onClickBtHealth() {

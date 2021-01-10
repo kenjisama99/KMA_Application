@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import com.example.kma_application.Activity.AdminHomeActivity;
 import com.example.kma_application.Activity.MainActivity;
+import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Models.Medicine;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
@@ -65,6 +67,10 @@ public class LoginTask extends AsyncTask<String,Void,String> {
     }
     private void startMainActivities() {
         Intent mainActivity = new Intent(this.context, MainActivity.class);
+
+        if (this.role.equals("admin"))
+            mainActivity = new Intent(this.context, AdminHomeActivity.class);
+
         mainActivity.putExtra("phone", this.phone);
         mainActivity.putExtra("role", this.role);
         context.startActivity(mainActivity);

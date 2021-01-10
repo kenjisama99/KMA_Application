@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
-            android:id="@+id/listViewClassMedicine"
+            android:id="@+id/listViewClassAbsent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </ListView>

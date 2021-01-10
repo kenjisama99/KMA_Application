@@ -33,17 +33,18 @@
                 android:textSize="36sp" />
 
             <ImageButton
+                android:id="@+id/buttonAddImage"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:src="@drawable/add_50px"
-                android:background="#bce9fe"/>
+                android:background="#bce9fe"
+                android:src="@drawable/add_50px" />
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <GridLayout
-        android:id="@+id/gridView"
+        android:id="@+id/gridViewGallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
