@@ -54,5 +54,12 @@
         android:clickable="true"
         android:drawSelectorOnTop="true"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
