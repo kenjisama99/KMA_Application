@@ -10,8 +10,6 @@ import java.io.IOException;
 
 import com.example.kma_application.Activity.AdminHomeActivity;
 import com.example.kma_application.Activity.MainActivity;
-import com.example.kma_application.Activity.TeacherHealthActivity;
-import com.example.kma_application.Models.Medicine;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;

@@ -4,17 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.kma_application.Models.Medicine;
+import com.example.kma_application.Models.Prescription;
 import com.example.kma_application.R;
 
 public class TeacherChildMedicineActivity extends AppCompatActivity {
 
     EditText txtContent, txtStartDate, txtEndDate;
-    Medicine medicine;
+    Prescription prescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +24,13 @@ public class TeacherChildMedicineActivity extends AppCompatActivity {
         txtStartDate = (EditText)findViewById(R.id.edit_dateStart);
         txtEndDate = (EditText)findViewById(R.id.edit_dateFinished);
 
-        Intent data = getIntent();
-        medicine = (Medicine) data.getSerializableExtra("info");
+//        Intent data = getIntent();
+//        prescription = (Prescription) data.getSerializableExtra("info");
 
-        if (medicine != null){
-            //Toast.makeText(this.context, "Class: "+medicine.get_class(), Toast.LENGTH_LONG).show();
-            txtContent.setText(medicine.getContent());
-            txtStartDate.setText(medicine.getStartDate());
-            txtEndDate.setText(medicine.getEndDate());
+        if (prescription != null){
+            //Toast.makeText(this.context, "Class: "+prescription.get_class(), Toast.LENGTH_LONG).show();
 
         }else
-            Toast.makeText(this, "Medicine: "+medicine, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Prescription: "+ prescription, Toast.LENGTH_LONG).show();
     }
 }

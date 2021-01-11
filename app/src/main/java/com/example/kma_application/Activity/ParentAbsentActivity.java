@@ -50,8 +50,13 @@ public class ParentAbsentActivity extends AppCompatActivity {
         Intent data = getIntent();
         parent = (Parent) data.getSerializableExtra("info");
 
-        LoadAbsentTask loadAbsentTask = new LoadAbsentTask(this,parent.getPhone(),txtContent,txtStartDate,txtEndDate);
-        loadAbsentTask.execute();
+        new LoadAbsentTask(
+            this,
+            parent.getPhone(),
+            txtContent,
+            txtStartDate,
+            txtEndDate
+        ).execute();
 
         selectDateStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,33 +91,40 @@ public class ParentAbsentActivity extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                txtStartDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                txtStartDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                 lastSelectedYear = year;
                 lastSelectedMonth = monthOfYear;
                 lastSelectedDayOfMonth = dayOfMonth;
             }
         };
-        DatePickerDialog datePickerDialogStart = null;
-        datePickerDialogStart = new DatePickerDialog(this,
-                dateSetListenerStart, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-        datePickerDialogStart.show();
 
+        new DatePickerDialog(
+                this,
+                dateSetListenerStart,
+                lastSelectedYear,
+                lastSelectedMonth,
+                lastSelectedDayOfMonth
+        ).show();
     }
 
     private void selectDateFinished() {
         DatePickerDialog.OnDateSetListener dateSetListenerFinished = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                txtEndDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                txtEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                 lastSelectedYear = year;
                 lastSelectedMonth = monthOfYear;
                 lastSelectedDayOfMonth = dayOfMonth;
             }
         };
-        DatePickerDialog datePickerDialogFinished = null;
-        datePickerDialogFinished = new DatePickerDialog(this,
-                dateSetListenerFinished, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-        datePickerDialogFinished.show();
+
+        new DatePickerDialog(
+                this,
+                dateSetListenerFinished,
+                lastSelectedYear,
+                lastSelectedMonth,
+                lastSelectedDayOfMonth
+        ).show();
     }
 
     private void submitAbsent() {
@@ -132,26 +144,18 @@ public class ParentAbsentActivity extends AppCompatActivity {
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
             return;
         }else {
-//            String[] lines = content.split("\r?\n");
-//            content = "";
-//            for (int i=0; i<lines.length ; i++) {
-//                if(i == lines.length -1){
-//                    content.concat(lines[i]);
-//                }else {
-//                    content.concat(lines[i]);
-//                    content.concat("\\r\\n");
-//                }
-//            }
-            SubmitAbsentTask submitAbsentTask = new SubmitAbsentTask(this);
-            submitAbsentTask.execute(
-                    absentJson(
-                            parent.getPhone(),
-                            parent.getChildName(),
-                            parent.get_class(),
-                            startDate,
-                            endDate,
-                            content
-                    ));
+
+            new SubmitAbsentTask(
+                this
+            ).execute(
+                absentJson(
+                    parent.getPhone(),
+                    parent.getChildName(),
+                    parent.get_class(),
+                    startDate,
+                    endDate,
+                    content
+            ));
         }
     }
 
@@ -163,8 +167,4 @@ public class ParentAbsentActivity extends AppCompatActivity {
                 +"\"endDate\":\"" + endDate + "\","
                 +"\"content\":\"" + content +"\"}";
     }
-    
-
-
-
 }

@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.kma_application.Activity.TeacherChildMedicineActivity;
-import com.example.kma_application.Models.Medicine;
+import com.example.kma_application.Models.Prescription;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -57,20 +57,20 @@ public class LoadClassMedicineTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
 
-        ArrayList<Medicine> medicines = new ArrayList<>();
+        ArrayList<Prescription> prescriptions = new ArrayList<>();
         ArrayList<String> childrenName = new ArrayList<>();
         try {
             JSONArray jsonarray = new JSONArray(postResponse);
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
-                Medicine medicine = gson.fromJson(jsonobject.toString(),Medicine.class);
-                medicines.add(medicine);
-                childrenName.add(medicine.getName());
+                Prescription prescription = gson.fromJson(jsonobject.toString(), Prescription.class);
+                prescriptions.add(prescription);
+                childrenName.add(prescription.getName());
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if ( !medicines.isEmpty()){
+        if ( !prescriptions.isEmpty()){
             ArrayAdapter adapter = new ArrayAdapter(
                     context,
                     android.R.layout.simple_list_item_1,
@@ -81,12 +81,12 @@ public class LoadClassMedicineTask extends AsyncTask<Void,Void,String> {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(context, TeacherChildMedicineActivity.class);
-                    intent.putExtra("info", medicines.get(position));
+                    intent.putExtra("info", prescriptions.get(position));
                     context.startActivity(intent);
                 }
             });
         }else
-            Toast.makeText(this.context, "medicines.isEmpty", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, "prescriptions.isEmpty", Toast.LENGTH_LONG).show();
 
     }
 

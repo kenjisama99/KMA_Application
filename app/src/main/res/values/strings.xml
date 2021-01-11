@@ -61,5 +61,6 @@
     <string name="weight">Cân nặng:</string>
     <string name="ratio">Tỷ lệ cơ thể:</string>
     <string name="them">Thêm</string>
+    <string name="xoa">Xóa</string>
 
 </resources>

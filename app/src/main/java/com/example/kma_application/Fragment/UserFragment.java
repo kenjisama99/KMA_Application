@@ -135,7 +135,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 InputStream inputStream =
                     applicationContext.getContentResolver().openInputStream(imageURI);
                 Bitmap originalBitmap = BitmapFactory.decodeStream(inputStream);
-                Bitmap resizeBitmap = resize(originalBitmap, 100, 100);
+                Bitmap resizeBitmap = resize(originalBitmap, 400, 400);
 
                 sendImage(resizeBitmap);
                 getImagesFromServer();

@@ -3,10 +3,10 @@ package com.example.kma_application.AsyncTask;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kma_application.Models.Medicine;
-import com.example.kma_application.Models.Medicine;
+import com.example.kma_application.Models.Prescription;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -20,16 +20,12 @@ import java.io.IOException;
 public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
     Context context;
     String phone;
-    private EditText txtContent;
-    private EditText txtStartDate;
-    private EditText txtEndDate;
+    ListView listViewMedicines;
 
-    public LoadMedicineTask(Context context, String phone, EditText txtContent, EditText txtStartDate, EditText txtEndDate) {
+    public LoadMedicineTask(Context context, String phone, ListView listViewMedicines) {
         this.context = context;
         this.phone = phone;
-        this.txtContent = txtContent;
-        this.txtStartDate = txtStartDate;
-        this.txtEndDate = txtEndDate;
+        this.listViewMedicines = listViewMedicines;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -49,25 +45,22 @@ public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
-        Medicine medicine = null;
+        Prescription prescription = null;
         ResponseModel responseModel= null;
         try {
             responseModel = gson.fromJson(postResponse,ResponseModel.class);
-            medicine = gson.fromJson(postResponse,Medicine.class);
+            prescription = gson.fromJson(postResponse, Prescription.class);
         }catch (Exception e){
             e.printStackTrace();
         }
         if (responseModel.getResponse() == null){
             if (true){
-                if (medicine != null){
-                    //Toast.makeText(this.context, "Class: "+medicine.get_class(), Toast.LENGTH_LONG).show();
-                    //String birth = invertedDate(medicine.getBirth());
-                    txtContent.setText(medicine.getContent());
-                    txtStartDate.setText(medicine.getStartDate());
-                    txtEndDate.setText(medicine.getEndDate());
+                if (prescription != null){
+                    //Toast.makeText(this.context, "Class: "+prescription.get_class(), Toast.LENGTH_LONG).show();
+                    //String birth = invertedDate(prescription.getBirth());
 
                 }else
-                    Toast.makeText(this.context, "Medicine: "+medicine, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.context, "Prescription: "+ prescription, Toast.LENGTH_LONG).show();
             }
 
         }else

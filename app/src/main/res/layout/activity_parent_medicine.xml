@@ -85,7 +85,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine2"
+            android:id="@+id/editTextMedicineDose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtDosage"
@@ -102,7 +102,7 @@
             android:id="@+id/textTime"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextMultiLine2"
+            android:layout_below="@+id/editTextMedicineDose"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
@@ -114,7 +114,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@+id/editTextMedicineTime"
             android:layout_width="236dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textTime"
@@ -133,9 +133,9 @@
             android:layout_below="@+id/textTime"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
-            android:layout_toEndOf="@+id/editTextTime"
+            android:layout_toEndOf="@+id/editTextMedicineTime"
             android:backgroundTint="#914A4A"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -149,11 +149,11 @@
             android:id="@+id/buttonAddMedicine"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:layout_below="@+id/editTextTime"
+            android:layout_below="@+id/editTextMedicineTime"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="140dp"
             android:backgroundTint="#1D5B9E"
             android:insetTop="0dp"
@@ -172,35 +172,33 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonAddMedicine"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="15dp"
-            android:text="Danh sách thuốc"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Danh sách thuốc cho ngày mai"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <ListView
-            android:id="@+id/medicineList"
+            android:id="@+id/listViewMedicineParent"
             android:layout_width="match_parent"
-            android:layout_height="173dp"
+            android:layout_height="200dp"
             android:layout_below="@+id/txtMedicineList"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
             android:background="@color/blue" />
 
         <Button
-            android:id="@+id/buttonSendRequest"
+            android:id="@+id/buttonSendPrescription"
             android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_below="@+id/medicineList"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listViewMedicineParent"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="120dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="120dp"
-            android:layout_marginBottom="75dp"
             android:backgroundTint="#EA94B3"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -208,8 +206,20 @@
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp"
             app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonDeleteMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonSelectTime"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="2dp"
+            android:text="@string/xoa"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

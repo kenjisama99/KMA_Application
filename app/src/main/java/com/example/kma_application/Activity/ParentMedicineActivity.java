@@ -2,75 +2,116 @@ package com.example.kma_application.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.LoadMedicineTask;
 import com.example.kma_application.AsyncTask.SubmitMedicineTask;
 import com.example.kma_application.Models.Parent;
+import com.example.kma_application.Models.Prescription;
 import com.example.kma_application.R;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 
 public class ParentMedicineActivity extends AppCompatActivity {
 
-    private EditText editTextTime;
-    private Button buttonSelectTime;
-    private int lastSelectedHour = -1;
-    private int lastSelectedMinute = -1;
+    EditText txtMedicineName,txtMedicineDose, txtMedicineTime;
+    ListView listViewMedicines;
+
+    int lastSelectedHour = 7;
+    int lastSelectedMinute = 0;
 
     Parent parent;
-    String content, startDate, endDate;
+    String medicineName, medicineDose, time;
+
+    ArrayList<Prescription.Medicine> medicines = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_medicine);
 
-        this.editTextTime = (EditText) this.findViewById(R.id.editTextTime);
-        this.buttonSelectTime = (Button) this.findViewById(R.id.buttonSelectTime);
+        Button buttonSelectTime,buttonAddMedicine,buttonSendPrescription,buttonDeleteMedicines;
 
-        this.buttonSelectTime.setOnClickListener(new View.OnClickListener() {
+        listViewMedicines = (ListView) findViewById(R.id.listViewMedicineParent);
+
+        txtMedicineName = (EditText) findViewById(R.id.editTextMedicineName);
+        txtMedicineDose = (EditText) findViewById(R.id.editTextMedicineDose);
+        txtMedicineTime = (EditText) findViewById(R.id.editTextMedicineTime);
+        buttonSelectTime = (Button) findViewById(R.id.buttonSelectTime);
+        buttonAddMedicine = (Button) findViewById(R.id.buttonAddMedicine);
+        buttonSendPrescription = (Button) findViewById(R.id.buttonSendPrescription);
+        buttonDeleteMedicines = (Button) findViewById(R.id.buttonDeleteMedicines);
+
+        buttonSelectTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonSelectTime();
+                onClickButtonSelectTime();
+            }
+        });
+        buttonAddMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButtonAddMedicine();
+            }
+        });
+        buttonSendPrescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButtonSendPrescription();
+            }
+        });
+        buttonDeleteMedicines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButtonDeleteMedicines();
             }
         });
 
+        Intent data = getIntent();
+        parent = (Parent) data.getSerializableExtra("info");
 
-//        Intent data = getIntent();
-//        parent = (Parent) data.getSerializableExtra("info");
-//
-//        LoadMedicineTask loadMedicineTask = new LoadMedicineTask(this,parent.getPhone(),txtContent,txtStartDate,txtEndDate);
-//        loadMedicineTask.execute();
+//        new LoadMedicineTask(
+//            this,
+//            parent.getPhone(),
+//            listViewMedicines
+//        ).execute();
+    }
 
+    private void onClickButtonDeleteMedicines() {
 
     }
 
-    private void buttonSelectTime() {
-        if(this.lastSelectedHour == -1)  {
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
-            this.lastSelectedMinute = c.get(Calendar.MINUTE);
-            //final boolean is24HView = this.checkBoxIs24HView.isChecked();
-        }
+    private void onClickButtonSendPrescription() {
 
+    }
+
+    private void onClickButtonAddMedicine() {
+
+    }
+
+    private void onClickButtonSelectTime() {
+//        if(lastSelectedHour == -1)  {
+//            // Get Current Time
+//            final Calendar c = Calendar.getInstance();
+//            lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
+//            lastSelectedMinute = c.get(Calendar.MINUTE);
+//            //final boolean is24HView = checkBoxIs24HView.isChecked();
+//        }
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                editTextTime.setText(hourOfDay + ":" + minute );
+                txtMedicineTime.setText(hourOfDay + ":00");
                 lastSelectedHour = hourOfDay;
-                lastSelectedMinute = minute;
+                lastSelectedMinute = 0;
             }
         };
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
@@ -80,54 +121,54 @@ public class ParentMedicineActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-//    private void submitMedicine() {
-//        content = txtContent.getText().toString().trim();
-//        startDate = txtStartDate.getText().toString().trim();
-//        endDate = txtEndDate.getText().toString().trim();
-//        String notification = null;
-//
-//        if (TextUtils.isEmpty(content))
-//            notification.concat("Vui lòng nhập nội dung\n");
-//        if (TextUtils.isEmpty(startDate))
-//            notification.concat("Vui lòng chọn ngày bắt đầu\n");
-//        if (TextUtils.isEmpty(endDate))
-//            notification.concat("Vui lòng chọn ngày kết thúc");
-//
-//        if (!TextUtils.isEmpty(notification)){
-//            Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
-//            return;
-//        }else {
-////            String[] lines = content.split("\r?\n");
-////            content = "";
-////            for (int i=0; i<lines.length ; i++) {
-////                if(i == lines.length -1){
-////                    content.concat(lines[i]);
-////                }else {
-////                    content.concat(lines[i]);
-////                    content.concat("\\r\\n");
-////                }
-////            }
-//            SubmitMedicineTask submitMedicineTask = new SubmitMedicineTask(this);
-//            submitMedicineTask.execute(
-//                medicineJson(
-//                        parent.getPhone(),
-//                        parent.getChildName(),
-//                        parent.get_class(),
-//                        startDate,
-//                        endDate,
-//                        content
-//            ));
-//        }
-//    }
-//
-//    String medicineJson(String phone, String name, String _class, String startDate, String endDate, String content) {
-//        return "{\"phone\":\"" + phone + "\","
-//                +"\"name\":\"" + name + "\","
-//                +"\"_class\":\"" + _class + "\","
-//                +"\"startDate\":\"" + startDate + "\","
-//                +"\"endDate\":\"" + endDate + "\","
-//                +"\"content\":\"" + content +"\"}";
-//    }
+    private void submitMedicine() {
+        medicineName = txtMedicineName.getText().toString().trim();
+        medicineDose = txtMedicineDose.getText().toString().trim();
+        time = txtMedicineTime.getText().toString().trim();
+        String notification = null;
+
+        if (TextUtils.isEmpty(medicineName))
+            notification.concat("Vui lòng nhập nội dung\n");
+        if (TextUtils.isEmpty(medicineDose))
+            notification.concat("Vui lòng chọn ngày bắt đầu\n");
+        if (TextUtils.isEmpty(time))
+            notification.concat("Vui lòng chọn ngày kết thúc");
+
+        if (!TextUtils.isEmpty(notification)){
+            Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
+            return;
+        }else {
+//            String[] lines = content.split("\r?\n");
+//            content = "";
+//            for (int i=0; i<lines.length ; i++) {
+//                if(i == lines.length -1){
+//                    content.concat(lines[i]);
+//                }else {
+//                    content.concat(lines[i]);
+//                    content.concat("\\r\\n");
+//                }
+//            }
+            SubmitMedicineTask submitMedicineTask = new SubmitMedicineTask(this);
+            submitMedicineTask.execute(
+                medicineJson(
+                        parent.getPhone(),
+                        parent.getChildName(),
+                        parent.get_class(),
+                        medicineDose,
+                        time,
+                        medicineName
+            ));
+        }
+    }
+
+    String medicineJson(String phone, String name, String _class, String startDate, String endDate, String content) {
+        return "{\"phone\":\"" + phone + "\","
+                +"\"name\":\"" + name + "\","
+                +"\"_class\":\"" + _class + "\","
+                +"\"startDate\":\"" + startDate + "\","
+                +"\"endDate\":\"" + endDate + "\","
+                +"\"content\":\"" + content +"\"}";
+    }
 
 
 }

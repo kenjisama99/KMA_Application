@@ -25,11 +25,10 @@ public class TeacherMedicineActivity extends AppCompatActivity {
         Intent data = getIntent();
         teacher = (Teacher) data.getSerializableExtra("info");
 
-        LoadClassMedicineTask loadClassMedicineTask = new LoadClassMedicineTask(
-                this,
-                lvClass,
-                teacher.get_class()
-        );
-        loadClassMedicineTask.execute();
+//        new LoadClassMedicineTask(
+//                this,
+//                lvClass,
+//                teacher.get_class()
+//        ).execute();
     }
 }
