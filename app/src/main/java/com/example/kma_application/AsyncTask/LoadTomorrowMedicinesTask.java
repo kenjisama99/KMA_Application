@@ -2,8 +2,6 @@ package com.example.kma_application.AsyncTask;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.kma_application.Models.Prescription;
@@ -16,16 +14,22 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
+public class LoadTomorrowMedicinesTask extends AsyncTask<Void,Void,String> {
     Context context;
     String phone;
-    ListView listViewMedicines;
+    CallbackForMedicine parentMedicineActivity;
 
-    public LoadMedicineTask(Context context, String phone, ListView listViewMedicines) {
+    public interface CallbackForMedicine{
+        void callback(boolean hasData, ArrayList<Prescription.Medicine> medicines);
+    }
+
+    public LoadTomorrowMedicinesTask(Context context, String phone) {
         this.context = context;
         this.phone = phone;
-        this.listViewMedicines = listViewMedicines;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -33,7 +37,7 @@ public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/getMedicine", userJson(phone));
+            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/getPrescription", reqJson());
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
         } catch (IOException e) {
@@ -57,25 +61,40 @@ public class LoadMedicineTask extends AsyncTask<Void,Void,String> {
             if (true){
                 if (prescription != null){
                     //Toast.makeText(this.context, "Class: "+prescription.get_class(), Toast.LENGTH_LONG).show();
-                    //String birth = invertedDate(prescription.getBirth());
-
+                    try{
+                        if (prescription.getMedicines() != null && !prescription.getMedicines().isEmpty())
+                            //pass data back to ParentPrescriptionActivity
+                            parentMedicineActivity.callback(true, prescription.getMedicines());
+                        else
+                            Toast.makeText(this.context, "Không nạp được danh sách thuốc", Toast.LENGTH_LONG).show();
+                    }catch (NullPointerException e){
+                        e.printStackTrace();
+                        Toast.makeText(this.context, "medicines null", Toast.LENGTH_LONG).show();
+                    }
                 }else
-                    Toast.makeText(this.context, "Prescription: "+ prescription, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.context, "Không nạp được đơn thuốc", Toast.LENGTH_LONG).show();
             }
 
         }else
-            Toast.makeText(this.context, "Response: "+ responseModel.getResponse(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.context, ""+ responseModel.getResponse(), Toast.LENGTH_LONG).show();
     }
 
-    private String invertedDate(String birth) {
-        String[] strings = birth.split("-",3);
-        String result = strings[2]+"-"+strings[1]+"-"+strings[0];
-        return result;
-    }
 
-    // post request code here
-    String userJson(String phone) {
-        return "{\"phone\":\"" + phone + "\"}";
+    // post request codes here
+
+    String reqJson() {
+        //get next day of current day for fetching tomorrow medicines
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        //to String
+        String startDate =
+                calendar.get(Calendar.DAY_OF_MONTH)+"/"+
+                calendar.get(Calendar.MONTH)+"/"+
+                calendar.get(Calendar.YEAR);
+
+        //return String JSON for request body
+        return "{\"phone\":\"" + phone + "\","
+                +"\"startDate\":\"" + startDate +"\"}";
     }
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");

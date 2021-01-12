@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,8 +19,8 @@ import com.example.kma_application.Activity.ParentAbsentActivity;
 import com.example.kma_application.Activity.TeacherAbsentActivity;
 import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Activity.ParentHealthActivity;
-import com.example.kma_application.Activity.ParentMedicineActivity;
-import com.example.kma_application.Activity.TeacherMedicineActivity;
+import com.example.kma_application.Activity.ParentPrescriptionActivity;
+import com.example.kma_application.Activity.TeacherPrescriptionActivity;
 import com.example.kma_application.AsyncTask.LoadClassImageTask;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
 import com.example.kma_application.Models.Person;
@@ -104,9 +103,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         startActivity(intent);
     }
     private void onClickBtMedicine() {
-        Intent intent = new Intent(getActivity(), ParentMedicineActivity.class);
+        Intent intent = new Intent(getActivity(), ParentPrescriptionActivity.class);
         if (role.equals("teacher"))
-            intent = new Intent(getActivity(), TeacherMedicineActivity.class);
+            intent = new Intent(getActivity(), TeacherPrescriptionActivity.class);
 
         intent.putExtra("info", person);
         startActivity(intent);

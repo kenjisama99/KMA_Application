@@ -16,10 +16,10 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-public class SubmitMedicineTask extends AsyncTask<String,Void,String> {
+public class SubmitPrescriptionTask extends AsyncTask<String,Void,String> {
     private Context context;
 
-    public SubmitMedicineTask(Context context) {
+    public SubmitPrescriptionTask(Context context) {
         this.context = context;
     }
 

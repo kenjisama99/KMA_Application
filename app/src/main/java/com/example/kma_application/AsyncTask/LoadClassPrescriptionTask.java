@@ -25,12 +25,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoadClassMedicineTask extends AsyncTask<Void,Void,String> {
+public class LoadClassPrescriptionTask extends AsyncTask<Void,Void,String> {
     Context context;
     ListView lvClass;
     String _class;
 
-    public LoadClassMedicineTask(Context context, ListView lvClass, String _class) {
+    public LoadClassPrescriptionTask(Context context, ListView lvClass, String _class) {
         this.context = context;
         this.lvClass = lvClass;
         this._class = _class;

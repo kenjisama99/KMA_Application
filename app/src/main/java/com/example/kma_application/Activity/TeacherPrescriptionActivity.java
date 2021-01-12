@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.example.kma_application.AsyncTask.LoadClassMedicineTask;
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
 
-public class TeacherMedicineActivity extends AppCompatActivity {
+public class TeacherPrescriptionActivity extends AppCompatActivity {
 
     Teacher teacher;
     ListView lvClass;
@@ -25,7 +24,7 @@ public class TeacherMedicineActivity extends AppCompatActivity {
         Intent data = getIntent();
         teacher = (Teacher) data.getSerializableExtra("info");
 
-//        new LoadClassMedicineTask(
+//        new LoadClassPrescriptionTask(
 //                this,
 //                lvClass,
 //                teacher.get_class()

@@ -68,7 +68,7 @@ public class Prescription implements Serializable {
         this.medicines = medicines;
     }
 
-    public class Medicine implements Serializable{
+    public static class Medicine implements Serializable{
         private String name;
         private String dosage;
         private String time;
@@ -103,11 +103,15 @@ public class Prescription implements Serializable {
             this.time = time;
         }
 
-        @Override
-        public String toString() {
+        public String toJsonString() {
             return "{\"name\":\"" + name + "\","
                     +"\"dosage\":\"" + dosage +"\","
                     +"\"time\":\"" + time +"\"},";
+        }
+
+        @Override
+        public String toString() {
+            return time +"   "+ name +".  Liều dùng: "+ dosage;
         }
     }
 }
