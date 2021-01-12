@@ -37,7 +37,7 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
     String medicineName, medicineDose, time;
 
     ArrayList<Prescription.Medicine> medicines = new ArrayList<>();
-    ArrayAdapter adapter;
+    ArrayAdapter<Prescription.Medicine> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
             }
         });
 
-        adapter = new ArrayAdapter(
+        adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 this.medicines
@@ -92,7 +92,8 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
 
         new LoadTomorrowMedicinesTask(
             this,
-            parent.getPhone()
+            parent.getPhone(),
+            this
         ).execute();
     }
 
@@ -107,43 +108,50 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
     }
 
     private void onClickButtonSendPrescription() {
-        new SubmitPrescriptionTask(
-                this
-        ).execute(
-                medicineJson(
-                        parent.getPhone(),
-                        parent.getChildName(),
-                        parent.get_class(),
-                        medicineDose,
-                        time,
-                        medicineName
-                ));
+        if ( !medicines.isEmpty()){
+            new SubmitPrescriptionTask(
+                    this,
+                    buttonSendPrescription,
+                    buttonUndoAddMedicines,
+                    parent,
+                    medicines
+            ).execute();
+        }
     }
 
     private void onClickButtonAddMedicine() {
-        if (hasMedicinesFromServer) {
-            medicines.clear();
-            adapter.notifyDataSetChanged();
 
-            hasMedicinesFromServer = false;
-        }
 
         medicineName = txtMedicineName.getText().toString().trim();
         medicineDose = txtMedicineDose.getText().toString().trim();
         time = txtMedicineTime.getText().toString().trim();
-        String notification = null;
+        String notification = "";
+        boolean OK = true;
 
-        if (TextUtils.isEmpty(medicineName))
-            notification.concat("Vui lòng nhập nội dung\n");
-        if (TextUtils.isEmpty(medicineDose))
-            notification.concat("Vui lòng chọn ngày bắt đầu\n");
-        if (TextUtils.isEmpty(time))
-            notification.concat("Vui lòng chọn ngày kết thúc");
+        if (TextUtils.isEmpty(medicineName)) {
+            notification ="Vui lòng nhập tên thuốc";
+            OK = false;
+        }
+        if (TextUtils.isEmpty(medicineDose)) {
+            notification = "Vui lòng nhập liều dùng";
+            OK = false;
+        }
+        if (TextUtils.isEmpty(time)) {
+            notification = "Vui lòng chọn giờ uống";
+            OK = false;
+        }
 
-        if (!TextUtils.isEmpty(notification)){
+        if ( !OK){
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
             return;
         }else {
+            //clean list view if has data from server
+            if (hasMedicinesFromServer) {
+                medicines.clear();
+                adapter.notifyDataSetChanged();
+
+                hasMedicinesFromServer = false;
+            }
             //push data to listView
             medicines.add(new Prescription.Medicine(
                 medicineName,
@@ -169,6 +177,9 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                if (hourOfDay < 7) hourOfDay = 7;
+                if (hourOfDay > 17) hourOfDay = 17;
+
                 txtMedicineTime.setText(hourOfDay + ":00");
                 lastSelectedHour = hourOfDay;
                 lastSelectedMinute = 0;
@@ -184,23 +195,27 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
         ).show();
     }
 
-    String medicineJson(String phone, String name, String _class, String startDate, String endDate, String content) {
-        return "{\"phone\":\"" + phone + "\","
-                +"\"name\":\"" + name + "\","
-                +"\"_class\":\"" + _class + "\","
-                +"\"startDate\":\"" + startDate + "\","
-                +"\"endDate\":\"" + endDate + "\","
-                +"\"content\":\"" + content +"\"}";
-    }
-
-
     @Override
-    public void callback(boolean hasData, ArrayList<Prescription.Medicine> medicines) {
+    public void callback(boolean hasData, ArrayList<Prescription.Medicine> medicineArrayList) {
         this.hasMedicinesFromServer = hasData;
-        if (hasData) {
-            this.medicines =
-                (ArrayList<Prescription.Medicine>)medicines.clone();
-            adapter.notifyDataSetChanged();
-        }
+        if (medicineArrayList != null)
+            System.out.println(medicineArrayList.get(0));
+        else
+            System.out.println("medicines null");
+
+        medicines =
+            (ArrayList<Prescription.Medicine>)medicineArrayList.clone();
+
+        adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                medicines
+        );
+        listViewMedicines.setAdapter(adapter);
+
+        if ( !medicines.isEmpty())
+            System.out.println(medicines.get(0));
+        else
+            System.out.println("this.medicines empty");
     }
 }

@@ -69,6 +69,7 @@ public class Prescription implements Serializable {
     }
 
     public static class Medicine implements Serializable{
+        private String _id;
         private String name;
         private String dosage;
         private String time;

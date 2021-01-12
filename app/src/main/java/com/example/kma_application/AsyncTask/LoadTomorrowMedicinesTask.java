@@ -16,20 +16,20 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class LoadTomorrowMedicinesTask extends AsyncTask<Void,Void,String> {
     Context context;
     String phone;
-    CallbackForMedicine parentMedicineActivity;
+    CallbackForMedicine parentPrescriptionActivity;
 
     public interface CallbackForMedicine{
         void callback(boolean hasData, ArrayList<Prescription.Medicine> medicines);
     }
 
-    public LoadTomorrowMedicinesTask(Context context, String phone) {
+    public LoadTomorrowMedicinesTask(Context context, String phone, CallbackForMedicine parentPrescriptionActivity) {
         this.context = context;
         this.phone = phone;
+        this.parentPrescriptionActivity = parentPrescriptionActivity;
     }
 
     OkHttpClient client = new OkHttpClient();
@@ -37,7 +37,8 @@ public class LoadTomorrowMedicinesTask extends AsyncTask<Void,Void,String> {
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String postResponse = doPostRequest("https://nodejscloudkenji.herokuapp.com/getPrescription", reqJson());
+            String postResponse = doPostRequest(
+            "https://nodejscloudkenji.herokuapp.com/getPrescription", reqJson());
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
         } catch (IOException e) {
@@ -64,7 +65,7 @@ public class LoadTomorrowMedicinesTask extends AsyncTask<Void,Void,String> {
                     try{
                         if (prescription.getMedicines() != null && !prescription.getMedicines().isEmpty())
                             //pass data back to ParentPrescriptionActivity
-                            parentMedicineActivity.callback(true, prescription.getMedicines());
+                            parentPrescriptionActivity.callback(true, prescription.getMedicines());
                         else
                             Toast.makeText(this.context, "Không nạp được danh sách thuốc", Toast.LENGTH_LONG).show();
                     }catch (NullPointerException e){

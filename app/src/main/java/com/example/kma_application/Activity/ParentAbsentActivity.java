@@ -131,7 +131,7 @@ public class ParentAbsentActivity extends AppCompatActivity {
         content = txtContent.getText().toString().trim();
         startDate = txtStartDate.getText().toString().trim();
         endDate = txtEndDate.getText().toString().trim();
-        String notification = null;
+        String notification = "";
 
         if (TextUtils.isEmpty(content))
             notification.concat("Vui lòng nhập nội dung\n");
