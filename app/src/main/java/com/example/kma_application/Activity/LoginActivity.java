@@ -23,14 +23,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText txtPhone,txtPassword;
     Button btLogin;
-    Socket mSocket;
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //mSocket.close();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                 onClickBtLogin();
             }
         });
-        
-        
     }
 
 
@@ -59,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         loginUser(txtPhone.getText().toString().trim(),
                 txtPassword.getText().toString().trim());
     }
-
 
     // test data
     String userJson(String phone, String password) {
@@ -79,6 +68,5 @@ public class LoginActivity extends AppCompatActivity {
         }
         LoginTask loginTask = new LoginTask(this, phone);
         loginTask.execute(userJson(phone,password));
-
     }
 }
