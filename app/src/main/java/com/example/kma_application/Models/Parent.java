@@ -5,11 +5,13 @@ import java.io.Serializable;
 public class Parent extends Teacher implements Serializable {
     private String childName;
     private String teacherName;
+    private String teacherPhone;
 
-    public Parent(String phone, String name, String email, String _class, String childName, String teacherName) {
+    public Parent(String phone, String name, String email, String _class, String childName, String teacherName, String teacherPhone) {
         super(phone, name, email, _class);
         this.childName = childName;
         this.teacherName = teacherName;
+        this.teacherPhone = teacherPhone;
     }
 
     public String getChildName() {
@@ -28,4 +30,11 @@ public class Parent extends Teacher implements Serializable {
         this.teacherName = teacherName;
     }
 
+    public String getTeacherPhone() {
+        return teacherPhone;
+    }
+
+    public void setTeacherPhone(String teacherPhone) {
+        this.teacherPhone = teacherPhone;
+    }
 }

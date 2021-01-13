@@ -17,7 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kma_application.Adapter.MessageAdapter;
-import com.example.kma_application.Models.Person;
+import com.example.kma_application.AsyncTask.LoadMessagesTask;
+import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Parent;
 import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
@@ -25,33 +26,31 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.Calendar;
 
 public class ContactActivity extends AppCompatActivity {
-    String phone, role;
-    Person person;
+    String phone, role, coupleUserPhone;
+    Parent parent;
     EditText editText;
     ImageButton btnCall, btnSend, btnSendImage;
     RecyclerView recyclerView;
     TextView txtChatName;
+    MessageAdapter messageAdapter;
 
-
-
-    Socket mSocket;
     private  final int IMAGE_REQUEST_ID = 1;
     private  final  String CLIENT_SEND_CHAT = "CLIENT_SEND_CHAT";
     private  final  String SERVER_SEND_CHAT = "SERVER_SEND_CHAT";
     private  final  String CLIENT_SEND_PHONE = "CLIENT_SEND_PHONE";
     private  final  String CLIENT_SEND_TYPE = "CLIENT_SEND_TYPE";
 
-    private MessageAdapter messageAdapter;
-
-
+    Socket mSocket;
     {
         try {
             mSocket = IO.socket("https://nodejscloudkenji.herokuapp.com");
@@ -76,6 +75,8 @@ public class ContactActivity extends AppCompatActivity {
         recyclerView.setAdapter(messageAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        loadMessages();
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,21 +93,29 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mSocket.disconnect();
+        //mSocket.disconnect();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        mSocket.connect();
+        if (!mSocket.connected())   mSocket.connect();
     }
 
     private Emitter.Listener onRetrieveHeartBeat = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            mSocket.emit("pong","{beat: 1}");
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+            //to String
+            String timeNow =
+                    calendar.get(Calendar.HOUR_OF_DAY)+":"+
+                            calendar.get(Calendar.MINUTE)+":"+
+                            calendar.get(Calendar.SECOND);
+            mSocket.emit("pong",timeNow+": client "+phone);
         }
     };
+
     private Emitter.Listener onRetrieveData = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -115,9 +124,16 @@ public class ContactActivity extends AppCompatActivity {
                 public void run() {
                     JSONObject jsonObject = (JSONObject) args[0];
 
-                    messageAdapter.addItem(jsonObject);
-
-                    recyclerView.smoothScrollToPosition(messageAdapter.getItemCount() - 1);
+                    try {
+                        if (jsonObject.getString("coupleUserPhone")
+                                .equals(coupleUserPhone))
+                        {
+                            messageAdapter.addItem(jsonObject);
+                            recyclerView.smoothScrollToPosition(messageAdapter.getItemCount() - 1);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -126,23 +142,45 @@ public class ContactActivity extends AppCompatActivity {
         txtChatName = (TextView)findViewById(R.id.textChatName);
         Intent data = getIntent();
         role = data.getStringExtra("role");
-        person = (Person) data.getSerializableExtra("info");
-        phone = person.getPhone();
+        parent = (Parent) data.getSerializableExtra("info");
+
+        coupleUserPhone = parent.getTeacherPhone()+"+"+parent.getPhone();
+
         if (role.equals("parent")){
-            Parent parent = (Parent) person;
             txtChatName.setText("Cô "+parent.getTeacherName()+" - Lớp "+parent.get_class());
+            phone = parent.getPhone();
         }else {
-            Teacher teacher = (Teacher) person;
-            txtChatName.setText("Phụ huynh lớp "+teacher.get_class());
+            txtChatName.setText("Phụ huynh lớp "+parent.get_class());
+            phone = parent.getTeacherPhone();
         }
+    }
+
+    private  void loadMessages(){
+        new LoadMessagesTask(
+            this,
+            coupleUserPhone,
+            messageAdapter,
+            recyclerView
+        ).execute();
     }
     private void onClickSend() {
         String content = editText.getText().toString().trim();
         if ( !TextUtils.isEmpty(content) ){
-            mSocket.emit(CLIENT_SEND_PHONE, phone);
-            mSocket.emit(CLIENT_SEND_TYPE, "text");
-            mSocket.emit(CLIENT_SEND_CHAT,content);
-            editText.setText("");
+            JSONObject jsonObject= new JSONObject();
+            try {
+                jsonObject.put("coupleUserPhone",coupleUserPhone);
+                jsonObject.put("senderPhone",phone);
+                jsonObject.put("type","text");
+                jsonObject.put("content",content);
+
+                if (jsonObject.length() == 4){
+                    mSocket.emit(CLIENT_SEND_CHAT,jsonObject);
+                    editText.setText("");
+                }else
+                    System.out.println(jsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -180,11 +218,22 @@ public class ContactActivity extends AppCompatActivity {
         image.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
 
         String base64String = Base64.encodeToString(outputStream.toByteArray(),
-                Base64.DEFAULT);
+                Base64.NO_WRAP);
 
-        mSocket.emit(CLIENT_SEND_PHONE, phone);
-        mSocket.emit(CLIENT_SEND_TYPE, "image");
-        mSocket.emit(CLIENT_SEND_CHAT,base64String);
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("coupleUserPhone",coupleUserPhone);
+            jsonObject.put("senderPhone",phone);
+            jsonObject.put("type","image");
+            jsonObject.put("content",base64String);
+
+            if (jsonObject.length() == 4){
+                mSocket.emit(CLIENT_SEND_CHAT,jsonObject);
+            }else
+                System.out.println(jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 

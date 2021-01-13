@@ -37,7 +37,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ContactActivity" />
-        <activity android:name=".user" />
         <activity android:name=".Activity.MainActivity" />
     </application>
 

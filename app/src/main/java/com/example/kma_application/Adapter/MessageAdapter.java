@@ -94,7 +94,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
         JSONObject message = messages.get(position);
 
         try {
-            if (message.getString("id").equals(phone)) {
+            if (message.getString("senderPhone").equals(phone)) {
 
                 if (message.getString("type").equals("text"))
                     return TYPE_MESSAGE_SENT;
@@ -154,17 +154,17 @@ public class MessageAdapter extends RecyclerView.Adapter {
         JSONObject message = messages.get(position);
 
         try {
-            if (message.getString("id").equals(phone)) {
+            if (message.getString("senderPhone").equals(phone)) {
 
                 if (message.getString("type").equals("text")) {
 
                     SentMessageHolder messageHolder = (SentMessageHolder) holder;
-                    messageHolder.messageTxt.setText(message.getString("noidung"));
+                    messageHolder.messageTxt.setText(message.getString("content"));
 
                 } else {
 
                     SentImageHolder imageHolder = (SentImageHolder) holder;
-                    Bitmap bitmap = getBitmapFromString(message.getString("noidung"));
+                    Bitmap bitmap = getBitmapFromString(message.getString("content"));
 
                     imageHolder.imageView.setImageBitmap(bitmap);
 
@@ -176,13 +176,13 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
                     ReceivedMessageHolder messageHolder = (ReceivedMessageHolder) holder;
 
-                    messageHolder.messageTxt.setText(message.getString("noidung"));
+                    messageHolder.messageTxt.setText(message.getString("content"));
 
                 } else {
 
                     ReceivedImageHolder imageHolder = (ReceivedImageHolder) holder;
 
-                    Bitmap bitmap = getBitmapFromString(message.getString("noidung"));
+                    Bitmap bitmap = getBitmapFromString(message.getString("content"));
                     imageHolder.imageView.setImageBitmap(bitmap);
 
                 }
@@ -196,7 +196,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
 
     private Bitmap getBitmapFromString(String image) {
 
-        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        byte[] bytes = Base64.decode(image, Base64.NO_WRAP);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
