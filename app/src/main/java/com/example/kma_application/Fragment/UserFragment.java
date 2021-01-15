@@ -45,6 +45,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
     String phone, role;
     Person person;
     TextView txtStillThinkAboutTheName;
+    String newName;
 
     private final int IMAGE_REQUEST_ID = 1;
 
@@ -55,6 +56,29 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
         loadInfoToView(view);
+
+        Button btEditName = (Button)view.findViewById(R.id.buttonEditPersonName);
+        Button btSubmitName = (Button)view.findViewById(R.id.buttonSubmitName);
+        EditText editTextName = (EditText)view.findViewById(R.id.editTextPersonName);
+
+        btEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextName.setEnabled(true);
+                btLogout.setVisibility(view.GONE);
+                btSubmitName.setVisibility(view.VISIBLE);
+            }
+        });
+
+        btSubmitName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextName.setEnabled(false);
+                btLogout.setVisibility(view.VISIBLE);
+                btSubmitName.setVisibility(view.GONE);
+                newName = editTextName.getText().toString();
+            }
+        });
 
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +104,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     private void loadInfoToView(View view) {
+
         btLogout = (Button)view.findViewById(R.id.buttonLogout);
         btChangePassword = (Button)view.findViewById(R.id.buttonChangePass);
         btEditAvatar = (Button)view.findViewById(R.id.buttonEditAvatar);

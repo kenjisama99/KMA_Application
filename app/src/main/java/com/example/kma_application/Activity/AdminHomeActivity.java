@@ -20,7 +20,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
-         showMenu = (Button) findViewById(R.id.show_dropdown_menu);
+        showMenu = (Button) findViewById(R.id.show_dropdown_menu);
         showMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
