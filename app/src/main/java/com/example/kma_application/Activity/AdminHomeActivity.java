@@ -37,6 +37,14 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
+        Button btManageNotification = (Button)findViewById(R.id.buttonNotificationManage);
+        btManageNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageNotification();
+            }
+        });
+
         Button btManageUser = (Button)findViewById(R.id.buttonUserManage);
         btManageUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +52,11 @@ public class AdminHomeActivity extends AppCompatActivity {
                 onClickManageUser();
             }
         });
+    }
+
+    private void onClickManageNotification() {
+        Intent manageNotification = new Intent(this, AdminNotificationActivity.class);
+        startActivity(manageNotification);
     }
 
     private void onClickManageUser() {
