@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.kma_application.R;
 
-public class CreateNotificationActivity extends AppCompatActivity {
+public class AdminCreateNotificationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

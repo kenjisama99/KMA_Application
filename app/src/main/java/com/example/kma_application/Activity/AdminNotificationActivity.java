@@ -26,7 +26,7 @@ public class AdminNotificationActivity extends AppCompatActivity {
     }
 
     private void onClickCreateNotification() {
-        Intent createNotification = new Intent(this, CreateNotificationActivity.class);
+        Intent createNotification = new Intent(this, AdminCreateNotificationActivity.class);
         startActivity(createNotification);
     }
 }
