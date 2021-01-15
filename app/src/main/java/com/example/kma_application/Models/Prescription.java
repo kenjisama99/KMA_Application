@@ -70,22 +70,32 @@ public class Prescription implements Serializable {
 
     public static class Medicine implements Serializable{
         private String _id;
-        private String name;
+        private String childName;
+        private String medicineName;
         private String dosage;
         private String time;
 
-        public Medicine(String name, String dosage, String time) {
-            this.name = name;
+        public Medicine(String childName, String medicineName, String dosage, String time) {
+            this.childName = childName;
+            this.medicineName = medicineName;
             this.dosage = dosage;
             this.time = time;
         }
 
-        public String getName() {
-            return name;
+        public String getChildName() {
+            return childName;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setChildName(String childName) {
+            this.childName = childName;
+        }
+
+        public String getMedicineName() {
+            return medicineName;
+        }
+
+        public void setMedicineName(String medicineName) {
+            this.medicineName = medicineName;
         }
 
         public String getDosage() {
@@ -105,14 +115,18 @@ public class Prescription implements Serializable {
         }
 
         public String toJsonString() {
-            return "{\"name\":\"" + name + "\","
+            return "{\"childName\":\"" + childName + "\","
+                    +"\"medicineName\":\"" + medicineName +"\","
                     +"\"dosage\":\"" + dosage +"\","
                     +"\"time\":\"" + time +"\"},";
         }
-
+        public String toStringForTeacherUsed() {
+            return childName +"\n"+
+                    "\t\t"+ medicineName +".  Liều dùng: "+ dosage;
+        }
         @Override
         public String toString() {
-            return time +"   "+ name +".  Liều dùng: "+ dosage;
+            return time +"   "+ medicineName +".  Liều dùng: "+ dosage;
         }
     }
 }

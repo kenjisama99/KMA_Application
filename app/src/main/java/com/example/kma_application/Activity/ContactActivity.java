@@ -47,8 +47,6 @@ public class ContactActivity extends AppCompatActivity {
     private  final int IMAGE_REQUEST_ID = 1;
     private  final  String CLIENT_SEND_CHAT = "CLIENT_SEND_CHAT";
     private  final  String SERVER_SEND_CHAT = "SERVER_SEND_CHAT";
-    private  final  String CLIENT_SEND_PHONE = "CLIENT_SEND_PHONE";
-    private  final  String CLIENT_SEND_TYPE = "CLIENT_SEND_TYPE";
 
     Socket mSocket;
     {
