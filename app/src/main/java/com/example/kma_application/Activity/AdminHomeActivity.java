@@ -52,6 +52,48 @@ public class AdminHomeActivity extends AppCompatActivity {
                 onClickManageUser();
             }
         });
+        Button btManageGallery = (Button)findViewById(R.id.buttonAlbumManage);
+        btManageGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageGallery();
+            }
+        });
+        Button btManageHealth = (Button)findViewById(R.id.buttonHealthManage);
+        btManageHealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageHealth();
+            }
+        });Button btManageAbsent = (Button)findViewById(R.id.buttonAbsentManage);
+        btManageAbsent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageAbsent();
+            }
+        });Button btManageMedicine = (Button)findViewById(R.id.buttonMedicineManage);
+        btManageMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageMedicine();
+            }
+        });
+    }
+
+    private void onClickManageHealth() {
+
+    }
+
+    private void onClickManageAbsent() {
+
+    }
+
+    private void onClickManageMedicine() {
+
+    }
+
+    private void onClickManageGallery() {
+
     }
 
     private void onClickManageNotification() {
