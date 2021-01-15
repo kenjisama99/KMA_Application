@@ -2,6 +2,7 @@ package com.example.kma_application.AsyncTask;
 
 import android.os.AsyncTask;
 
+import com.example.kma_application.Models.Person;
 import com.example.kma_application.Models.Teacher;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -18,19 +19,26 @@ public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
     String resizeBase64;
     String activityName;
     String _class;
+    AsyncResponse activity;
 
-    public SubmitImageTask(Teacher teacher, String originalBase64, String resizeBase64, String fromActivity) {
+    public interface AsyncResponse {
+        void onSubmitImageTaskFinish();
+    }
+
+    public SubmitImageTask(Teacher teacher, String originalBase64, String resizeBase64, String fromActivity, AsyncResponse activity) {
         this.teacher = teacher;
         this.originalBase64 = originalBase64;
         this.resizeBase64 = resizeBase64;
         this.activityName = fromActivity;
+        this.activity = activity;
     }
 
-    public SubmitImageTask(String originalBase64, String resizeBase64, String activityName, String _class) {
+    public SubmitImageTask(String originalBase64, String resizeBase64, String activityName, String _class, AsyncResponse activity) {
         this.originalBase64 = originalBase64;
         this.resizeBase64 = resizeBase64;
         this.activityName = activityName;
         this._class = _class;
+        this.activity = activity;
     }
 
     @Override
@@ -61,6 +69,12 @@ public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
         }
         return null;
     }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        activity.onSubmitImageTaskFinish();
+    }
+
     // post request code here
     String imagesJson(String _class, String originalBase64, String resizeBase64, String phone) {
         return "{\"_class\":\"" + _class + "\","

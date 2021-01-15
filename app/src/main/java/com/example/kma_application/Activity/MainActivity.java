@@ -10,7 +10,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.kma_application.Models.Parent;
+import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
 import com.example.kma_application.Fragment.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     //data
     String phone;
     String role;
+    String _class;
 
     //model
     Person person;
@@ -89,14 +93,32 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     };
 
     private void onClickBtChat() {
-        Intent chatActivity = new Intent(this, ContactActivity.class);
-        chatActivity.putExtra("role", role);
-        chatActivity.putExtra("info", person);
-        startActivity(chatActivity);
+        Intent intent = new Intent(this, ContactActivity.class);
+        if (role.equals("teacher"))
+            intent = new Intent(this, TeacherMessengerActivity.class);
+
+        intent.putExtra("class", _class);
+        intent.putExtra("role", role);
+        intent.putExtra("info", person);
+
+        startActivity(intent);
     }
 
     @Override
     public void onLoadInfoTaskFinish(Person output, String role) {
-        person = output;
+        this.role = role;
+        if (output == null){
+            Toast.makeText(this, "InfoModel is null", Toast.LENGTH_LONG).show();
+        }else{
+            this.phone = output.getPhone();
+            if (role.equals("teacher")) {
+                Teacher teacher = (Teacher) output;
+                _class = teacher.get_class();
+            }else {
+                Parent parent = (Parent) output;
+                _class = parent.get_class();
+                this.person = output;
+            }
+        }
     }
 }

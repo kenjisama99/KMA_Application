@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity implements SubmitImageTask.AsyncResponse {
     String role;
     String _class;
     Teacher teacher;
@@ -81,7 +82,7 @@ public class GalleryActivity extends AppCompatActivity {
                 //imgAvatar.setImageBitmap(bitmap);
                 Bitmap resizeBitmap = resize(originalBitmap, 100, 100);
                 sendImage(originalBitmap, resizeBitmap);
-                getImagesFromServer();
+                //getImagesFromServer();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -102,7 +103,8 @@ public class GalleryActivity extends AppCompatActivity {
                 originalBase64,
                 resizeBase64,
                 "Gallery",
-                _class
+                _class,
+                this
         );
         submitImageTask.execute();
     }
@@ -134,4 +136,16 @@ public class GalleryActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSubmitImageTaskFinish() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 1s
+                getImagesFromServer();
+            }
+        }, 3000);
+        //getImagesFromServer();
+    }
 }

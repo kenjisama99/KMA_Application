@@ -124,6 +124,12 @@ public class LoadClassPrescriptionTask extends AsyncTask<Void,Void,String> {
                                 mediciness.add(medicine);
 
                         }
+                        Comparator<Prescription.Medicine> compareByName =
+                                (Prescription.Medicine medicine1, Prescription.Medicine medicine2) ->
+                                medicine1.getChildName().compareTo( medicine2.getChildName() );
+
+                        Collections.sort(mediciness, compareByName);
+
                         Intent intent = new Intent(context, TeacherChildMedicineActivity.class);
                         intent.putExtra("info", mediciness);
                         context.startActivity(intent);

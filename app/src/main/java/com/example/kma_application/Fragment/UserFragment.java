@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ import java.io.InputStream;
 import static android.app.Activity.RESULT_OK;
 
 
-public class UserFragment extends Fragment implements LoadInfosTask.AsyncResponse{
+public class UserFragment extends Fragment implements LoadInfosTask.AsyncResponse, SubmitImageTask.AsyncResponse {
     Button btLogout, btChangePassword, btEditAvatar;
     EditText txtName, txtPhone, txtId;
     ImageView imgAvatar;
@@ -138,7 +139,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 Bitmap resizeBitmap = resize(originalBitmap, 400, 400);
 
                 sendImage(resizeBitmap);
-                getImagesFromServer();
+                //getImagesFromServer();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -156,7 +157,8 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 (Teacher) person,
                 resizeBase64,
                 "",
-                "main"
+                "main",
+                this
         );
         submitImageTask.execute();
     }
@@ -196,4 +198,15 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
         this.role = role;
     }
 
+    @Override
+    public void onSubmitImageTaskFinish() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 1s
+                getImagesFromServer();
+            }
+        }, 3000);
+    }
 }
