@@ -22,12 +22,13 @@ public class TeacherHealthActivity extends AppCompatActivity {
         lvClass = (ListView)findViewById(R.id.listViewClass);
 
         Intent data = getIntent();
-        teacher = (Teacher) data.getSerializableExtra("info");
+        //teacher = (Teacher) data.getSerializableExtra("info");
+        String _class = data.getStringExtra("class");
 
         LoadClassHealthTask loadClassHealthTask = new LoadClassHealthTask(
                 this,
                 lvClass,
-                teacher.get_class()
+_class
         );
         loadClassHealthTask.execute();
     }

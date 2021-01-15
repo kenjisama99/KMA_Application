@@ -22,12 +22,12 @@ public class TeacherAbsentActivity extends AppCompatActivity {
         lvClass = (ListView)findViewById(R.id.listViewClassAbsent);
 
         Intent data = getIntent();
-        teacher = (Teacher) data.getSerializableExtra("info");
-
+        //teacher = (Teacher) data.getSerializableExtra("info");
+        String _class = data.getStringExtra("class");
         LoadClassAbsentTask loadClassAbsentTask = new LoadClassAbsentTask(
                 this,
                 lvClass,
-                teacher.get_class()
+                _class
         );
         loadClassAbsentTask.execute();
     }

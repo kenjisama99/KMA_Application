@@ -23,12 +23,12 @@ public class TeacherPrescriptionActivity extends AppCompatActivity {
         lvClass = (ListView)findViewById(R.id.listViewClassMedicine);
 
         Intent data = getIntent();
-        teacher = (Teacher) data.getSerializableExtra("info");
-
+        //teacher = (Teacher) data.getSerializableExtra("info");
+        String _class = data.getStringExtra("class");
         new LoadClassPrescriptionTask(
                 this,
                 lvClass,
-                teacher.get_class()
+                _class
         ).execute();
     }
 }

@@ -31,6 +31,7 @@ import java.io.InputStream;
 
 public class GalleryActivity extends AppCompatActivity {
     String role;
+    String _class;
     Teacher teacher;
     ImageButton btAdd;
     GridView gridView;
@@ -46,8 +47,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         Intent data = getIntent();
         role = data.getStringExtra("role");
-        teacher = (Teacher) data.getSerializableExtra("info");
-
+        //teacher = (Teacher) data.getSerializableExtra("info");
+         _class = data.getStringExtra("class");
         if (role.equals("parent"))
             btAdd.setVisibility(View.INVISIBLE);
 
@@ -98,17 +99,17 @@ public class GalleryActivity extends AppCompatActivity {
         System.out.println(resizeBase64);
 
         SubmitImageTask submitImageTask = new SubmitImageTask(
-                teacher,
                 originalBase64,
                 resizeBase64,
-                "Gallery"
+                "Gallery",
+                _class
         );
         submitImageTask.execute();
     }
 
     private void getImagesFromServer() {
         new LoadClassImageTask(
-            this,gridView,teacher.get_class(),"gallery")
+            this,gridView,_class,"gallery")
                 .execute();
     }
 

@@ -17,6 +17,7 @@ public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
     String originalBase64;
     String resizeBase64;
     String activityName;
+    String _class;
 
     public SubmitImageTask(Teacher teacher, String originalBase64, String resizeBase64, String fromActivity) {
         this.teacher = teacher;
@@ -25,17 +26,35 @@ public class SubmitImageTask extends AsyncTask<Void, Void, Void> {
         this.activityName = fromActivity;
     }
 
+    public SubmitImageTask(String originalBase64, String resizeBase64, String activityName, String _class) {
+        this.originalBase64 = originalBase64;
+        this.resizeBase64 = resizeBase64;
+        this.activityName = activityName;
+        this._class = _class;
+    }
+
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            doPostRequest(
-            "https://nodejscloudkenji.herokuapp.com/submitImage",
-                imagesJson(teacher.get_class(),
-                        originalBase64,
-                        resizeBase64,
-                        teacher.getPhone()
-                )
-            );
+            if (activityName.equals("main")){
+                doPostRequest(
+                        "https://nodejscloudkenji.herokuapp.com/submitImage",
+                        imagesJson(teacher.get_class(),
+                                originalBase64,
+                                resizeBase64,
+                                teacher.getPhone()
+                        )
+                );
+            }else
+                doPostRequest(
+                        "https://nodejscloudkenji.herokuapp.com/submitImage",
+                        imagesJson(_class,
+                                originalBase64,
+                                resizeBase64,
+                                "teacher"
+                        )
+                );
+
 
         } catch (IOException e) {
             e.printStackTrace();
