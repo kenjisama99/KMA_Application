@@ -37,29 +37,29 @@
 
         <Button
             android:id="@+id/show_dropdown_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="270dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="50dp"
             android:backgroundTint="#3E7C28"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:onClick="showDropDownMenu"
-            android:text="Chọn lớp cần quản lý"
+            android:text="Chọn"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:cornerRadius="8dp"
             tools:ignore="OnClick" />
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="549dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="68dp"
             android:columnCount="2"
             android:rowCount="3">
 
@@ -91,9 +91,9 @@
                 android:layout_margin="16dp"
                 android:backgroundTint="#E15E5E"
                 android:drawableTop="@drawable/bell_50px"
-                android:paddingTop="16dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingTop="16dp"
                 android:text="Quản lý thông báo"
                 android:textAllCaps="false"
                 android:textColor="#000000"
@@ -103,17 +103,17 @@
 
             <Button
                 android:id="@+id/buttonAlbumManage"
-                android:paddingTop="16dp"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
+                android:layout_margin="16dp"
                 android:backgroundTint="#76AF34"
                 android:drawableTop="@drawable/ios_photos_50px"
-                android:text="Bộ sưu tập ảnh"
-                android:layout_margin="16dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingTop="16dp"
+                android:text="Bộ sưu tập ảnh"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
@@ -122,7 +122,6 @@
 
             <Button
                 android:id="@+id/buttonHealthManage"
-                android:paddingTop="16dp"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
@@ -132,6 +131,7 @@
                 android:drawableTop="@drawable/mental_health_50px"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingTop="16dp"
                 android:text="Quản lý sức khỏe của bé"
                 android:textAllCaps="false"
                 android:textColor="#000000"
@@ -141,45 +141,57 @@
 
             <Button
                 android:id="@+id/buttonAbsentManage"
-                android:paddingTop="16dp"
-                android:drawableTop="@drawable/banned_50px"
-                android:text="Quản lý xin nghỉ cho bé"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:backgroundTint="#2E3BB6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:layout_margin="16dp"
+                android:backgroundTint="#2E3BB6"
+                android:drawableTop="@drawable/banned_50px"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingTop="16dp"
+                android:text="Quản lý xin nghỉ cho bé"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 app:cornerRadius="10dp"
-                app:iconPadding="0dp"/>
+                app:iconPadding="0dp" />
 
             <Button
                 android:id="@+id/buttonMedicineManage"
-                android:paddingTop="16dp"
-                android:drawableTop="@drawable/pill_50px"
-                android:text="Quản lý dặn thuốc"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:backgroundTint="#817E3D"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:layout_margin="16dp"
+                android:backgroundTint="#817E3D"
+                android:drawableTop="@drawable/pill_50px"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingTop="16dp"
+                android:text="Quản lý dặn thuốc"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 app:cornerRadius="10dp"
-                app:iconPadding="0dp"/>
-
+                app:iconPadding="0dp" />
 
 
         </GridLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:text="Chọn lớp muốn quản lý:"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
 
     </RelativeLayout>
