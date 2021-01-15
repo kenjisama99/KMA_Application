@@ -123,38 +123,39 @@
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/txtSelectClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextEmail"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
-            android:text="Lớp:"
+            android:text="Chọn lớp"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="visible" />
 
         <EditText
-            android:id="@+id/editTextEnterClass"
-            android:layout_width="328dp"
+            android:id="@+id/editTextSelectClass"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextEmail"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName"
             android:textAllCaps="false"
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/txtChildName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextEnterClass"
+            android:layout_below="@+id/editTextSelectClass"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
@@ -181,16 +182,16 @@
                 android:layout_height="35dp"
                 android:layout_marginStart="65dp"
                 android:layout_marginTop="15dp"
-                android:text="Phụ huynh"
-                android:checked="true"/>
+                android:checked="true"
+                android:text="Phụ huynh" />
 
             <RadioButton
                 android:id="@+id/radioButtonTeacher"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="65dp"
-                android:text="Giáo viên"/>
+                android:text="Giáo viên" />
 
         </RadioGroup>
 
@@ -198,7 +199,7 @@
             android:id="@+id/editTextChildName"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
-            android:layout_below="@+id/editTextEnterClass"
+            android:layout_below="@+id/editTextSelectClass"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -206,16 +207,17 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="298dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView12"
+            android:layout_below="@+id/editTextSelectClass"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="83dp"
             android:layout_marginBottom="270dp"
             android:text="Mật khẩu:"
             android:textAllCaps="false"
@@ -226,7 +228,7 @@
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextEnterClass"
+            android:layout_below="@+id/editTextSelectClass"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -256,6 +258,23 @@
             android:textColor="#000000"
             android:textSize="18sp"
             app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/buttonSelectClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEmail"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#2E45D3"
+            android:onClick="showDropDownMenu"
+            android:text="Chọn"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="10dp"
+            app:iconPadding="0dp"
+            tools:ignore="OnClick" />
 
 
     </RelativeLayout>

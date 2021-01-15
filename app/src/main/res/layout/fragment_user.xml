@@ -102,7 +102,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/editName"
+            android:layout_toStartOf="@+id/buttonEditPersonName"
             android:ems="10"
             android:enabled="false"
             android:inputType="textPersonName"
@@ -110,7 +110,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/editName"
+            android:id="@+id/buttonEditPersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/RelativeLayout"
@@ -142,7 +142,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/editName"
+            android:layout_toStartOf="@+id/buttonEditPersonName"
             android:ems="10"
             android:enabled="false"
             android:inputType="textPersonName"
@@ -157,7 +157,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/editName"
+            android:layout_toStartOf="@+id/buttonEditPersonName"
             android:ems="10"
             android:enabled="false"
             android:inputType="textPersonName"
@@ -183,7 +183,7 @@
             android:id="@+id/buttonChangePass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editName"
+            android:layout_below="@+id/buttonEditPersonName"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="132dp"
             android:layout_marginEnd="10dp"
@@ -206,18 +206,46 @@
 
         <Button
             android:id="@+id/buttonLogout"
-            android:layout_width="wrap_content"
+            android:layout_width="169dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextTextPersonName5"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="43dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="130dp"
             android:background="@null"
             android:backgroundTint="#DA6363"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Đăng Xuất"
-            android:textSize="18sp" />
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <Button
+            android:id="@+id/buttonSubmitName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextTextPersonName5"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="165dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="165dp"
+            android:layout_marginBottom="155dp"
+            android:backgroundTint="#4E8A0F"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Gửi"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:cornerRadius="9dp"
+            app:iconPadding="0dp" />
 
     </RelativeLayout>
 

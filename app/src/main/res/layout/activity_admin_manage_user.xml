@@ -42,7 +42,7 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="Tìm kiếm SĐT"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -71,7 +71,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/editTextIDNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextName"
@@ -89,7 +89,7 @@
             android:id="@+id/editTextPhoneNumber"
             android:layout_width="311dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextPersonName3"
+            android:layout_below="@+id/editTextIDNumber"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="50dp"
@@ -104,7 +104,7 @@
             android:id="@+id/editTextTextPersonName6"
             android:layout_width="311dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextPhoneNumber"
+            android:layout_below="@+id/editTextEmailUser"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="50dp"
@@ -144,7 +144,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextPersonName3"
+            android:layout_below="@+id/editTextIDNumber"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="0dp"
@@ -156,7 +156,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextPhoneNumber"
+            android:layout_below="@+id/editTextEmailUser"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="0dp"
@@ -176,7 +176,7 @@
                 android:id="@+id/buttonAddUser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="12dp"
                 android:layout_weight="1"
                 android:backgroundTint="#65E647"
                 android:insetTop="0dp"
@@ -205,7 +205,7 @@
                 android:id="@+id/buttonDeleteUser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="12dp"
                 android:layout_weight="1"
                 android:backgroundTint="#E13A3A"
                 android:insetTop="0dp"
@@ -218,6 +218,33 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextPhoneNumber"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="0dp"
+            android:text="Email"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextEmailUser"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextPhoneNumber"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName" />
 
 
     </RelativeLayout>
