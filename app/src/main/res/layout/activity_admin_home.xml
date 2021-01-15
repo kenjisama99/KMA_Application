@@ -189,6 +189,7 @@
             android:text="Quản lý tài khoản Admin"
             android:textAllCaps="false"
             android:textSize="18sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp" />
 
     </RelativeLayout>
