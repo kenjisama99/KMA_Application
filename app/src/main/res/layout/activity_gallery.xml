@@ -8,7 +8,6 @@
     tools:context=".Activity.ParentPrescriptionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -22,10 +21,15 @@
             android:layout_weight="10">
 
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"/>
+
+            <TextView
                 android:id="@+id/textGalleryName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:layout_weight="7"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Bộ sưu tập"
                 android:textAllCaps="false"
@@ -36,7 +40,7 @@
                 android:id="@+id/buttonAddImage"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:background="#bce9fe"
                 android:src="@drawable/add_50px" />
 
@@ -53,7 +57,8 @@
         android:verticalSpacing="5dp"
         android:focusable="true"
         android:clickable="true"
-        android:drawSelectorOnTop="true"/>
+        android:drawSelectorOnTop="true"
+        />
 <!--    <GridView-->
 <!--        android:id="@+id/gridViewGallery"-->
 <!--        android:layout_width="fill_parent"-->
