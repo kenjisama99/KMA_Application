@@ -14,6 +14,7 @@ import com.example.kma_application.R;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
+    private String textSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +27,17 @@ public class AdminHomeActivity extends AppCompatActivity {
                 PopupMenu dropDownMenu = new PopupMenu(getApplicationContext(), showMenu);
                 dropDownMenu.getMenuInflater().inflate(R.menu.item_list_class, dropDownMenu.getMenu());
                 showMenu.setText("Chọn");
+
                 dropDownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        Toast.makeText(getApplicationContext(), "Đã chọn lớp " + menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        textSelected = String.valueOf(menuItem.getTitle());
+                        showMenu.setText(textSelected);
                         return true;
                     }
                 });
                 dropDownMenu.show();
+
             }
         });
 
