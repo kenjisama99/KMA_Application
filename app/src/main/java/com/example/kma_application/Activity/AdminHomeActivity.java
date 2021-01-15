@@ -25,7 +25,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 PopupMenu dropDownMenu = new PopupMenu(getApplicationContext(), showMenu);
                 dropDownMenu.getMenuInflater().inflate(R.menu.item_list_class, dropDownMenu.getMenu());
-                showMenu.setText("Chọn lớp cần quản lý");
+                showMenu.setText("Chọn");
                 dropDownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
