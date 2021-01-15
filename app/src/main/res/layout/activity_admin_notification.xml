@@ -16,7 +16,7 @@
         tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/textGalleryName"
+                android:id="@+id/textAppBarName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal|center_vertical"
@@ -30,6 +30,65 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
-        android:gravity="bottom"/>
+        android:gravity="center_horizontal"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <Button
+            android:id="@+id/buttonCreateNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="123dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="50dp"
+            android:backgroundTint="#65E647"
+            android:drawableLeft="@drawable/edit_file_100px"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:scrollbarSize="0dp"
+            android:text="Viết thông báo mới "
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textColorLink="#FFFFFF"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+            app:iconPadding="0dp"
+            app:iconTint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txtHistory"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonCreateNotification"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="170dp"
+            android:gravity="center_horizontal"
+            android:text="Lịch sử "
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/listViewHistory"
+            android:layout_width="match_parent"
+            android:layout_height="516dp"
+            android:layout_below="@+id/txtHistory"
+            android:layout_marginTop="5dp"
+            android:background="#EDECEC"
+            android:cacheColorHint="#FFFFFF" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
