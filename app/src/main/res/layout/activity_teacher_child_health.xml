@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_child_health"
+        android:id="@+id/edit_comment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
@@ -202,45 +202,46 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="200dp"
             android:layout_marginBottom="-25dp"
-            android:text="@string/ratio"
+            android:text="Ghi chú của giáo viên:"
             android:textColor="#000000"
             android:textSize="18sp" />
-
-        <EditText
-            android:enabled="true"
-            android:id="@+id/edit_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/body_proportions"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="-45dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Phát triển bình thường"
-            android:textColor="#000000"
-            android:textSize="14sp" />
 
         <Button
             android:id="@+id/button_complete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_comment"
+            android:layout_height="57dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="125dp"
-            android:backgroundTint="#FD4E49"
+            android:layout_marginStart="129dp"
+            android:layout_marginTop="119dp"
+            android:layout_marginEnd="121dp"
+            android:layout_marginBottom="145dp"
+            android:backgroundTint="#DD8D61"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Hoàn thành"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:cornerRadius="10dp" />
+
+        <EditText
+            android:id="@+id/edit_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="77dp"
+            android:layout_above="@+id/body_proportions"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="-109dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:text="Cần mặc đủ ấm hơn"
+            tools:ignore="DuplicateIds" />
 
     </RelativeLayout>
 
