@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/relativeLayout_child_health"
+        android:id="@+id/edit_comment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"

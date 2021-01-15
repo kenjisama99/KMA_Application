@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_child_health"
+        android:id="@+id/RelativeLayout10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
@@ -189,33 +189,31 @@
 
         <TextView
             android:id="@+id/body_proportions"
-            android:layout_width="wrap_content"
+            android:layout_width="274dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/edit_weight"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="200dp"
-            android:layout_marginBottom="-25dp"
-            android:text="@string/ratio"
+            android:layout_marginEnd="130dp"
+            android:layout_marginBottom="-24dp"
+            android:text="Ghi chú của giáo viên"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edit_comment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/body_proportions"
+            android:layout_height="91dp"
+            android:layout_above="@+id/body_proportions"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="-45dp"
+            android:layout_marginBottom="-120dp"
             android:ems="10"
-            android:enabled="false"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
 
     </RelativeLayout>
 
