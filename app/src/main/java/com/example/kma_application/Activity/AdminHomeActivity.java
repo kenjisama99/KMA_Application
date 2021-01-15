@@ -1,8 +1,8 @@
 package com.example.kma_application.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,5 +36,18 @@ public class AdminHomeActivity extends AppCompatActivity {
                 dropDownMenu.show();
             }
         });
+
+        Button btManageUser = (Button)findViewById(R.id.buttonUserManage);
+        btManageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickManageUser();
+            }
+        });
+    }
+
+    private void onClickManageUser() {
+        Intent manageUser = new Intent(this, AdminManageUser.class);
+        startActivity(manageUser);
     }
 }

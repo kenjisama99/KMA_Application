@@ -14,8 +14,7 @@
         android:layout_gravity="top"
         android:background="#bce9fe"
         android:contextClickable="true"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal">
+        tools:ignore="MissingConstraints">
 
 
 
@@ -164,26 +163,6 @@
             android:textColor="#000000"
             android:textSize="18sp" />
 
-        <RadioButton
-            android:id="@+id/radioButtonParent"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="15dp"
-            android:text="Phụ huynh" />
-
-        <RadioButton
-            android:id="@+id/radioButtonTeacher"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="65dp"
-            android:text="Giáo viên" />
-
         <RadioGroup
             android:layout_width="349dp"
             android:layout_height="64dp"
@@ -192,18 +171,35 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="45dp"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="45dp" >
+            android:layout_marginEnd="45dp"
+            android:orientation="horizontal"
+            android:gravity="fill_horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonParent"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="15dp"
+                android:text="Phụ huynh"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="65dp"
+                android:text="Giáo viên"/>
 
         </RadioGroup>
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/editTextChildName"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/editTextEnterClass"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
@@ -215,9 +211,10 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="53dp"
             android:layout_marginBottom="270dp"
             android:text="Mật khẩu:"
             android:textAllCaps="false"
@@ -225,15 +222,16 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName7"
+            android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEnterClass"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="105dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="220dp"
+            android:layout_marginBottom="225dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:textAllCaps="false"

@@ -14,8 +14,7 @@
         android:layout_gravity="top"
         android:background="#bce9fe"
         android:contextClickable="true"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal">
+        tools:ignore="MissingConstraints">
 
 
         <TextView
