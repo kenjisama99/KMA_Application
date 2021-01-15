@@ -1,9 +1,11 @@
 package com.example.kma_application.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,8 +32,8 @@ import com.example.kma_application.R;
 
 
 public class HomeFragment extends Fragment implements LoadInfosTask.AsyncResponse{
-    String role, phone;
-    Teacher teacher;
+    String role, phone, _class;
+    Parent parent;
 
     Context context = getActivity();
     Button btHealth, btAbsent, btMedicine;
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
             }
         });
 
-        if (teacher != null)
+        if (parent != null)
             loadPreviewGallery();
 
         return view;
@@ -91,9 +93,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     private void onClickBtViewGallery() {
         Intent intent = new Intent(getActivity(), GalleryActivity.class);
 
-        intent.putExtra("info", teacher);
+        intent.putExtra("info", parent);
         intent.putExtra("role", role);
-        intent.putExtra("class", teacher.get_class());
+        intent.putExtra("class", _class);
         startActivity(intent);
     }
 
@@ -102,8 +104,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherHealthActivity.class);
 
-        intent.putExtra("info", teacher);
-        intent.putExtra("class", teacher.get_class());
+        intent.putExtra("info", parent);
+        intent.putExtra("class", _class);
         startActivity(intent);
     }
     private void onClickBtMedicine() {
@@ -111,8 +113,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherPrescriptionActivity.class);
 
-        intent.putExtra("info", teacher);
-        intent.putExtra("class", teacher.get_class());
+        intent.putExtra("info", parent);
+        intent.putExtra("class", _class);
         startActivity(intent);
     }
     private void onClickBtAbsent() {
@@ -120,8 +122,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherAbsentActivity.class);
 
-        intent.putExtra("info", teacher);
-        intent.putExtra("class", teacher.get_class());
+        intent.putExtra("info", parent);
+        intent.putExtra("class", _class);
 
         startActivity(intent);
     }
@@ -129,22 +131,37 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     @Override
     public void onLoadInfoTaskFinish(Person output, String role) {
-        this.teacher = (Teacher) output;
+        //this.parent = (Parent) output;
         this.role = role;
-        if (teacher == null){
+        if (output == null){
             Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
         }else{
-            this.phone = teacher.getPhone();
+            this.phone = output.getPhone();
+            if (role.equals("teacher")) {
+                Teacher teacher = (Teacher) output;
+                _class = teacher.get_class();
+                txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
+            }else {
+                Parent parent = (Parent) output;
+                _class = parent.get_class();
+            }
             loadPreviewGallery();
         }
     }
     private void loadPreviewGallery(){
-        Teacher teacher = (Teacher) this.teacher;
+        //Teacher teacher = (Teacher) this.parent;
         new LoadClassImageTask(
                 getActivity(),
                 gridView,
-                teacher.get_class(),
+                _class,
                 "main"
         ).execute();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadPreviewGallery();
+    }
+
 }

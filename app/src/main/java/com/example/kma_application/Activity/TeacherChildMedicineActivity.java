@@ -42,8 +42,7 @@ public class TeacherChildMedicineActivity extends AppCompatActivity {
             //Toast.makeText(this.context, "Class: "+prescription.get_class(), Toast.LENGTH_LONG).show();
             txtTeacherChildMedicinesTitle.setText(
                     "Danh sách uống thuốc lúc "+
-                    childrenMedicine.get(0).getTime().charAt(0)
-                    +" giờ"
+                    childrenMedicine.get(0).getTime()
             );
             for (int j = 0; j < childrenMedicine.size(); j++) {
                 listMedicineAdapter.addItem(

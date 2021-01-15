@@ -148,7 +148,7 @@ public class ContactActivity extends AppCompatActivity {
             txtChatName.setText("Cô "+parent.getTeacherName()+" - Lớp "+parent.get_class());
             phone = parent.getPhone();
         }else {
-            txtChatName.setText("Phụ huynh lớp "+parent.get_class());
+            txtChatName.setText("Phụ huynh bé "+parent.getChildName());
             phone = parent.getTeacherPhone();
         }
     }

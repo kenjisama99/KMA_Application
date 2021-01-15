@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AdminNotificationActivity"></activity>
+        <activity android:name=".Activity.TeacherMessengerActivity"></activity>
+        <activity android:name=".Activity.AdminNotificationActivity" />
         <activity android:name=".Activity.CreateNotificationActivity" />
         <activity android:name=".Activity.AdminAddUser" />
         <activity android:name=".Activity.AdminManageUser" />

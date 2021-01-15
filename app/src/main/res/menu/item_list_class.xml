@@ -9,19 +9,8 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/dropdown_menu2"
-        android:title="Lớp bibi"
+        android:title="Bibi"
         android:visible="true"
         app:showAsAction="ifRoom|withText" />
-    <item
-        android:id="@+id/dropdown_menu3"
-        android:title="DropDown Menu 3"
-        android:visible="true"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/dropdown_menu4"
-        android:title="DropDown Menu 4"
-        android:visible="true"
-        app:showAsAction="ifRoom" />
 
 </menu>
