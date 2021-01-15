@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.kma_application.R;
 
-public class AdminUserManageActivity extends AppCompatActivity {
+public class CreateNotificationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_user_manage);
+        setContentView(R.layout.activity_create_notification);
     }
 }
