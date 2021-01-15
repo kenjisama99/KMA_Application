@@ -41,7 +41,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
             android:ems="10"
-            android:hint="Nhập SĐT"
+            android:hint="Tìm kiếm SĐT"
             android:inputType="textPersonName" />
 
         <ImageButton
@@ -188,6 +188,7 @@
                 app:cornerRadius="8dp" />
 
             <Button
+                android:id="@+id/buttonModifyUser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -201,6 +202,7 @@
                 app:cornerRadius="8dp" />
 
             <Button
+                android:id="@+id/buttonDeleteUser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"

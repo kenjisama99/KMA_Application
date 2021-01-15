@@ -11,17 +11,41 @@ import com.example.kma_application.R;
 
 public class AdminManageUser extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_manage_user);
-        Button addUser = (Button)findViewById(R.id.buttonAddUser);
-        addUser.setOnClickListener(new View.OnClickListener() {
+
+        Button btModifyUser  = (Button)findViewById(R.id.buttonModifyUser);
+        btModifyUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickModifyUser();
+            }
+        });
+        
+        Button btDeleteUser = (Button)findViewById(R.id.buttonDeleteUser);
+        btDeleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeleteUser();
+            }
+        });
+
+        Button btaddUser = (Button)findViewById(R.id.buttonAddUser);
+        btaddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAddUser();
             }
         });
+    }
+
+    private void onClickDeleteUser() {
+    }
+
+    private void onClickModifyUser() {
     }
 
     private void onClickAddUser() {
