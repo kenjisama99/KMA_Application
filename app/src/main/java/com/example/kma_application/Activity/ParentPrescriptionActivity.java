@@ -121,7 +121,6 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
 
     private void onClickButtonAddMedicine() {
 
-
         medicineName = txtMedicineName.getText().toString().trim();
         medicineDose = txtMedicineDose.getText().toString().trim();
         time = txtMedicineTime.getText().toString().trim();
@@ -154,6 +153,7 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
             }
             //push data to listView
             medicines.add(new Prescription.Medicine(
+                parent.getChildName(),
                 medicineName,
                 medicineDose,
                 time

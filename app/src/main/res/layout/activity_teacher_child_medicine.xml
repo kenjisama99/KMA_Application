@@ -11,13 +11,13 @@
 
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="100dp"
         android:layout_gravity="top"
         android:background="#bce9fe"
         android:contextClickable="true">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txtTeacherChildAppBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -26,21 +26,20 @@
             android:textSize="36sp" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_child_health"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMedicine"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"/>
-
-    </RelativeLayout>
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
