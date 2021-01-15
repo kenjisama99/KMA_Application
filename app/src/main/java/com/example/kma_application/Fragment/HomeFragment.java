@@ -1,11 +1,9 @@
 package com.example.kma_application.Fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,7 +31,7 @@ import com.example.kma_application.R;
 
 public class HomeFragment extends Fragment implements LoadInfosTask.AsyncResponse{
     String role, phone, _class;
-    Parent parent;
+    Person person;
 
     Context context = getActivity();
     Button btHealth, btAbsent, btMedicine;
@@ -84,7 +82,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
             }
         });
 
-        if (parent != null)
+        if (person != null)
             loadPreviewGallery();
 
         return view;
@@ -93,7 +91,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     private void onClickBtViewGallery() {
         Intent intent = new Intent(getActivity(), GalleryActivity.class);
 
-        intent.putExtra("info", parent);
+        intent.putExtra("info", person);
         intent.putExtra("role", role);
         intent.putExtra("class", _class);
         startActivity(intent);
@@ -104,7 +102,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherHealthActivity.class);
 
-        intent.putExtra("info", parent);
+        intent.putExtra("info", person);
         intent.putExtra("class", _class);
         startActivity(intent);
     }
@@ -113,7 +111,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherPrescriptionActivity.class);
 
-        intent.putExtra("info", parent);
+        intent.putExtra("info", person);
         intent.putExtra("class", _class);
         startActivity(intent);
     }
@@ -122,7 +120,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         if (role.equals("teacher"))
             intent = new Intent(getActivity(), TeacherAbsentActivity.class);
 
-        intent.putExtra("info", parent);
+        intent.putExtra("info", person);
         intent.putExtra("class", _class);
 
         startActivity(intent);
@@ -131,7 +129,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     @Override
     public void onLoadInfoTaskFinish(Person output, String role) {
-        //this.parent = (Parent) output;
+        this.person = output;
         this.role = role;
         if (output == null){
             Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();

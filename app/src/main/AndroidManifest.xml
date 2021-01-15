@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Activity.TeacherMessengerActivity"></activity>
         <activity android:name=".Activity.AdminNotificationActivity" />
-        <activity android:name=".Activity.CreateNotificationActivity" />
+        <activity android:name=".Activity.AdminCreateNotificationActivity" />
         <activity android:name=".Activity.AdminAddUser" />
         <activity android:name=".Activity.AdminManageUser" />
         <activity android:name=".Activity.ViewImageActivity" />

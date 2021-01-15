@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.CreateNotificationActivity">
+    tools:context=".Activity.AdminCreateNotificationActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -46,7 +46,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/txtNofiTitle"
             android:layout_width="364dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtTitle"
@@ -64,7 +64,7 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextPersonName"
+            android:layout_below="@+id/txtNofiTitle"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
@@ -74,7 +74,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextMultiLineContent"
+            android:id="@+id/txtNofiContent"
             android:layout_width="wrap_content"
             android:layout_height="88dp"
             android:layout_below="@+id/textView14"
@@ -90,7 +90,7 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextMultiLineContent"
+            android:layout_below="@+id/txtNofiContent"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
@@ -100,10 +100,10 @@
             android:textSize="18sp" />
 
         <ImageButton
-            android:id="@+id/imageButtonAddImage"
+            android:id="@+id/btAddNofiImg"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextMultiLineContent"
+            android:layout_below="@+id/txtNofiContent"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="65dp"
             android:layout_marginTop="5dp"
@@ -114,7 +114,7 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <ImageView
-            android:id="@+id/imageViewUpload"
+            android:id="@+id/imgNotifi"
             android:layout_width="match_parent"
             android:layout_height="165dp"
             android:layout_below="@+id/textView15"
@@ -127,7 +127,7 @@
             android:id="@+id/buttonPost"
             android:layout_width="178dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageViewUpload"
+            android:layout_below="@+id/imgNotifi"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="127dp"
