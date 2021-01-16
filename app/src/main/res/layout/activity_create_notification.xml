@@ -29,17 +29,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
+        tools:layout_marginTop="55dp">
 
 
         <TextView
             android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="257dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="75dp"
             android:text="Tiêu đề bài thông báo"
             android:textAllCaps="false"
             android:textColor="#000000"
@@ -62,12 +62,12 @@
 
         <TextView
             android:id="@+id/textView14"
-            android:layout_width="wrap_content"
+            android:layout_width="255dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtNofiTitle"
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:text="Nội dung thông báo"
             android:textAllCaps="false"
             android:textColor="#000000"
@@ -76,7 +76,7 @@
         <EditText
             android:id="@+id/txtNofiContent"
             android:layout_width="wrap_content"
-            android:layout_height="88dp"
+            android:layout_height="68dp"
             android:layout_below="@+id/textView14"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -88,7 +88,7 @@
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="wrap_content"
+            android:layout_width="183dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtNofiContent"
             android:layout_alignParentStart="true"
@@ -104,10 +104,8 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtNofiContent"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="65dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="115dp"
             android:layout_toEndOf="@+id/textView15"
             android:backgroundTint="#914A4A"
             android:scaleType="center"
@@ -131,9 +129,9 @@
             android:layout_below="@+id/imgNotifi"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="127dp"
+            android:layout_marginStart="115dp"
             android:layout_marginTop="45dp"
-            android:layout_marginEnd="127dp"
+            android:layout_marginEnd="115dp"
             android:backgroundTint="#914A4A"
             android:insetTop="0dp"
             android:insetBottom="0dp"
