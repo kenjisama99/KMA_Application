@@ -61,9 +61,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
             android:ems="10"
+            android:enabled="false"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:textSize="18sp"/>
+            android:text="Cháu bị ốm, mong cô thông cảm."
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/dateStart"
@@ -92,6 +96,7 @@
             android:enabled="false"
             android:hint="dd/mm/yyyy"
             android:inputType="datetime"
+            android:text="24/12/2020"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -122,6 +127,7 @@
             android:enabled="false"
             android:hint="dd/mm/yy"
             android:inputType="datetime"
+            android:text="26/12/2020"
             android:textColor="#000000"
             android:textSize="18sp" />
 

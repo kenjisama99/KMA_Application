@@ -184,7 +184,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
-            android:background="@color/blue" />
+            android:background="#EAEAEA" />
 
         <Button
             android:id="@+id/buttonSendPrescription"
