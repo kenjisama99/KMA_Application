@@ -6,12 +6,12 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kma_application.Activity.ViewImageActivity;
-import com.example.kma_application.Adapter.GridViewAdapter;
-import com.example.kma_application.Models.Image;
+import com.example.kma_application.Activity.AdminCreateNotificationActivity;
+import com.example.kma_application.Activity.ContactActivity;
+import com.example.kma_application.Models.Parent;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -26,27 +26,23 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
+public class LoadNotifiTask extends AsyncTask<Void,Void,String> {
     Context context;
-    GridView gridView;
-    String _class;
-    String activityName;
+    ListView listView;
+    String role;
 
-    public LoadClassImageTask(Context context, GridView gridView, String _class, String fromActivity) {
+    public LoadNotifiTask(Context context, ListView listView, String role) {
         this.context = context;
-        this.gridView = gridView;
-        this._class = _class;
-        this.activityName = fromActivity;
+        this.listView = listView;
+        this.role = role;
     }
-
-    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
             String postResponse = doPostRequest(
-                    "https://nodejscloudkenji.herokuapp.com/getClassImage",
-                    classJson(_class)
+                    "https://nodejscloudkenji.herokuapp.com/getNotify",
+                    classJson("")
             );
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
@@ -60,42 +56,43 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
 
-        ArrayList<Image> images = new ArrayList<>();
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<String> contents = new ArrayList<>();
+        ArrayList<String> images = new ArrayList<>();
         try {
             JSONArray jsonarray = new JSONArray(postResponse);
-            if (jsonarray.length() < 4 || activityName.equals("gallery")){
-                for (int i = jsonarray.length() - 1; i >= 0; i--) {
-                    JSONObject jsonobject = jsonarray.getJSONObject(i);
-                    Image image = gson.fromJson(jsonobject.toString(),Image.class);
-                    images.add(image);
-                }
-            }else {
-                for (int i = jsonarray.length() - 1; i >= jsonarray.length() - 4; i--) {
-                    JSONObject jsonobject = jsonarray.getJSONObject(i);
-                    Image image = gson.fromJson(jsonobject.toString(),Image.class);
-                    images.add(image);
-                }
+            System.out.println(jsonarray);
+            for (int i = jsonarray.length()-1 ; i >= 0 ; i--) {
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                titles.add(jsonobject.getString("title"));
+                contents.add(jsonobject.getString("content"));
+                images.add(jsonobject.getString("image"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if ( !images.isEmpty()){
-            GridViewAdapter adapter = new GridViewAdapter(
+        if ( !titles.isEmpty()){
+            ArrayAdapter adapter = new ArrayAdapter(
                     context,
-                    images
+                    android.R.layout.simple_list_item_1,
+                    titles
             );
-            gridView.setAdapter(adapter);
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(context, ViewImageActivity.class);
-                    intent.putExtra("info", images.get(position));
-                    context.startActivity(intent);
+                    Intent intent = new Intent(context, AdminCreateNotificationActivity.class);
+
+                    intent.putExtra("title", titles.get(position));
+                    intent.putExtra("content", contents.get(position));
+                    intent.putExtra("image", images.get(position));
+                    intent.putExtra("role", role);
+
+                    //context.startActivity(intent);
                 }
             });
-        }
-        //else
-            //Toast.makeText(this.context, "images.isEmpty", Toast.LENGTH_LONG).show();
+        }else
+            Toast.makeText(this.context, "Không có thông báo", Toast.LENGTH_LONG).show();
 
     }
 
@@ -109,6 +106,8 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
             = MediaType.parse("application/json; charset=utf-8");
 
     String doPostRequest(String url, String json) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)
