@@ -93,8 +93,9 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
                     context.startActivity(intent);
                 }
             });
-        }else
-            Toast.makeText(this.context, "images.isEmpty", Toast.LENGTH_LONG).show();
+        }
+        //else
+            //Toast.makeText(this.context, "images.isEmpty", Toast.LENGTH_LONG).show();
 
     }
 

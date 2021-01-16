@@ -48,7 +48,7 @@ public class SubmitUserTask extends AsyncTask<Void,Void,String> {
                     +"\"password\":\"" + password +"\","
                     +"\"email\":\"" + email +"\","
                     +"\"_class\":\"" + _class +"\","
-                    +"\"role\":\"" + role +"\"},";
+                    +"\"role\":\"" + role +"\"}";
         else
             return "{\"name\":\"" + name + "\","
                     +"\"phone\":\"" + phone +"\","
@@ -56,7 +56,7 @@ public class SubmitUserTask extends AsyncTask<Void,Void,String> {
                     +"\"email\":\"" + email +"\","
                     +"\"_class\":\"" + _class +"\","
                     +"\"childName\":\"" + childName +"\","
-                    +"\"role\":\"" + role +"\"},";
+                    +"\"role\":\"" + role +"\"}";
     }
 
     @Override

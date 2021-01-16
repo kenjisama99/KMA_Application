@@ -88,7 +88,7 @@ public class LoadNotifiTask extends AsyncTask<Void,Void,String> {
                     intent.putExtra("image", images.get(position));
                     intent.putExtra("role", role);
 
-                    context.startActivity(intent);
+                    //context.startActivity(intent);
                 }
             });
         }else
