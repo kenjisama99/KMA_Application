@@ -82,8 +82,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
             }
         });
 
-        if (person != null)
-            loadPreviewGallery();
+        //if (person != null)
+           // loadPreviewGallery();
 
         return view;
     }

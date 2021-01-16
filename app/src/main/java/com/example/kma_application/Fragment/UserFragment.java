@@ -139,7 +139,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     private void onClickChangePass() {
         Intent changePassActivity = new Intent(getActivity(), ChangePasswordActivity.class);
-        changePassActivity.putExtra("phone",phone);
+        changePassActivity.putExtra("phone",person.getPhone());
         startActivity(changePassActivity);
     }
 

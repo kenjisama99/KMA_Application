@@ -38,18 +38,18 @@ public class ChangePassTask extends AsyncTask<String,Void,String> {
         return null;
     }
 
-//    @Override
-//    protected void onPostExecute(String postResponse) {
-//        Gson gson = new Gson();
-//        ResponseModel responseModel = gson.fromJson(postResponse,ResponseModel.class);
-//
-//        if (responseModel.getRes()){
-//            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
-//            startUserActivities();
-//        }else
-//            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
-//
-//    }
+    @Override
+    protected void onPostExecute(String postResponse) {
+        Gson gson = new Gson();
+        ResponseModel responseModel = gson.fromJson(postResponse,ResponseModel.class);
+
+        if (responseModel.getRes()){
+            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+            //startUserActivities();
+        }else
+            Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+
+    }
 
     // post request code here
 
