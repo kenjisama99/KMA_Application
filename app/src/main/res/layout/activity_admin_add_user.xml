@@ -173,13 +173,13 @@
             android:layout_marginStart="45dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="45dp"
-            android:orientation="horizontal"
-            android:gravity="fill_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonParent"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_width="125dp"
+                android:layout_height="31dp"
                 android:layout_marginStart="65dp"
                 android:layout_marginTop="15dp"
                 android:checked="true"
@@ -187,7 +187,7 @@
 
             <RadioButton
                 android:id="@+id/radioButtonTeacher"
-                android:layout_width="wrap_content"
+                android:layout_width="125dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="65dp"
