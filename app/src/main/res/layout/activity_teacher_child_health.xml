@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/edit_comment"
+        android:id="@+id/RelativeLayout11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
@@ -240,8 +240,7 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:text="Cần mặc đủ ấm hơn"
-            tools:ignore="DuplicateIds" />
+            android:text="Cần mặc đủ ấm hơn" />
 
     </RelativeLayout>
 
