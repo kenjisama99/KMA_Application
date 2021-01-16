@@ -215,8 +215,10 @@
             android:enabled="false"
             android:gravity="start|top"
             android:inputType="textMultiLine"
+            android:text="Cháu ngủ ngoan, nghe lời"
             android:textAllCaps="false"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
