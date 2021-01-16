@@ -109,23 +109,23 @@ public class AdminAddUser extends AppCompatActivity {
         boolean OK = true;
 
         if (TextUtils.isEmpty(name)) {
-            notification ="Vui lòng nhập tiêu đề";
+            notification ="Vui lòng nhập tên";
             OK = false;
         }
         if (TextUtils.isEmpty(phone)) {
-            notification = "Vui lòng nhập nội dung";
+            notification = "Vui lòng nhập số điện thoại";
             OK = false;
         }if (TextUtils.isEmpty(email)) {
-            notification = "Vui lòng nhập nội dung";
+            notification = "Vui lòng nhập email";
             OK = false;
         }if (TextUtils.isEmpty(_class)) {
-            notification = "Vui lòng nhập nội dung";
+            notification = "Vui lòng chọn lớp";
             OK = false;
         }if (TextUtils.isEmpty(childName) && selectParent) {
-            notification = "Vui lòng nhập nội dung";
+            notification = "Vui lòng nhập tên trẻ";
             OK = false;
         }if (TextUtils.isEmpty(password)) {
-            notification = "Vui lòng nhập nội dung";
+            notification = "Vui lòng nhập mật khẩu";
             OK = false;
         }
 
