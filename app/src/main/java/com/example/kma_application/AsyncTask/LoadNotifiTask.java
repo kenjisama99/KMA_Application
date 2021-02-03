@@ -58,7 +58,7 @@ public class LoadNotifiTask extends AsyncTask<Void,Void,String> {
 
         ArrayList<String> titles = new ArrayList<>();
         ArrayList<String> contents = new ArrayList<>();
-        ArrayList<String> images = new ArrayList<>();
+        ArrayList<String> imageIds = new ArrayList<>();
         try {
             JSONArray jsonarray = new JSONArray(postResponse);
             System.out.println(jsonarray);
@@ -66,7 +66,7 @@ public class LoadNotifiTask extends AsyncTask<Void,Void,String> {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
                 titles.add(jsonobject.getString("title"));
                 contents.add(jsonobject.getString("content"));
-                images.add(jsonobject.getString("image"));
+                imageIds.add(jsonobject.getString("imageId"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -82,13 +82,23 @@ public class LoadNotifiTask extends AsyncTask<Void,Void,String> {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(context, AdminCreateNotificationActivity.class);
+                    System.out.println("title: "+titles.get(position));
+                    System.out.println("content: "+contents.get(position));
+                    System.out.println("imageId: "+imageIds.get(position));
+                    System.out.println("role: "+role);
 
                     intent.putExtra("title", titles.get(position));
                     intent.putExtra("content", contents.get(position));
-                    intent.putExtra("image", images.get(position));
+                    intent.putExtra("imageId", imageIds.get(position));
                     intent.putExtra("role", role);
 
-                    //context.startActivity(intent);
+                    try{
+                        context.startActivity(intent);
+                    }catch (Exception e){
+                        System.out.println("co loi startActivity tu load Notify task");
+
+                        e.printStackTrace();
+                    }
                 }
             });
         }else

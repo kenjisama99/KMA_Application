@@ -37,7 +37,8 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:src="@drawable/phone_35px" />
+                android:src="@drawable/phone_35px"
+                android:visibility="gone" />
 
 
             </LinearLayout>

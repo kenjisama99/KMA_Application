@@ -7,10 +7,5 @@
         android:title="Họa mi"
         android:visible="true"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/dropdown_menu2"
-        android:title="Bibi"
-        android:visible="true"
-        app:showAsAction="ifRoom|withText" />
 
 </menu>

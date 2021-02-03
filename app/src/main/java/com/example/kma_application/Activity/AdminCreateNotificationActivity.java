@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.kma_application.AsyncTask.LoadImageTask;
 import com.example.kma_application.AsyncTask.SubmitNotificationTask;
 import com.example.kma_application.Models.Prescription;
 import com.example.kma_application.R;
@@ -48,7 +49,6 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
         imgNotifi =(ImageView) findViewById(R.id.imgNotifi);
 
         Intent intent = getIntent();
-        role = intent.getStringExtra("role");
 
         try {
             String title = intent.getStringExtra("title");
@@ -59,9 +59,15 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
             if (content != null)
                 txtNofiContent.setText(content);
 
-            String image = intent.getStringExtra("image");
-            if (image != null)
-                setImage(image);
+            String imageId = intent.getStringExtra("imageId");
+            if (imageId != null)
+                new LoadImageTask(
+                        this,
+                        imgNotifi,
+                        imageId,
+                        "createNotify"
+                ).execute();
+            role = intent.getStringExtra("role");
 
             if ( !role.equals("admin")){
                 txtNofiTitle.setFocusable(false);
@@ -70,6 +76,8 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
                 buttonPost.setVisibility(View.INVISIBLE);
             }
         }catch (Exception e){
+            System.out.println("co loi doc du lieu tu intent");
+
             e.printStackTrace();
         }
 
