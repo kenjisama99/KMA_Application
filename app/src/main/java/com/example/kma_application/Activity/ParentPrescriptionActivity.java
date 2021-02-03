@@ -121,9 +121,9 @@ public class ParentPrescriptionActivity extends AppCompatActivity implements  Lo
 
     private void onClickButtonAddMedicine() {
 
-        medicineName = txtMedicineName.getText().toString().trim();
-        medicineDose = txtMedicineDose.getText().toString().trim();
-        time = txtMedicineTime.getText().toString().trim();
+        medicineName = txtMedicineName.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
+        medicineDose = txtMedicineDose.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
+        time = txtMedicineTime.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
         String notification = "";
         boolean OK = true;
 

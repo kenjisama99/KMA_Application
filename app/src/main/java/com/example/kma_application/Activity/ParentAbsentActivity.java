@@ -128,9 +128,9 @@ public class ParentAbsentActivity extends AppCompatActivity {
     }
 
     private void submitAbsent() {
-        content = txtContent.getText().toString().trim();
-        startDate = txtStartDate.getText().toString().trim();
-        endDate = txtEndDate.getText().toString().trim();
+        content = txtContent.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
+        startDate = txtStartDate.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
+        endDate = txtEndDate.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
         String notification = "";
 
         if (TextUtils.isEmpty(content))

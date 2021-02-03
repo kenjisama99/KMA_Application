@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.LoadImageTask;
@@ -29,6 +30,7 @@ import java.io.InputStream;
 public class AdminCreateNotificationActivity extends AppCompatActivity {
     String role;
     EditText txtNofiTitle, txtNofiContent;
+    TextView txtAttachImg;
     Button  buttonPost;
     ImageButton btAddNofiImg;
     ImageView imgNotifi;
@@ -42,6 +44,7 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
 
         txtNofiTitle = (EditText) findViewById(R.id.txtNofiTitle);
         txtNofiContent = (EditText) findViewById(R.id.txtNofiContent);
+        txtAttachImg = (TextView) findViewById(R.id.txtAttachImg);
 
         btAddNofiImg =(ImageButton) findViewById(R.id.btAddNofiImg);
         buttonPost =(Button) findViewById(R.id.buttonPost);
@@ -72,8 +75,11 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
             if ( !role.equals("admin")){
                 txtNofiTitle.setFocusable(false);
                 txtNofiTitle.setClickable(false);
+                txtNofiContent.setFocusable(false);
+                txtNofiContent.setClickable(false);
                 btAddNofiImg.setVisibility(View.INVISIBLE);
                 buttonPost.setVisibility(View.INVISIBLE);
+                txtAttachImg.setVisibility(View.INVISIBLE);
             }
         }catch (Exception e){
             System.out.println("co loi doc du lieu tu intent");
@@ -111,8 +117,8 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
     }
 
     private void onClickPost() {
-        String  title = txtNofiTitle.getText().toString().trim();
-        String content = txtNofiContent.getText().toString().trim();
+        String  title = txtNofiTitle.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
+        String content = txtNofiContent.getText().toString().trim().replaceAll("(\\r|\\n​|\\r\\n|\n)+", "\\\\n");
         String notification = "";
         boolean OK = true;
 
