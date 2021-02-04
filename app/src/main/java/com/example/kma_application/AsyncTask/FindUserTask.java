@@ -65,12 +65,12 @@ public class FindUserTask extends AsyncTask<Void,Void,String> {
 
              name = jsonobject.getString("name");
              phone = jsonobject.getString("phone");
-             //email = jsonobject.getString("email");
+             email = jsonobject.getString("email");
              password = jsonobject.getString("password");
 
              editTextName.setText(name);
              editTextPhoneNumber.setText(phone);
-             editTextEmailUser.setText("vuxuanhien1999@gmail.com");
+             editTextEmailUser.setText(email);
              editTextTextPersonName6.setText(password);
 
         } catch (JSONException e) {
