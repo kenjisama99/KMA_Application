@@ -148,7 +148,7 @@ public class AdminAddUser extends AppCompatActivity {
             }else {
                 new SubmitUserTask(
                         this,
-                        "parent",
+                        "teacher",
                         phone,
                         password,
                         name,
