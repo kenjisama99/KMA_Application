@@ -31,15 +31,15 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
     GridView gridView;
     String _class;
     String activityName;
+    String role;
 
-    public LoadClassImageTask(Context context, GridView gridView, String _class, String fromActivity) {
+    public LoadClassImageTask(Context context, GridView gridView, String _class, String activityName, String role) {
         this.context = context;
         this.gridView = gridView;
         this._class = _class;
-        this.activityName = fromActivity;
+        this.activityName = activityName;
+        this.role = role;
     }
-
-    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -90,6 +90,7 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(context, ViewImageActivity.class);
                     intent.putExtra("info", images.get(position));
+                    intent.putExtra("role", role);
                     context.startActivity(intent);
                 }
             });
@@ -109,6 +110,8 @@ public class LoadClassImageTask extends AsyncTask<Void,Void,String> {
             = MediaType.parse("application/json; charset=utf-8");
 
     String doPostRequest(String url, String json) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)

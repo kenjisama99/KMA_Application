@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ public class LoadImageTask extends AsyncTask<Void,Void,String> {
     ImageView imageView;
     String id;
     String activityName;
+    Button btDeleteImage;
+    String role;
 
     public LoadImageTask(Context context, ImageView imageView, String id, String fromActivity) {
         this.context = context;
@@ -32,7 +36,14 @@ public class LoadImageTask extends AsyncTask<Void,Void,String> {
         this.activityName = fromActivity;
     }
 
-    OkHttpClient client = new OkHttpClient();
+    public LoadImageTask(Context context, ImageView imageView, String id, String activityName, Button btDeleteImage, String role) {
+        this.context = context;
+        this.imageView = imageView;
+        this.id = id;
+        this.activityName = activityName;
+        this.btDeleteImage = btDeleteImage;
+        this.role = role;
+    }
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -66,6 +77,8 @@ public class LoadImageTask extends AsyncTask<Void,Void,String> {
                 imageView.setImageBitmap(
                     getBitmapFromString(image.getData())
                 );
+                if (activityName.equals("ViewImage") && role.equals("teacher"))
+                    btDeleteImage.setVisibility(View.VISIBLE);
             }else
                 Toast.makeText(this.context, "Image: "+ null, Toast.LENGTH_LONG).show();
         }else
@@ -82,6 +95,8 @@ public class LoadImageTask extends AsyncTask<Void,Void,String> {
             = MediaType.parse("application/json; charset=utf-8");
 
     String doPostRequest(String url, String json) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)

@@ -36,7 +36,9 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
     Teacher teacher;
     ImageButton btAdd;
     GridView gridView;
+    boolean notReturnFromSelectPhotoActivity = true;
     private final int IMAGE_REQUEST_ID = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
         if (role.equals("parent"))
             btAdd.setVisibility(View.INVISIBLE);
 
-        getImagesFromServer();
+        //getImagesFromServer();
 
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,16 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("notReturnFromSelectPhotoActivity: "+notReturnFromSelectPhotoActivity);
+        if (notReturnFromSelectPhotoActivity)
+            getImagesFromServer();
+
+        this.notReturnFromSelectPhotoActivity = true;
+    }
+
     private void choosePicture() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -72,9 +84,10 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("TAG", "RQ code: " + requestCode + "\tRS code: " + resultCode);
+        //Log.d("TAG", "RQ code: " + requestCode + "\tRS code: " + resultCode);
         //Toast.makeText(this,"RQ code: "+requestCode+"\tRS code: "+resultCode,Toast.LENGTH_LONG).show();
         if (requestCode == IMAGE_REQUEST_ID && resultCode == RESULT_OK) {
+            this.notReturnFromSelectPhotoActivity = false;
             try {
                 Uri imageURI = data.getData();
                 InputStream inputStream = getContentResolver().openInputStream(imageURI);
@@ -112,8 +125,12 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
 
     private void getImagesFromServer() {
         new LoadClassImageTask(
-            this,gridView,_class,"gallery")
-                .execute();
+            this,
+            gridView,
+            _class,
+            "gallery",
+            role
+        ).execute();
     }
 
     private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {

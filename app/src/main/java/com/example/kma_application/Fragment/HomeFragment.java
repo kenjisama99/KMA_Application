@@ -152,7 +152,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 getActivity(),
                 gridView,
                 _class,
-                "main"
+                "main",
+                role
         ).execute();
     }
 
