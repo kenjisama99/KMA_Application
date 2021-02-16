@@ -2,7 +2,10 @@ package com.example.kma_application.AsyncTask;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.squareup.okhttp.MediaType;
@@ -18,18 +21,31 @@ import java.io.IOException;
 
 public class ModifyUserTask extends AsyncTask<Void,Void,String> {
     Context context;
-    String phone;
-    EditText editTextName, editTextTextPersonName6,
-            editTextPhoneNumber,editTextEmailUser;
-
-
+    EditText  txtName, txtPassword, txtPhone, txtEmail;
+    Button btAddUser, btModifyUser, btDeleteUser, btAdminLogout, btDoneModify;
+    ImageButton btSearch;
+    final String oldPhone;
+    public ModifyUserTask(Context context, EditText txtName, EditText txtPassword, EditText txtPhone, EditText txtEmail, Button btAddUser, Button btModifyUser, Button btDeleteUser, Button btAdminLogout, Button btDoneModify, ImageButton btSearch, String oldPhone) {
+        this.context = context;
+        this.txtName = txtName;
+        this.txtPassword = txtPassword;
+        this.txtPhone = txtPhone;
+        this.txtEmail = txtEmail;
+        this.btAddUser = btAddUser;
+        this.btModifyUser = btModifyUser;
+        this.btDeleteUser = btDeleteUser;
+        this.btAdminLogout = btAdminLogout;
+        this.btDoneModify = btDoneModify;
+        this.btSearch = btSearch;
+        this.oldPhone = oldPhone;
+    }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
             String postResponse = doPostRequest(
-                    "https://nodejscloudkenji.herokuapp.com/deleteUser",
-                    classJson()
+                    "https://nodejscloudkenji.herokuapp.com/modifyUser",
+                    requestJson()
             );
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
@@ -53,12 +69,8 @@ public class ModifyUserTask extends AsyncTask<Void,Void,String> {
 
             boolean success = jsonobject.getBoolean("res");
 
-            if (success){
-                editTextPhoneNumber.setText("");
-                editTextEmailUser.setText("");
-                editTextName.setText("");
-                editTextTextPersonName6.setText("");
-            }
+            if (success)
+                exitModifyMode();
 
         } catch (JSONException e) {
             Toast.makeText(this.context, "Chức năng hiện không hoạt động", Toast.LENGTH_LONG).show();
@@ -72,13 +84,38 @@ public class ModifyUserTask extends AsyncTask<Void,Void,String> {
     }
 
 
-
     // post request code here
-    String classJson() {
-        return "{\"phone\":\"" + phone + "\"}";
+    String requestJson() {
+        String  name = txtName.getText().toString().trim();
+        String phone = txtPhone.getText().toString().trim();
+        String email = txtEmail.getText().toString().trim();
+        String password = txtPassword.getText().toString().trim();
+
+        return "{\"name\":\"" + name + "\","
+                +"\"phone\":\"" + phone +"\","
+                +"\"oldPhone\":\"" + oldPhone +"\","
+                +"\"password\":\"" + password +"\","
+                +"\"email\":\"" + email +"\"}";
     }
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
+
+    public void exitModifyMode(){
+        txtEmail.setText("");
+        txtName.setText("");
+        txtPassword.setText("");
+        txtPhone.setText("");
+        btAddUser.setVisibility(View.VISIBLE);
+        btModifyUser.setVisibility(View.VISIBLE);
+        btDeleteUser.setVisibility(View.VISIBLE);
+        btAdminLogout.setVisibility(View.VISIBLE);
+        btDoneModify.setVisibility(View.INVISIBLE);
+        btSearch.setVisibility(View.VISIBLE);
+        txtPassword.setEnabled(false);
+        txtName.setEnabled(false);
+        txtEmail.setEnabled(false);
+        txtPhone.setEnabled(false);
+    }
 
     String doPostRequest(String url, String json) throws IOException {
         OkHttpClient client = new OkHttpClient();

@@ -13,13 +13,14 @@ import android.widget.Toast;
 
 import com.example.kma_application.AsyncTask.DeleteUserTask;
 import com.example.kma_application.AsyncTask.FindUserTask;
+import com.example.kma_application.AsyncTask.ModifyUserTask;
 import com.example.kma_application.R;
 
 public class AdminManageUser extends AppCompatActivity {
-    EditText searchUser,editTextName, editTextTextPersonName6,
-            editTextPhoneNumber,editTextEmailUser;
+    EditText searchUser, txtName, txtPassword, txtPhone, txtEmail;
     Button btAddUser, btModifyUser, btDeleteUser, btAdminLogout, btDoneModify;
     ImageButton btSearch;
+    String oldPhone;
 
 
     @Override
@@ -28,10 +29,10 @@ public class AdminManageUser extends AppCompatActivity {
         setContentView(R.layout.activity_admin_manage_user);
 
         searchUser = (EditText)findViewById(R.id.searchUser) ;
-        editTextName = (EditText)findViewById(R.id.editTextName) ;
-        editTextTextPersonName6 = (EditText)findViewById(R.id.editTextTextPersonName6) ;
-        editTextPhoneNumber = (EditText)findViewById(R.id.editTextPhoneNumber) ;
-        editTextEmailUser = (EditText)findViewById(R.id.editTextEmailUser);
+        txtName = (EditText)findViewById(R.id.editTextName) ;
+        txtPassword = (EditText)findViewById(R.id.editTextTextPersonName6) ;
+        txtPhone = (EditText)findViewById(R.id.editTextPhoneNumber) ;
+        txtEmail = (EditText)findViewById(R.id.editTextEmailUser);
 
         btAddUser = (Button)findViewById(R.id.buttonAddUser);
         btModifyUser  = (Button)findViewById(R.id.buttonModifyUser);
@@ -104,16 +105,16 @@ public class AdminManageUser extends AppCompatActivity {
             new FindUserTask(
                     this,
                     phone,
-                    editTextName,
-                    editTextTextPersonName6,
-                    editTextPhoneNumber,
-                    editTextEmailUser
+                    txtName,
+                    txtPassword,
+                    txtPhone,
+                    txtEmail
             ).execute();
         }
     }
 
     private void onClickDeleteUser() {
-        String phone = editTextPhoneNumber.getText().toString().trim();
+        String phone = txtPhone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
             String notification ="Vui lòng tìm kiếm tài khoản cần xóa";
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
@@ -122,33 +123,65 @@ public class AdminManageUser extends AppCompatActivity {
             new DeleteUserTask(
                     this,
                     phone,
-                    editTextName,
-                    editTextTextPersonName6,
-                    editTextPhoneNumber,
-                    editTextEmailUser
+                    txtName,
+                    txtPassword,
+                    txtPhone,
+                    txtEmail
             ).execute();
         }
     }
 
     private void onClickModifyUser() {
-        String phone = editTextPhoneNumber.getText().toString().trim();
-        if (TextUtils.isEmpty(phone)) {
+        oldPhone = txtPhone.getText().toString().trim();
+        if (TextUtils.isEmpty(oldPhone)) {
             String notification ="Vui lòng tìm kiếm tài khoản cần sửa";
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
         }
         else {
-            new DeleteUserTask(
-                    this,
-                    phone,
-                    editTextName,
-                    editTextTextPersonName6,
-                    editTextPhoneNumber,
-                    editTextEmailUser
-            ).execute();
+            switchToModifyMode();
         }
     }
     private void onClickDoneModifyUser() {
+        String  name = txtName.getText().toString().trim();
+        String phone = txtPhone.getText().toString().trim();
+        String email = txtEmail.getText().toString().trim();
+        String password = txtPassword.getText().toString().trim();
 
+        String notification = "";
+        boolean OK = true;
+
+        if (TextUtils.isEmpty(name)) {
+            notification ="Vui lòng nhập tên";
+            OK = false;
+        }if (TextUtils.isEmpty(phone)) {
+            notification = "Vui lòng nhập số điện thoại";
+            OK = false;
+        }if (TextUtils.isEmpty(email)) {
+            notification = "Vui lòng nhập email";
+            OK = false;
+        }if (TextUtils.isEmpty(password)) {
+            notification = "Vui lòng nhập mật khẩu";
+            OK = false;
+        }
+
+        if ( !OK){
+            Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
+            return;
+        }else {
+            new ModifyUserTask(
+                    this,
+                    txtName,
+                    txtPassword,
+                    txtPhone,
+                    txtEmail,
+                    btAddUser,
+                    btModifyUser,
+                    btDeleteUser,
+                    btAdminLogout,
+                    btDoneModify,
+                    btSearch,
+                    oldPhone).execute();
+        }
     }
 
     private void onClickAddUser() {
@@ -156,9 +189,34 @@ public class AdminManageUser extends AppCompatActivity {
         startActivity(addUser);
     }
     private void cleanInfo(){
-        editTextPhoneNumber.setText("");
-        editTextEmailUser.setText("");
-        editTextName.setText("");
-        editTextTextPersonName6.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        txtName.setText("");
+        txtPassword.setText("");
+    }
+    public void switchToModifyMode(){
+        btAddUser.setVisibility(View.INVISIBLE);
+        btModifyUser.setVisibility(View.INVISIBLE);
+        btDeleteUser.setVisibility(View.INVISIBLE);
+        btAdminLogout.setVisibility(View.INVISIBLE);
+        btDoneModify.setVisibility(View.VISIBLE);
+        btSearch.setVisibility(View.INVISIBLE);
+        txtPassword.setEnabled(true);
+        txtName.setEnabled(true);
+        txtEmail.setEnabled(true);
+        txtPhone.setEnabled(true);
+    }
+
+    public void exitModifyMode(){
+        btAddUser.setVisibility(View.VISIBLE);
+        btModifyUser.setVisibility(View.VISIBLE);
+        btDeleteUser.setVisibility(View.VISIBLE);
+        btAdminLogout.setVisibility(View.VISIBLE);
+        btDoneModify.setVisibility(View.INVISIBLE);
+        btSearch.setVisibility(View.VISIBLE);
+        txtPassword.setEnabled(false);
+        txtName.setEnabled(false);
+        txtEmail.setEnabled(false);
+        txtPhone.setEnabled(false);
     }
 }

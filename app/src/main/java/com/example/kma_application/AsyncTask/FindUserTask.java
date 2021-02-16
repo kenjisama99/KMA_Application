@@ -63,6 +63,9 @@ public class FindUserTask extends AsyncTask<Void,Void,String> {
              jsonobject = new JSONObject(postResponse);
             System.out.println(jsonobject);
 
+             if (jsonobject.has("response"))
+                Toast.makeText(this.context, jsonobject.getString("response"), Toast.LENGTH_LONG).show();
+
              name = jsonobject.getString("name");
              phone = jsonobject.getString("phone");
              email = jsonobject.getString("email");
@@ -73,8 +76,6 @@ public class FindUserTask extends AsyncTask<Void,Void,String> {
              editTextEmailUser.setText(email);
              editTextTextPersonName6.setText(password);
 
-             if (jsonobject.has("response"))
-                Toast.makeText(this.context, jsonobject.getString("response"), Toast.LENGTH_LONG).show();
 
         } catch (JSONException e) {
             e.printStackTrace();

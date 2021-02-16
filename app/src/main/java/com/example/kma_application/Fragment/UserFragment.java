@@ -179,6 +179,7 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
         System.out.println(resizeBase64);
 
         SubmitImageTask submitImageTask = new SubmitImageTask(
+                getContext(),
                 (Teacher) person,
                 resizeBase64,
                 "",
@@ -225,13 +226,13 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     @Override
     public void onSubmitImageTaskFinish() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 1s
-                getImagesFromServer();
-            }
-        }, 3000);
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Do something after 3s
+//            }
+//        }, 3000);
+        getImagesFromServer();
     }
 }

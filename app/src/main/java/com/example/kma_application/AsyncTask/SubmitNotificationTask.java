@@ -1,9 +1,11 @@
 package com.example.kma_application.AsyncTask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.example.kma_application.Activity.AdminNotificationActivity;
 import com.example.kma_application.Models.ResponseModel;
 import com.google.gson.Gson;
 import com.squareup.okhttp.MediaType;
@@ -58,9 +60,14 @@ public class SubmitNotificationTask extends AsyncTask<Void,Void,String> {
 
         if (responseModel != null){
             Toast.makeText(this.context, responseModel.getResponse(), Toast.LENGTH_LONG).show();
+            if (responseModel.getRes())
+                turnBack();
         }
     }
-
+    private void turnBack(){
+        Intent intent = new Intent(context, AdminNotificationActivity.class);
+        context.startActivity(intent);
+    }
     // post request code here
 
     public static final MediaType JSON
