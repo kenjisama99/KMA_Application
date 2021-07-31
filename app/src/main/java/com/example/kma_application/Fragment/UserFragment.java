@@ -58,18 +58,18 @@ public class UserFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
         loadInfoToView(view);
 
-        Button btEditName = (Button)view.findViewById(R.id.buttonEditPersonName);
+//        Button btEditName = (Button)view.findViewById(R.id.buttonEditPersonName);
         Button btSubmitName = (Button)view.findViewById(R.id.buttonSubmitName);
         EditText editTextName = (EditText)view.findViewById(R.id.editTextPersonName);
 
-        btEditName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editTextName.setEnabled(true);
-                btLogout.setVisibility(view.GONE);
-                btSubmitName.setVisibility(view.VISIBLE);
-            }
-        });
+//        btEditName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                editTextName.setEnabled(true);
+//                btLogout.setVisibility(view.GONE);
+//                btSubmitName.setVisibility(view.VISIBLE);
+//            }
+//        });
 
         btSubmitName.setOnClickListener(new View.OnClickListener() {
             @Override
