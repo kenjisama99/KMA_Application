@@ -40,8 +40,16 @@
                 android:src="@drawable/phone_35px"
                 android:visibility="gone" />
 
+            <ImageButton
+                android:id="@+id/btCall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                app:srcCompat="@drawable/phone_35px" />
 
-            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
