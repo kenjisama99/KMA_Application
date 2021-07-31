@@ -19,9 +19,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#B1EDB3"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="#000000"
+            android:textColor="#DD2E2E"
             android:textSize="36dp" />
     </LinearLayout>
     <LinearLayout
@@ -76,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="165dp"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="3"
             android:orientation="horizontal">
 
@@ -86,10 +89,10 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#fef7de"
-                android:drawableTop="@drawable/baby_feet_70px"
+                android:drawableTop="@drawable/plan"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="@string/func1"
+                android:text="Dinh dưỡng cho bé"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="18sp"
