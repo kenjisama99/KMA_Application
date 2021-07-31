@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -19,8 +20,6 @@ import android.widget.TextView;
 import com.example.kma_application.Adapter.MessageAdapter;
 import com.example.kma_application.AsyncTask.LoadMessagesTask;
 import com.example.kma_application.Models.Parent;
-import com.example.kma_application.Models.Parent;
-import com.example.kma_application.Models.Teacher;
 import com.example.kma_application.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -39,7 +38,7 @@ public class ContactActivity extends AppCompatActivity {
     String phone, role, coupleUserPhone;
     Parent parent;
     EditText editText;
-    ImageButton btnCall, btnSend, btnSendImage;
+    ImageButton btCall, btnSend, btnSendImage;
     RecyclerView recyclerView;
     TextView txtChatName;
     MessageAdapter messageAdapter;
@@ -87,7 +86,26 @@ public class ContactActivity extends AppCompatActivity {
                 onClickSendImage();
             }
         });
+        btCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCall();
+            }
+        });
     }
+
+    private void onClickCall() {
+        String phone;
+        if (role.equals("parent")){
+            phone = parent.getTeacherPhone();
+        }else {
+            phone = parent.getPhone();
+        }
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phone));
+        startActivity(intent);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -238,7 +256,7 @@ public class ContactActivity extends AppCompatActivity {
     private void anhxa() {
         recyclerView = findViewById(R.id.recyclerView);
         editText = (EditText)findViewById(R.id.editextContent);
-        btnCall = (ImageButton)findViewById(R.id.buttonCall);
+        btCall = (ImageButton)findViewById(R.id.btCall);
         btnSend = (ImageButton)findViewById(R.id.buttonSend);
         btnSendImage = (ImageButton)findViewById(R.id.buttonSendImage);
     }

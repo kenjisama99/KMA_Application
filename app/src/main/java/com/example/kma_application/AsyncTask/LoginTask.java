@@ -66,7 +66,7 @@ public class LoginTask extends AsyncTask<String,Void,String> {
     private void startMainActivities() {
         Intent mainActivity = new Intent(this.context, MainActivity.class);
 
-        if (this.role.equals("admin"))
+        if (this.role.equals("admin") )
             mainActivity = new Intent(this.context, AdminHomeActivity.class);
 
         mainActivity.putExtra("phone", this.phone);
