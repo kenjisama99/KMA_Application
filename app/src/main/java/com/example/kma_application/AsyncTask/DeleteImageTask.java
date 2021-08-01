@@ -19,19 +19,33 @@ import java.io.IOException;
 public class DeleteImageTask extends AsyncTask<Void,Void,String> {
     Context context;
     String imageId;
+    String fromActivity;
 
     public DeleteImageTask(Context context, String imageId) {
         this.context = context;
         this.imageId = imageId;
     }
 
+    public DeleteImageTask(Context context, String imageId, String fromActivity) {
+        this.context = context;
+        this.imageId = imageId;
+        this.fromActivity = fromActivity;
+    }
+
     @Override
     protected String doInBackground(Void... voids) {
         try {
-            String postResponse = doPostRequest(
+            String postResponse;
+            if(fromActivity == null)
+                postResponse = doPostRequest(
                     "https://nodejscloudkenji.herokuapp.com/deleteImage",
                     requestJson()
-            );
+                );
+            else
+                postResponse = doPostRequest(
+                        "https://nodejscloudkenji.herokuapp.com/deleteNotify",
+                        requestJson()
+                );
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
         } catch (IOException e) {

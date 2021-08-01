@@ -16,11 +16,11 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/textAppBarName"
+            android:id="@+id/txtPageTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Viết thông báo"
+            android:text="Thông báo"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="36sp" />
@@ -143,6 +143,16 @@
             android:visibility="visible"
             app:cornerRadius="8dp"
             app:iconPadding="0dp" />
+
+        <ImageButton
+            android:id="@+id/btDelNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="20dp"
+            android:background="#FF0101"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

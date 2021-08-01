@@ -13,6 +13,7 @@ import com.example.kma_application.R;
 
 public class AdminNotificationActivity extends AppCompatActivity {
     ListView listView;
+    Boolean preload = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,5 +40,17 @@ public class AdminNotificationActivity extends AppCompatActivity {
         Intent createNotification = new Intent(this, AdminCreateNotificationActivity.class);
         createNotification.putExtra("role","admin");
         startActivity(createNotification);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!preload)
+            new LoadNotifiTask(
+                    this,
+                    listView,
+                    "admin"
+            ).execute();
+        preload = false;
     }
 }

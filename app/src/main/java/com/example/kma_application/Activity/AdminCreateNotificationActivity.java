@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kma_application.AsyncTask.DeleteImageTask;
 import com.example.kma_application.AsyncTask.LoadImageTask;
 import com.example.kma_application.AsyncTask.SubmitNotificationTask;
 import com.example.kma_application.Models.Prescription;
@@ -29,11 +30,13 @@ import java.io.InputStream;
 
 public class AdminCreateNotificationActivity extends AppCompatActivity {
     String role;
+    String imageId;
     EditText txtNofiTitle, txtNofiContent;
     TextView txtAttachImg;
     Button  buttonPost;
-    ImageButton btAddNofiImg;
+    ImageButton btAddNofiImg, btDelNotify;
     ImageView imgNotifi;
+
 
     private  final int IMAGE_REQUEST_ID = 1;
 
@@ -47,6 +50,7 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
         txtAttachImg = (TextView) findViewById(R.id.txtAttachImg);
 
         btAddNofiImg =(ImageButton) findViewById(R.id.btAddNofiImg);
+        btDelNotify =(ImageButton) findViewById(R.id.btDelNotify);
         buttonPost =(Button) findViewById(R.id.buttonPost);
 
         imgNotifi =(ImageView) findViewById(R.id.imgNotifi);
@@ -62,7 +66,7 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
             if (content != null)
                 txtNofiContent.setText(content);
 
-            String imageId = intent.getStringExtra("imageId");
+            imageId = intent.getStringExtra("imageId");
             if (imageId != null)
                 new LoadImageTask(
                         this,
@@ -78,6 +82,7 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
                 txtNofiContent.setFocusable(false);
                 txtNofiContent.setClickable(false);
                 btAddNofiImg.setVisibility(View.INVISIBLE);
+                btDelNotify.setVisibility(View.INVISIBLE);
                 buttonPost.setVisibility(View.INVISIBLE);
                 txtAttachImg.setVisibility(View.INVISIBLE);
             }
@@ -99,6 +104,20 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
                 onClickAddImg();
             }
         });
+        btDelNotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delNotify();
+            }
+        });
+    }
+
+    private void delNotify() {
+        new DeleteImageTask(
+                this,
+                imageId,
+                "notify"
+        ).execute();
     }
 
     private void setImage(String image) {

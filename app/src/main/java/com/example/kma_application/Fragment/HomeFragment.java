@@ -31,8 +31,9 @@ import com.example.kma_application.R;
 
 
 public class HomeFragment extends Fragment implements LoadInfosTask.AsyncResponse{
-    String role, phone, _class;
+    String role, phone, _class, homeName;
     Person person;
+    Boolean preload = true;
 
     Context context = getActivity();
     Button btHealth, btAbsent, btMedicine;
@@ -144,7 +145,10 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
             }else {
                 Parent parent = (Parent) output;
                 _class = parent.get_class();
+                txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
             }
+            homeName = txtName.getText().toString();
+            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
             loadPreviewGallery();
         }
     }
@@ -162,7 +166,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     @Override
     public void onResume() {
         super.onResume();
-        loadPreviewGallery();
+        if( !preload){
+            txtName.setText(homeName);
+            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
+            loadPreviewGallery();
+        }
+        preload = false;
     }
 
 }

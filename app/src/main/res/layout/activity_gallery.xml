@@ -26,7 +26,7 @@
                 android:layout_weight="1.5"/>
 
             <TextView
-                android:id="@+id/textAppBarName"
+                android:id="@+id/txtPageTitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
