@@ -36,8 +36,6 @@ public class LoadClassHealthTask extends AsyncTask<Void,Void,String> {
         this._class = _class;
     }
 
-    OkHttpClient client = new OkHttpClient();
-
     @Override
     protected String doInBackground(Void... voids) {
         try {
@@ -100,6 +98,8 @@ public class LoadClassHealthTask extends AsyncTask<Void,Void,String> {
             = MediaType.parse("application/json; charset=utf-8");
 
     String doPostRequest(String url, String json) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)

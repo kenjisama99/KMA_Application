@@ -156,14 +156,6 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
 
     @Override
     public void onSubmitImageTaskFinish() {
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Do something after 1s
-//                getImagesFromServer();
-//            }
-//        }, 3000);
         getImagesFromServer();
     }
 }

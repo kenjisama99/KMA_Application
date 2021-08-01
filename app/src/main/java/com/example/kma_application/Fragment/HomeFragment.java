@@ -100,11 +100,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     private void onClickBtHealth() {
         Intent intent = new Intent(getActivity(), TeacherChildHeathActivity2.class);
-        if (role.equals("teacher"))
-            intent = new Intent(getActivity(), TeacherChildHeathActivity2.class);
+        //if (role.equals("teacher"))
+            //intent = new Intent(getActivity(), TeacherChildHeathActivity2.class);
 
-        intent.putExtra("info", person);
+        //intent.putExtra("info", person);
         intent.putExtra("class", _class);
+        intent.putExtra("role", role);
         startActivity(intent);
     }
     private void onClickBtMedicine() {
