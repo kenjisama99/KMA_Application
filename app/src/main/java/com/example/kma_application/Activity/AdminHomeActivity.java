@@ -86,8 +86,9 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     private void onClickManageHealth() {
         if(!showMenu.getText().equals("Chọn")){
-            Intent manageNotification = new Intent(this, TeacherHealthActivity.class);
-            manageNotification.putExtra("class",showMenu.getText().toString().trim());
+            Intent manageNotification = new Intent(this, TeacherChildHeathActivity2.class);
+//            manageNotification.putExtra("class",showMenu.getText().toString().trim());
+            manageNotification.putExtra("role", "teacher");
             startActivity(manageNotification);
         }
         else

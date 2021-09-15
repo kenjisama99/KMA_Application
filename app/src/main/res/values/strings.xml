@@ -62,5 +62,7 @@
     <string name="ratio">Tỷ lệ cơ thể:</string>
     <string name="them">Thêm</string>
     <string name="xoa">Xóa</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

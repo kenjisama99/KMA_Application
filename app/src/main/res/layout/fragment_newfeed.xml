@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:orientation="vertical"
+    tools:context=".Fragment.NewfeedFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#2d5ad5"
+        android:padding="4dp"
+        tools:ignore="Suspicious0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:padding="12dp"
+            android:text="Bảng tin "
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:ignore="Suspicious0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/imgViewAvatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/avatar1" />
+
+            <TextView
+                android:id="@+id/textViewStatus"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@+id/imgViewAvatar"
+                android:gravity="start|center_horizontal|center_vertical"
+                android:text="Cập nhật trạng thái..."
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textViewStatus"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/postPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="0dp"
+                    android:backgroundTint="#f1f6ef"
+                    android:drawableLeft="@drawable/pictures_post"
+                    android:drawablePadding="0dp"
+                    android:insetLeft="6dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Đăng ảnh"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:cornerRadius="6dp"
+                    app:iconPadding="0dp"></Button>
+
+                <Button
+                    android:id="@+id/postVideo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="#f1f6ef"
+                    android:drawableLeft="@drawable/media"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Đăng video"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:cornerRadius="6dp"
+                    app:iconPadding="0dp"></Button>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
