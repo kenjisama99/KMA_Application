@@ -110,7 +110,7 @@
 
         <ImageView
             android:id="@+id/imgSubMeal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_below="@+id/textView17"
             android:layout_alignParentStart="true"

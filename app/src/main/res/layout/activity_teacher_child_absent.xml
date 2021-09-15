@@ -64,7 +64,7 @@
             android:enabled="false"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:text="Cháu bị ốm, mong cô thông cảm."
+            android:text=""
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="14sp" />
@@ -96,7 +96,7 @@
             android:enabled="false"
             android:hint="dd/mm/yyyy"
             android:inputType="datetime"
-            android:text="24/12/2020"
+            android:text=""
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -127,7 +127,7 @@
             android:enabled="false"
             android:hint="dd/mm/yy"
             android:inputType="datetime"
-            android:text="26/12/2020"
+            android:text=""
             android:textColor="#000000"
             android:textSize="18sp" />
 

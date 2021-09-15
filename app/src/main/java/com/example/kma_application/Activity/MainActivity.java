@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
     HomeFragment homeFragment;
     NotificationFragment notificationFragment;
     UserFragment userFragment;
+    NewfeedFragment newfeedFragment;
 
     // a static variable to get a reference of our application context
     public static Context contextOfApplication;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
         userFragment = new UserFragment();
+        newfeedFragment = new NewfeedFragment();
 
         LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this,homeFragment,notificationFragment,userFragment);
         homeFragment.setLoadInfosTask(loadInfosTask);
@@ -78,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
                 case R.id.nav_contact:
                     onClickBtChat();
                     return true;
+                case R.id.nav_newfeed:
+                    selectedFragment = newfeedFragment;
+                    break;
                 case R.id.nav_notification:
                     selectedFragment = notificationFragment;
                     break;
