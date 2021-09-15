@@ -4,6 +4,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.TeacherPostLessonActivity">
+    tools:context=".Activity.AdminCreateNotificationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="top"
+        android:background="#bce9fe"
+        android:contextClickable="true"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/txtPageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Thông báo"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_marginTop="55dp">
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="257dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="65dp"
+            android:text="Chủ đề bài giảng:"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtNofiTitle"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="textPersonName"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNofiTitle"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:text="Nội dung chú ý:"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtNofiContent"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_below="@+id/textView14"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/txtAttachImg"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNofiContent"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:text="Tệp đính kèm:"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btAddNofiImg"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNofiContent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/txtAttachImg"
+            android:backgroundTint="#914A4A"
+            android:scaleType="center"
+            android:visibility="visible"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <ImageView
+            android:id="@+id/imgNotifi"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@+id/txtNofiContent"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="50dp"
+            app:srcCompat="@drawable/no_image"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/buttonPost"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgNotifi"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="119dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="111dp"
+            android:layout_marginBottom="115dp"
+            android:backgroundTint="#914A4A"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Đăng bài"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textColorHint="#DA6C6C"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:cornerRadius="8dp"
+            app:iconPadding="0dp" />
+
+        <ImageButton
+            android:id="@+id/btDelNotify"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="35dp"
+            android:background="#FF0101"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
