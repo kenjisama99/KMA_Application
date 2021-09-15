@@ -21,6 +21,7 @@ import com.example.kma_application.Activity.TeacherChildHeathActivity2;
 import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Activity.ParentHealthActivity;
 import com.example.kma_application.Activity.ParentPrescriptionActivity;
+import com.example.kma_application.Activity.TeacherLessonActivity;
 import com.example.kma_application.Activity.TeacherPrescriptionActivity;
 import com.example.kma_application.AsyncTask.LoadClassImageTask;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     Boolean preload = true;
 
     Context context = getActivity();
-    Button btHealth, btAbsent, btMedicine;
+    Button btHealth, btAbsent, btMedicine, btLesson;
     TextView txtName, btViewGallery;
     GridView gridView;
 
@@ -53,9 +54,10 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         btHealth = (Button)view.findViewById(R.id.buttonHomeHealth);
         btAbsent = (Button)view.findViewById(R.id.buttonHomeAbsent);
         btMedicine = (Button)view.findViewById(R.id.buttonHomeMedicine);
+        btLesson = (Button)view.findViewById(R.id.buttonHomeLesson);
         txtName = (TextView) view.findViewById(R.id.textHome);
-        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
-        gridView = (GridView) view.findViewById(R.id.gridViewHome);
+//        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
+//        gridView = (GridView) view.findViewById(R.id.gridViewHome);
 
         loadInfosTask.setTxtName(txtName);
 
@@ -81,6 +83,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
             @Override
             public void onClick(View v) {
                 onClickBtViewGallery();
+            }
+        });
+        btLesson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtLesson();
             }
         });
 
@@ -125,6 +133,17 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
         intent.putExtra("info", person);
         intent.putExtra("class", _class);
+
+        startActivity(intent);
+    }
+
+    private void onClickBtLesson() {
+        Intent intent = new Intent(getActivity(), TeacherLessonActivity.class);
+//        if (role.equals("teacher"))
+            intent = new Intent(getActivity(), TeacherLessonActivity.class);
+
+//        intent.putExtra("info", person);
+//        intent.putExtra("class", _class);
 
         startActivity(intent);
     }
