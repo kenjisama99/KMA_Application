@@ -42,7 +42,8 @@ public class ParentAbsentActivity extends AppCompatActivity {
 
         this.txtContent = (EditText)this.findViewById(R.id.edit_contentReason);
         this.txtStartDate = (EditText)this.findViewById(R.id.edit_dateStart);
-        this.txtEndDate = (EditText)this.findViewById(R.id.edit_dateFinished);        this.selectDateStart = (Button)this.findViewById(R.id.selectDateStart);
+        this.txtEndDate = (EditText)this.findViewById(R.id.edit_dateFinished);
+        this.selectDateStart = (Button)this.findViewById(R.id.selectDateStart);
         this.selectDateStart = (Button)this.findViewById(R.id.selectDateStart);
         this.selectDateFinished = (Button)this.findViewById(R.id.selectDateFinished);
         this.submitAbsent = (Button)this.findViewById(R.id.submitAbsent);
