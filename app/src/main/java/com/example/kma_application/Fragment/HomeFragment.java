@@ -79,12 +79,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickBtAbsent();
             }
         });
-        btViewGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickBtViewGallery();
-            }
-        });
+//        btViewGallery.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickBtViewGallery();
+//            }
+//        });
         btLesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,13 +173,13 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
     private void loadPreviewGallery(){
         //Teacher teacher = (Teacher) this.parent;
-        new LoadClassImageTask(
-                getActivity(),
-                gridView,
-                _class,
-                "main",
-                role
-        ).execute();
+//        new LoadClassImageTask(
+//                getActivity(),
+//                gridView,
+//                _class,
+//                "main",
+//                role
+//        ).execute();
     }
 
     @Override
