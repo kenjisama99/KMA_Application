@@ -56,8 +56,8 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         btMedicine = (Button)view.findViewById(R.id.buttonHomeMedicine);
         btLesson = (Button)view.findViewById(R.id.buttonHomeLesson);
         txtName = (TextView) view.findViewById(R.id.textHome);
-//        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
-//        gridView = (GridView) view.findViewById(R.id.gridViewHome);
+        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
+        gridView = (GridView) view.findViewById(R.id.gridViewHome);
 
         loadInfosTask.setTxtName(txtName);
 
