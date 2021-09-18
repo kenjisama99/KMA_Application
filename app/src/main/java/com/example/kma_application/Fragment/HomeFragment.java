@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     Boolean preload = true;
 
     Context context = getActivity();
-    Button btHealth, btAbsent, btMedicine, btLesson;
-    TextView txtName, btViewGallery;
+    Button btHealth, btAbsent, btMedicine, btLesson, btViewGallerys;
+    TextView txtName;
+    ImageButton btViewGallery;
     GridView gridView;
 
     public void setLoadInfosTask(LoadInfosTask loadInfosTask) {
@@ -56,8 +58,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
         btMedicine = (Button)view.findViewById(R.id.buttonHomeMedicine);
         btLesson = (Button)view.findViewById(R.id.buttonHomeLesson);
         txtName = (TextView) view.findViewById(R.id.textHome);
-        btViewGallery = (TextView) view.findViewById(R.id.buttonViewGallery);
-        gridView = (GridView) view.findViewById(R.id.gridViewHome);
+        btViewGallery = (ImageButton) view.findViewById( R.id.buttonViewGallery);
+        btViewGallerys = (Button) view.findViewById( R.id.buttonViewGallerys);
+//        gridView = (GridView) view.findViewById(R.id.gridViewHome);
 
         loadInfosTask.setTxtName(txtName);
 
@@ -79,12 +82,18 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
                 onClickBtAbsent();
             }
         });
-//        btViewGallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onClickBtViewGallery();
-//            }
-//        });
+        btViewGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtViewGallery();
+            }
+        });
+        btViewGallerys.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtViewGallerys();
+            }
+        });
         btLesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +105,15 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
            // loadPreviewGallery();
 
         return view;
+    }
+
+    private void onClickBtViewGallerys() {
+        Intent intent = new Intent(getActivity(), GalleryActivity.class);
+
+        intent.putExtra("info", person);
+        intent.putExtra("role", role);
+        intent.putExtra("class", _class);
+        startActivity(intent);
     }
 
     private void onClickBtViewGallery() {
@@ -151,25 +169,25 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     @Override
     public void onLoadInfoTaskFinish(Person output, String role) {
-        this.person = output;
-        this.role = role;
-        if (output == null){
-            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
-        }else{
-            this.phone = output.getPhone();
-            if (role.equals("teacher")) {
-                Teacher teacher = (Teacher) output;
-                _class = teacher.get_class();
-                txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
-            }else {
-                Parent parent = (Parent) output;
-                _class = parent.get_class();
-                txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
-            }
-            homeName = txtName.getText().toString();
-            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
-            loadPreviewGallery();
-        }
+//        this.person = output;
+//        this.role = role;
+//        if (output == null){
+//            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
+//        }else{
+//            this.phone = output.getPhone();
+//            if (role.equals("teacher")) {
+//                Teacher teacher = (Teacher) output;
+//                _class = teacher.get_class();
+//                txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
+//            }else {
+//                Parent parent = (Parent) output;
+//                _class = parent.get_class();
+//                txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
+//            }
+//            homeName = txtName.getText().toString();
+//            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
+//            loadPreviewGallery();
+//        }
     }
     private void loadPreviewGallery(){
         //Teacher teacher = (Teacher) this.parent;
@@ -185,12 +203,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     @Override
     public void onResume() {
         super.onResume();
-        if( !preload){
-            txtName.setText(homeName);
-            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
-            loadPreviewGallery();
-        }
-        preload = false;
+//        if( !preload){
+//            txtName.setText(homeName);
+//            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
+//            loadPreviewGallery();
+//        }
+//        preload = false;
     }
 
 }

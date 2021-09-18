@@ -43,14 +43,14 @@ public class NewfeedFragment extends Fragment {
     }
 
     private void populateRecyclerView() {
-        ModelFeed modelFeed = new ModelFeed(1, 9, 2, R.drawable.ic_propic1, R.drawable.img_post1,
+        ModelFeed modelFeed = new ModelFeed(1, 9, 2, R.drawable.avatar1, R.drawable.img_post1,
                 "Sajin Maharjan", "2 hrs", "The cars we drive say a lot about us.");
         modelFeedArrayList.add(modelFeed);
-        modelFeed = new ModelFeed(2, 26, 6, R.drawable.ic_propic2, 0,
+        modelFeed = new ModelFeed(2, 26, 6, R.drawable.avatar1, 0,
                 "Karun Shrestha", "9 hrs", "Don't be afraid of your fears. They're not there to scare you. They're there to \n" +
                 "let you know that something is worth it.");
         modelFeedArrayList.add(modelFeed);
-        modelFeed = new ModelFeed(3, 17, 5, R.drawable.ic_propic3, R.drawable.img_post2,
+        modelFeed = new ModelFeed(3, 17, 5, R.drawable.avatar1, R.drawable.img_post2,
                 "Lakshya Ram", "13 hrs", "That reflection!!!");
         modelFeedArrayList.add(modelFeed);
 
