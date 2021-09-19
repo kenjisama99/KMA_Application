@@ -76,42 +76,27 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_weight="1"
-                    android:id="@+id/postPicture"
+                    android:id="@+id/postStatus"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="0dp"
-                    android:backgroundTint="#f1f6ef"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#478EC6"
                     android:drawableLeft="@drawable/pictures_post"
                     android:drawablePadding="0dp"
-                    android:insetLeft="6dp"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="Đăng ảnh"
+                    android:insetLeft="60dp"
+                    android:insetTop="3dp"
+                    android:insetRight="60dp"
+                    android:insetBottom="3dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:text="Tạo bào viết"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     app:cornerRadius="6dp"
-                    app:iconPadding="0dp"></Button>
-
-                <Button
-                    android:layout_weight="1"
-                    android:id="@+id/postVideo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="18dp"
-                    android:backgroundTint="#f1f6ef"
-                    android:drawableLeft="@drawable/media"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="Đăng video"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="6dp"
-                    app:iconPadding="0dp"></Button>
+                    app:iconPadding="0dp" />
             </LinearLayout>
 
 
@@ -271,7 +256,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:gravity="center_horizontal|center_vertical">
 
@@ -318,6 +303,36 @@
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center_vertical"
                             android:text="Bình luận"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/message" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:text="Gửi
+"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 

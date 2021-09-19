@@ -1,5 +1,6 @@
 package com.example.kma_application.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.kma_application.Activity.ParentAbsentActivity;
+import com.example.kma_application.Activity.PostStatusActivity;
+import com.example.kma_application.Activity.TeacherAbsentActivity;
 import com.example.kma_application.Adapter.ListNewfeedAdapter;
 import com.example.kma_application.Models.ModelFeed;
 import com.example.kma_application.R;
@@ -19,6 +24,8 @@ import java.util.ArrayList;
 
 
 public class NewfeedFragment extends Fragment {
+
+    Button btnPostStatus;
 
     RecyclerView recyclerView;
     ArrayList<ModelFeed> modelFeedArrayList = new ArrayList<>();
@@ -31,7 +38,8 @@ public class NewfeedFragment extends Fragment {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_newfeed, container, false);
         View view = inflater.inflate(R.layout.fragment_newfeed, container, false);
-        return view;
+
+        btnPostStatus = (Button) view.findViewById(R.id.postStatus);
 
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 //        recyclerView.setLayoutManager(layoutManager);
@@ -40,6 +48,21 @@ public class NewfeedFragment extends Fragment {
 //        recyclerView.setAdapter(adapterFeed);
 
 //        populateRecyclerView();
+
+
+        btnPostStatus.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtnPostStatus();
+            }
+        });
+
+        return view;
+    }
+
+    private void onClickBtnPostStatus() {
+        Intent intent = new Intent(getActivity(), PostStatusActivity.class );
+        startActivity(intent);
     }
 
     private void populateRecyclerView() {

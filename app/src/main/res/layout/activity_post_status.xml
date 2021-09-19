@@ -20,7 +20,7 @@
         android:backgroundTint="#d2d7d9">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imgBtClose"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal|center_vertical"
@@ -42,6 +42,7 @@
             android:textStyle="normal|bold" />
 
         <Button
+            android:id="@+id/btPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
@@ -54,7 +55,8 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:cornerRadius="6dp"
-            app:iconPadding="0dp"></Button>
+            app:iconPadding="0dp"
+            tools:ignore="InvalidId" />
     </LinearLayout>
 
     <RelativeLayout
@@ -96,7 +98,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_time"
+                android:id="@+id/tv_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -144,31 +146,34 @@
         android:layout_weight="1">
 
         <ImageButton
+            android:id="@+id/imgBtPostPicture"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:src="@drawable/pictures_post"></ImageButton>
+            android:src="@drawable/pictures_post"/>
 
         <ImageButton
+            android:id="@+id/imgBtPostVideo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:src="@drawable/media"></ImageButton>
+            android:src="@drawable/media"/>
 
         <ImageButton
+            android:id="@+id/imgBtTakeAPhoto"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:src="@android:drawable/ic_menu_camera"></ImageButton>
+            android:src="@android:drawable/ic_menu_camera"/>
     </LinearLayout>
 
 </LinearLayout>
