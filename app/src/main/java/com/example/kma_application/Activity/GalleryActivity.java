@@ -124,13 +124,13 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
     }
 
     private void getImagesFromServer() {
-//        new LoadClassImageTask(
-//            this,
-//            gridView,
-//            _class,
-//            "gallery",
-//            role
-//        ).execute();
+        new LoadClassImageTask(
+            this,
+            gridView,
+            _class,
+            "gallery",
+            role
+        ).execute();
     }
 
     private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
