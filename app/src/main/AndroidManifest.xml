@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.TeacherPostLessonActivity"></activity>
+        <activity android:name=".Activity.ParentLessonActivity"></activity>
+        <activity android:name=".Activity.TeacherPostLessonActivity" />
         <activity android:name=".Activity.TeacherLessonActivity" />
         <activity android:name=".Activity.PostStatusActivity" />
         <activity android:name=".Activity.TeacherChildHeathActivity2" />

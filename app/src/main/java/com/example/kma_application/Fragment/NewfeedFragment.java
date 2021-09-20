@@ -39,8 +39,6 @@ public class NewfeedFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_newfeed, container, false);
         View view = inflater.inflate(R.layout.fragment_newfeed, container, false);
 
-        btnPostStatus = (Button) view.findViewById(R.id.postStatus);
-
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 //        recyclerView.setLayoutManager(layoutManager);
 //
@@ -49,7 +47,7 @@ public class NewfeedFragment extends Fragment {
 
 //        populateRecyclerView();
 
-
+        btnPostStatus = (Button) view.findViewById(R.id.postStatus);
         btnPostStatus.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
