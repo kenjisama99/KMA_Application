@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ContactActivity" />
-        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainActivity"/>
     </application>
 
 </manifest>

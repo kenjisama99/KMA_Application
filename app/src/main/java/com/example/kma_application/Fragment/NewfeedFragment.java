@@ -35,17 +35,18 @@ public class NewfeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_newfeed, container, false);
         View view = inflater.inflate(R.layout.fragment_newfeed, container, false);
 
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        adapterFeed = new ListNewfeedAdapter(this, modelFeedArrayList);
-//        recyclerView.setAdapter(adapterFeed);
+        recyclerView = (RecyclerView)view.findViewById( R.id.recyclerView );
 
-//        populateRecyclerView();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapterFeed = new ListNewfeedAdapter(getContext(), modelFeedArrayList);
+        recyclerView.setAdapter(adapterFeed);
+
+        populateRecyclerView();
 
         btnPostStatus = (Button) view.findViewById(R.id.postStatus);
         btnPostStatus.setOnClickListener( new View.OnClickListener() {

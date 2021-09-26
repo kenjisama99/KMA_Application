@@ -18,17 +18,17 @@ import java.util.ArrayList;
 
 public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.MyViewHolder> {
 
-    NewfeedFragment context;
+    Context context;
     ArrayList<ModelFeed> modelFeedArrayList = new ArrayList<>();
     RequestManager glide;
 
-//    public ListNewfeedAdapter(NewfeedFragment context, ArrayList<ModelFeed> modelFeedArrayList) {
-//
-//        this.context = context;
-//        this.modelFeedArrayList = modelFeedArrayList;
-//        glide = Glide.with(context);
-//
-//    }
+    public ListNewfeedAdapter(Context context, ArrayList<ModelFeed> modelFeedArrayList) {
+
+        this.context = context;
+        this.modelFeedArrayList = modelFeedArrayList;
+        glide = Glide.with( context );
+
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
