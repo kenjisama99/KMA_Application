@@ -26,7 +26,7 @@ public class TeacherLessonActivity extends AppCompatActivity {
     }
 
     private void onClickCreateLesson() {
-        Intent createLesson = new Intent(this, AdminCreateNotificationActivity.class);
+        Intent createLesson = new Intent(this, TeacherPostLessonActivity.class);
 //        createNotification.putExtra("role","admin");
         startActivity(createLesson);
     }

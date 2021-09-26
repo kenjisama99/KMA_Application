@@ -239,7 +239,7 @@
             android:text="Lưu giữ những khoảnh khắc đáng yêu của bé..."
             android:textAllCaps="false"
             android:textColor="#333333"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"/>
 
     </LinearLayout>
 

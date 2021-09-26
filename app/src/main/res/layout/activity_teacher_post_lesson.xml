@@ -68,7 +68,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
-            android:text="Nội dung chú ý:"
+            android:text="Nội dung bài giảng:"
             android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="18sp" />
@@ -107,7 +107,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/txtAttachImg"
-            android:backgroundTint="#914A4A"
+            android:backgroundTint="#DD6262"
             android:scaleType="center"
             android:visibility="visible"
             app:srcCompat="@android:drawable/ic_input_add" />
