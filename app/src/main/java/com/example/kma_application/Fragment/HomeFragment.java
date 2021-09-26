@@ -171,25 +171,25 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 
     @Override
     public void onLoadInfoTaskFinish(Person output, String role) {
-//        this.person = output;
-//        this.role = role;
-//        if (output == null){
-//            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
-//        }else{
-//            this.phone = output.getPhone();
-//            if (role.equals("teacher")) {
-//                Teacher teacher = (Teacher) output;
-//                _class = teacher.get_class();
-//                txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
-//            }else {
-//                Parent parent = (Parent) output;
-//                _class = parent.get_class();
-//                txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
-//            }
-//            homeName = txtName.getText().toString();
-//            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
+        this.person = output;
+        this.role = role;
+        if (output == null){
+            Toast.makeText(this.context, "InfoModel is null", Toast.LENGTH_LONG).show();
+        }else{
+            this.phone = output.getPhone();
+            if (role.equals("teacher")) {
+                Teacher teacher = (Teacher) output;
+                _class = teacher.get_class();
+                txtName.setText("Cô: "+teacher.getName()+" - Lớp: "+teacher.get_class());
+            }else {
+                Parent parent = (Parent) output;
+                _class = parent.get_class();
+                txtName.setText("Bé: "+parent.getChildName()+" - Lớp: "+parent.get_class());
+            }
+            homeName = txtName.getText().toString();
+            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
 //            loadPreviewGallery();
-//        }
+        }
     }
     private void loadPreviewGallery(){
 //        Teacher teacher = (Teacher) this.parent;
@@ -205,12 +205,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     @Override
     public void onResume() {
         super.onResume();
-//        if( !preload){
-//            txtName.setText(homeName);
-//            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
-//            loadPreviewGallery();
-//        }
-//        preload = false;
+        if( !preload){
+            txtName.setText(homeName);
+            //Toast.makeText(this.context, homeName, Toast.LENGTH_LONG).show();
+            //loadPreviewGallery();
+        }
+        preload = false;
     }
 
 }
