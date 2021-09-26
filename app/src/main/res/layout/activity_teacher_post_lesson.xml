@@ -13,17 +13,54 @@
         android:layout_gravity="top"
         android:background="#bce9fe"
         android:contextClickable="true"
+        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/btBackLesson"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#bce9fe"
+            app:srcCompat="@drawable/previous" />
 
         <TextView
             android:id="@+id/txtPageTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Thông báo"
+            android:layout_weight="9"
+            android:gravity="start"
+            android:paddingStart="15dp"
+            android:text="Bài giảng"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btPostLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|end"
+            android:layout_weight="1"
+            android:backgroundTint="#64AF0D"
+            android:drawableLeft="@drawable/upload"
+            android:gravity="center_horizontal|center_vertical"
+            android:hapticFeedbackEnabled="false"
+            android:insetLeft="8dp"
+            android:insetTop="6dp"
+            android:insetRight="8dp"
+            android:insetBottom="6dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="Tải lên"
+            android:textAllCaps="false"
+            android:textColor="#040000"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:cornerRadius="6dp"
+            app:iconPadding="2dp" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -34,16 +71,17 @@
 
         <TextView
             android:id="@+id/txtTitle"
-            android:layout_width="257dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="30dp"
             android:text="Chủ đề bài giảng:"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtNofiTitle"
@@ -71,7 +109,8 @@
             android:text="Nội dung bài giảng:"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtNofiContent"
@@ -97,17 +136,18 @@
             android:text="Tệp đính kèm:"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/btAddNofiImg"
-            android:layout_width="65dp"
+            android:id="@+id/btAddImgLesson"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtNofiContent"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/txtAttachImg"
-            android:backgroundTint="#DD6262"
+            android:backgroundTint="#504C4C"
             android:scaleType="center"
             android:visibility="visible"
             app:srcCompat="@android:drawable/ic_input_add" />
@@ -123,39 +163,16 @@
             app:srcCompat="@drawable/no_image"
             android:visibility="invisible"/>
 
-        <Button
-            android:id="@+id/buttonPost"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgNotifi"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="119dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="111dp"
-            android:layout_marginBottom="115dp"
-            android:backgroundTint="#914A4A"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Đăng bài"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textColorHint="#DA6C6C"
-            android:textSize="24sp"
-            android:visibility="visible"
-            app:cornerRadius="8dp"
-            app:iconPadding="0dp" />
-
         <ImageButton
-            android:id="@+id/btDelNotify"
+            android:id="@+id/btDelLesson"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="35dp"
+            android:layout_alignTop="@+id/txtTitle"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-18dp"
+            android:layout_toEndOf="@+id/txtTitle"
             android:background="#FF0101"
+            android:visibility="visible"
             app:srcCompat="@android:drawable/ic_menu_delete" />
     </RelativeLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdminNotificationActivity">
+    tools:context=".Activity.TeacherLessonActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -13,17 +13,25 @@
         android:layout_gravity="top"
         android:background="#bce9fe"
         android:contextClickable="true"
+        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/btCloseLesson"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#bce9fe"
+            app:srcCompat="@drawable/previous" />
 
         <TextView
             android:id="@+id/txtPageTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left|center_vertical"
+            android:paddingLeft="15dp"
             android:text="Bài giảng"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:paddingLeft="8dp"
             android:textSize="36sp" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:scrollbarSize="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +70,7 @@
             android:textColor="#000000"
             android:textColorLink="#FFFFFF"
             android:textSize="24sp"
+            android:visibility="visible"
             app:cornerRadius="8dp"
             app:iconPadding="0dp"
             app:iconTint="#FFFFFF" />
@@ -72,13 +81,30 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonCreateLesson"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:text="Lịch sử "
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btSelectDateLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonCreateLesson"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/txtHistory"
+            android:backgroundTint="#D8D2D2"
+            android:drawableLeft="@drawable/calendar_21_30px"
+            android:text="Ngày"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:cornerRadius="6dp"
+            app:iconPadding="3dp" />
 
         <ListView
             android:id="@+id/listViewHistory"
@@ -88,61 +114,8 @@
             android:layout_marginTop="64dp"
             android:background="#EDECEC"
             android:cacheColorHint="#FFFFFF">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-                <LinearLayout
-                    android:id="@+id/lesson1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="120dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bài học 1"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hướng dẫn nhận biết đồ vật"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnViewLesson"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-100dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_toEndOf="@+id/lesson1"
-                    android:backgroundTint="#DC8787"
-                    android:text="Xem"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:cornerRadius="8dp"/>
-
-            </RelativeLayout>
         </ListView>
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

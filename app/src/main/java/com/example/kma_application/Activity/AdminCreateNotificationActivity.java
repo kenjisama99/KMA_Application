@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.example.kma_application.AsyncTask.DeleteImageTask;
 import com.example.kma_application.AsyncTask.LoadImageTask;
 import com.example.kma_application.AsyncTask.SubmitNotificationTask;
-import com.example.kma_application.Models.Prescription;
 import com.example.kma_application.R;
 
 import java.io.ByteArrayOutputStream;
@@ -49,8 +48,8 @@ public class AdminCreateNotificationActivity extends AppCompatActivity {
         txtNofiContent = (EditText) findViewById(R.id.txtNofiContent);
         txtAttachImg = (TextView) findViewById(R.id.txtAttachImg);
 
-        btAddNofiImg =(ImageButton) findViewById(R.id.btAddNofiImg);
-        btDelNotify =(ImageButton) findViewById(R.id.btDelNotify);
+        btAddNofiImg =(ImageButton) findViewById(R.id.btAddImgLesson );
+        btDelNotify =(ImageButton) findViewById(R.id.btDelLesson );
         buttonPost =(Button) findViewById(R.id.buttonPost);
 
         imgNotifi =(ImageView) findViewById(R.id.imgNotifi);

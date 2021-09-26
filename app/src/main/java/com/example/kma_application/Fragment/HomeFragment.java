@@ -23,6 +23,7 @@ import com.example.kma_application.Activity.TeacherHealthActivity;
 import com.example.kma_application.Activity.ParentHealthActivity;
 import com.example.kma_application.Activity.ParentPrescriptionActivity;
 import com.example.kma_application.Activity.TeacherLessonActivity;
+import com.example.kma_application.Activity.TeacherPostLessonActivity;
 import com.example.kma_application.Activity.TeacherPrescriptionActivity;
 import com.example.kma_application.AsyncTask.LoadClassImageTask;
 import com.example.kma_application.AsyncTask.LoadInfosTask;
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     TextView txtName;
     ImageButton btViewGallery;
     GridView gridView;
+    private Object parent;
 
     public void setLoadInfosTask(LoadInfosTask loadInfosTask) {
         this.loadInfosTask = loadInfosTask;
@@ -108,12 +110,12 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     private void onClickBtViewGallerys() {
-        Intent intent = new Intent(getActivity(), GalleryActivity.class);
-
-        intent.putExtra("info", person);
-        intent.putExtra("role", role);
-        intent.putExtra("class", _class);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), GalleryActivity.class);
+//
+//        intent.putExtra("info", person);
+//        intent.putExtra("role", role);
+//        intent.putExtra("class", _class);
+//        startActivity(intent);
     }
 
     private void onClickBtViewGallery() {
@@ -158,7 +160,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     private void onClickBtLesson() {
         Intent intent = new Intent(getActivity(), TeacherLessonActivity.class);
 //        if (role.equals("teacher"))
-            intent = new Intent(getActivity(), TeacherLessonActivity.class);
+//            intent = new Intent(getActivity(), TeacherLessonActivity.class);
 
 //        intent.putExtra("info", person);
 //        intent.putExtra("class", _class);
@@ -190,7 +192,7 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
 //        }
     }
     private void loadPreviewGallery(){
-        //Teacher teacher = (Teacher) this.parent;
+//        Teacher teacher = (Teacher) this.parent;
 //        new LoadClassImageTask(
 //                getActivity(),
 //                gridView,

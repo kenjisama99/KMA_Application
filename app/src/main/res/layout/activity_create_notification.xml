@@ -100,7 +100,7 @@
             android:textSize="18sp" />
 
         <ImageButton
-            android:id="@+id/btAddNofiImg"
+            android:id="@+id/btAddImgLesson"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtNofiContent"
@@ -145,7 +145,7 @@
             app:iconPadding="0dp" />
 
         <ImageButton
-            android:id="@+id/btDelNotify"
+            android:id="@+id/btDelLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
