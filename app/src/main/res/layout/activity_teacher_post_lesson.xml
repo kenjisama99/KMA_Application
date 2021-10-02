@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdminCreateNotificationActivity">
+    tools:context=".Activity.TeacherPostLessonActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -61,14 +61,12 @@
             android:visibility="visible"
             app:cornerRadius="6dp"
             app:iconPadding="2dp" />
-    </com.google.android.material.appbar.AppBarLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_marginTop="55dp">
-
-
+        android:layout_marginTop="55dp">
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="160dp"
@@ -96,7 +94,8 @@
             android:inputType="textPersonName"
             android:textAllCaps="true"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:enabled="false" />
 
         <TextView
             android:id="@+id/textView14"
@@ -123,7 +122,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="8dp"
             android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:visibility="visible"/>
 
         <TextView
             android:id="@+id/txtAttachImg"
@@ -160,8 +160,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/no_image"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/no_image" />
 
         <ImageButton
             android:id="@+id/btDelLesson"
@@ -169,7 +168,7 @@
             android:layout_height="40dp"
             android:layout_alignTop="@+id/txtTitle"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="-18dp"
+            android:layout_marginTop="-10dp"
             android:layout_toEndOf="@+id/txtTitle"
             android:background="#FF0101"
             android:visibility="visible"
