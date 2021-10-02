@@ -21,10 +21,10 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
         setContentView( R.layout.activity_teacher_post_lesson);
 
         ImageButton btBackLesson = (ImageButton)findViewById( R.id.btBackLesson );
-        Button btPostLesson = (Button)findViewById( R.id.btPostLesson );
+        ImageButton btPostLesson = (ImageButton) findViewById( R.id.btPostLesson );
         ImageButton btDelLesson = (ImageButton)findViewById( R.id.btDelLesson);
         ImageButton btAddImgLesson = (ImageButton)findViewById( R.id.btAddImgLesson);
-        ImageButton btSchedule = (ImageButton)findViewById( R.id.imgBtSchedule);
+        Button btSchedule = (Button) findViewById( R.id.imgBtSchedule );
 
         btBackLesson.setOnClickListener( new View.OnClickListener() {
             @Override
