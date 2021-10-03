@@ -120,6 +120,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPostInputText"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="left"
@@ -145,7 +146,7 @@
         android:layout_weight="1">
 
         <ImageButton
-            android:id="@+id/imgBtPostPicture"
+            android:id="@+id/btPostPicture"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -155,7 +156,7 @@
             android:src="@drawable/pictures_post"/>
 
         <ImageButton
-            android:id="@+id/imgBtPostVideo"
+            android:id="@+id/btPostVideo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -165,7 +166,7 @@
             android:src="@drawable/media"/>
 
         <ImageButton
-            android:id="@+id/imgBtTakeAPhoto"
+            android:id="@+id/btTakeAPhoto"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
