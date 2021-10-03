@@ -16,6 +16,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class SubmitPostTask extends AsyncTask<Void,Void,String> {
     private Context context;
@@ -45,7 +46,18 @@ public class SubmitPostTask extends AsyncTask<Void,Void,String> {
     }
 
     private String userJson() {
+        //get current day for submit today meal
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        //to String
+        String date =
+                calendar.get(Calendar.DAY_OF_MONTH)+"/"+
+                        calendar.get(Calendar.MONTH)+"/"+
+                        calendar.get(Calendar.YEAR);
+
         return "{\"_class\":\"" + _class + "\","
+                +"\"date\":\"" + date + "\","
                 +"\"description\":\"" + description +"\","
                 + "\"originalBase64\":\"" + originalBase64 + "\","
                 + "\"resizeBase64\":\"" + resizeBase64 + "\"}";

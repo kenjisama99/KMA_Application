@@ -133,7 +133,7 @@ public class GalleryActivity extends AppCompatActivity implements SubmitImageTas
         ).execute();
     }
 
-    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+    static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
         if (maxHeight > 0 && maxWidth > 0) {
             int width = image.getWidth();
             int height = image.getHeight();
