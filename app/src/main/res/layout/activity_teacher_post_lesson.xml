@@ -37,13 +37,13 @@
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/btPostLesson"
+            android:id="@+id/imgBtSchedule"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right|end"
             android:layout_weight="1"
             android:backgroundTint="#64AF0D"
-            android:drawableLeft="@drawable/upload"
+            android:drawableLeft="@drawable/schedule24px"
             android:gravity="center_horizontal|center_vertical"
             android:hapticFeedbackEnabled="false"
             android:insetLeft="8dp"
@@ -52,12 +52,13 @@
             android:insetBottom="6dp"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
-            android:paddingRight="0dp"
+            android:paddingRight="3dp"
             android:paddingBottom="0dp"
-            android:text="Tải lên"
+            android:text="Ngày"
             android:textAllCaps="false"
-            android:textColor="#040000"
+            android:textColor="#7C288A"
             android:textSize="18sp"
+            android:textStyle="bold"
             android:visibility="visible"
             app:cornerRadius="6dp"
             app:iconPadding="2dp" />
@@ -173,6 +174,42 @@
             android:background="#FF0101"
             android:visibility="visible"
             app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="35dp"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageButton
+                android:id="@+id/btPostLesson"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#FFFFFF"
+                android:padding="6dp"
+                android:src="@drawable/uploading" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btPostLesson"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="#E3CDCD"
+                android:gravity="center_horizontal"
+                android:text="Tải lên"
+                android:textColor="#08880D"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
