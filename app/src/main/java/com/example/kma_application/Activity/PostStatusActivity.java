@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -66,6 +67,15 @@ public class PostStatusActivity extends AppCompatActivity {
                 submitPost();
             }
         } );
+
+        btTakeAPhoto.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
+                startActivityForResult( intent, 0 );
+            }
+        } );
+
     }
 
     private void choosePicture() {
