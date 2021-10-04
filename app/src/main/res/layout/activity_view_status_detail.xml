@@ -39,7 +39,7 @@
             android:id="@+id/imgView_postPic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/img_post1" />
+            app:srcCompat="@drawable/no_image" />
 
     </LinearLayout>
 
