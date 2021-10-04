@@ -115,4 +115,9 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
         posts.add(jsonObject);
         notifyDataSetChanged();
     }
+    public void clear () {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
 }

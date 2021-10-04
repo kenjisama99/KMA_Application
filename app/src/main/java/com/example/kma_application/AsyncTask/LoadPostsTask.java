@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.kma_application.Adapter.ListNewfeedAdapter;
 import com.squareup.okhttp.MediaType;
@@ -24,12 +25,14 @@ public class LoadPostsTask extends AsyncTask<Void,Void,String> {
     String _class;
     ListNewfeedAdapter listNewfeedAdapter;
     RecyclerView recyclerView;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public LoadPostsTask(Context context, String _class, ListNewfeedAdapter listNewfeedAdapter, RecyclerView recyclerView) {
+    public LoadPostsTask(Context context, String _class, ListNewfeedAdapter listNewfeedAdapter, RecyclerView recyclerView, SwipeRefreshLayout mSwipeRefreshLayout) {
         this.context = context;
         this._class = _class;
         this.listNewfeedAdapter = listNewfeedAdapter;
         this.recyclerView = recyclerView;
+        this.mSwipeRefreshLayout = mSwipeRefreshLayout;
     }
 
     @Override
@@ -58,6 +61,7 @@ public class LoadPostsTask extends AsyncTask<Void,Void,String> {
         }
         if (hasData){
             try {
+                listNewfeedAdapter.clear();
                 JSONArray jsonarray = new JSONArray(postResponse);
                 for (int i = jsonarray.length() -1 ; i >= 0 ; i--) {
                     JSONObject jsonobject = jsonarray.getJSONObject(i);
@@ -68,6 +72,7 @@ public class LoadPostsTask extends AsyncTask<Void,Void,String> {
                 Toast.makeText(this.context, "Lỗi tải Bảng tin", Toast.LENGTH_LONG).show();
             }
         }
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     // post request code here

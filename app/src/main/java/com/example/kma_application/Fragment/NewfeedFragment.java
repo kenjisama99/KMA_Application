@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,8 @@ import com.example.kma_application.R;
 import java.util.ArrayList;
 
 
-public class NewfeedFragment extends Fragment {
+public class NewfeedFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     Button btnPostStatus;
 
@@ -35,19 +37,19 @@ public class NewfeedFragment extends Fragment {
     ArrayList<ModelFeed> modelFeedArrayList = new ArrayList<>();
     ListNewfeedAdapter adapterFeed;
     Boolean preload = false;
-    @Override
-    public void onResume() {
-        super.onResume();
-        if( !preload){
-            new LoadPostsTask(
-                    getContext(),
-                    "Họa Mi",
-                    adapterFeed,
-                    recyclerView
-            ).execute();
-        }
-        preload = false;
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if( !preload){
+//            new LoadPostsTask(
+//                    getContext(),
+//                    "Họa Mi",
+//                    adapterFeed,
+//                    recyclerView
+//            ).execute();
+//        }
+//        preload = false;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +65,35 @@ public class NewfeedFragment extends Fragment {
         adapterFeed = new ListNewfeedAdapter(getContext());
         recyclerView.setAdapter(adapterFeed);
 
+        // SwipeRefreshLayout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        /**
+         * Showing Swipe Refresh animation on activity create
+         * As animation won't start on onCreate, post runnable is used
+         */
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+
+                // Fetching data from server
+                new LoadPostsTask(
+                    getContext(),
+                    "Họa Mi",
+                    adapterFeed,
+                    recyclerView,
+                    mSwipeRefreshLayout
+                ).execute();
+            }
+        });
         //populateRecyclerView();
 
 //        new LoadPostsTask(
@@ -81,6 +112,18 @@ public class NewfeedFragment extends Fragment {
         });
 
         return view;
+    }
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        // Fetching data from server
+        new LoadPostsTask(
+                getContext(),
+                "Họa Mi",
+                adapterFeed,
+                recyclerView,
+                mSwipeRefreshLayout
+        ).execute();
     }
 
     private void onClickBtnPostStatus() {
