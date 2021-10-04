@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.kma_application.Activity.ParentAbsentActivity;
 import com.example.kma_application.Activity.PostStatusActivity;
 import com.example.kma_application.Activity.TeacherAbsentActivity;
+import com.example.kma_application.Activity.ViewCommentActivity;
 import com.example.kma_application.Adapter.ListNewfeedAdapter;
 import com.example.kma_application.AsyncTask.LoadPostsTask;
 import com.example.kma_application.Models.ModelFeed;
