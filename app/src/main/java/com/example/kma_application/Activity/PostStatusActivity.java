@@ -66,6 +66,13 @@ public class PostStatusActivity extends AppCompatActivity {
                 submitPost();
             }
         } );
+        btPostPicture.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePicture();
+            }
+        } );
+
     }
 
     private void choosePicture() {
@@ -97,17 +104,27 @@ public class PostStatusActivity extends AppCompatActivity {
         boolean OK = true;
 
         if (TextUtils.isEmpty(description)) {
-            notification ="Vui lòng nhập mô tả";
+            notification ="Vui lòng nhập nội dung";
             OK = false;
         }
-        if (imgPost.getDrawable() == null) {
-            notification = "Vui lòng chọn ảnh đính kèm";
-            OK = false;
-        }
+//        if (imgPost.getDrawable() == null) {
+//            notification = "Vui lòng chọn ảnh đính kèm";
+//            OK = false;
+//        }
 
         if ( !OK){
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
             return;
+        }else if (imgPost.getDrawable() == null) {
+            new SubmitPostTask(
+                    this,
+                    "Họa Mi",
+                    "Nguyễn Thị Thanh",
+                    description,
+                    "",
+                    "",
+                    this
+            ).execute();
         }else {
             Bitmap originalBitmap =((BitmapDrawable)imgPost.getDrawable()).getBitmap();
             Bitmap resizeBitmap = resize(originalBitmap, 500, 500);
@@ -124,6 +141,7 @@ public class PostStatusActivity extends AppCompatActivity {
             new SubmitPostTask(
                     this,
                     "Họa Mi",
+                    "Lê Thị Thanh",
                     description,
                     originalBase64,
                     resizeBase64,
