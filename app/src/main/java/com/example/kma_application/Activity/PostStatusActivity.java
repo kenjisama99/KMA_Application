@@ -119,7 +119,7 @@ public class PostStatusActivity extends AppCompatActivity {
             new SubmitPostTask(
                     this,
                     "Họa Mi",
-                    "Nguyễn Thị Thanh",
+                    "Lê Thị Thanh",
                     description,
                     "",
                     "",

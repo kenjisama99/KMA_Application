@@ -158,12 +158,9 @@ public class HomeFragment extends Fragment implements LoadInfosTask.AsyncRespons
     }
 
     private void onClickBtLesson() {
-        Intent intent = new Intent(getActivity(), TeacherLessonActivity.class);
-//        if (role.equals("teacher"))
-//            intent = new Intent(getActivity(), TeacherLessonActivity.class);
-
-//        intent.putExtra("info", person);
-//        intent.putExtra("class", _class);
+        Intent intent = new Intent(getActivity(), TeacherPostLessonActivity.class);
+        intent.putExtra("class", _class);
+        intent.putExtra("role", role);
 
         startActivity(intent);
     }
