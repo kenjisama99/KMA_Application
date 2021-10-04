@@ -18,6 +18,7 @@ import com.example.kma_application.Activity.ParentAbsentActivity;
 import com.example.kma_application.Activity.PostStatusActivity;
 import com.example.kma_application.Activity.TeacherAbsentActivity;
 import com.example.kma_application.Adapter.ListNewfeedAdapter;
+import com.example.kma_application.AsyncTask.LoadPostsTask;
 import com.example.kma_application.Models.ModelFeed;
 import com.example.kma_application.R;
 
@@ -31,8 +32,20 @@ public class NewfeedFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<ModelFeed> modelFeedArrayList = new ArrayList<>();
     ListNewfeedAdapter adapterFeed;
-
-
+    Boolean preload = false;
+    @Override
+    public void onResume() {
+        super.onResume();
+        if( !preload){
+            new LoadPostsTask(
+                    getContext(),
+                    "Họa Mi",
+                    adapterFeed,
+                    recyclerView
+            ).execute();
+        }
+        preload = false;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,11 +58,18 @@ public class NewfeedFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapterFeed = new ListNewfeedAdapter(getContext(), modelFeedArrayList);
+        adapterFeed = new ListNewfeedAdapter(getContext());
         recyclerView.setAdapter(adapterFeed);
 
-        populateRecyclerView();
+        //populateRecyclerView();
 
+//        new LoadPostsTask(
+//                getContext(),
+//                "Họa Mi",
+//                adapterFeed,
+//                recyclerView
+//        ).execute();
+        preload = false;
         btnPostStatus = (Button) view.findViewById(R.id.postStatus);
         btnPostStatus.setOnClickListener( new View.OnClickListener() {
             @Override
