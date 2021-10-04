@@ -20,13 +20,12 @@ import java.util.Calendar;
 
 public class SubmitPostTask extends AsyncTask<Void,Void,String> {
     private Context context;
-    String _class, name, description, originalBase64, resizeBase64;
+    String _class, description, originalBase64, resizeBase64;
     PostStatusActivity postStatusActivity;
 
-    public SubmitPostTask(Context context, String _class, String name, String description, String originalBase64, String resizeBase64, PostStatusActivity postStatusActivity) {
+    public SubmitPostTask(Context context, String _class, String description, String originalBase64, String resizeBase64, PostStatusActivity postStatusActivity) {
         this.context = context;
         this._class = _class;
-        this.name = name;
         this.description = description;
         this.originalBase64 = originalBase64;
         this.resizeBase64 = resizeBase64;
@@ -58,7 +57,6 @@ public class SubmitPostTask extends AsyncTask<Void,Void,String> {
                         calendar.get(Calendar.YEAR);
 
         return "{\"_class\":\"" + _class + "\","
-                +"\"name\":\"" + name + "\","
                 +"\"date\":\"" + date + "\","
                 +"\"description\":\"" + description +"\","
                 + "\"originalBase64\":\"" + originalBase64 + "\","

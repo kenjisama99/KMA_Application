@@ -15,13 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KMA_Application"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.ViewCommentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activity.ViewStatusDetailActivity">
 
         </activity>
         <activity android:name=".Activity.ParentLessonActivity" />
-        <activity android:name=".Activity.TeacherPostLessonActivity">
-
-        </activity>
+        <activity android:name=".Activity.TeacherPostLessonActivity"></activity>
         <activity android:name=".Activity.TeacherLessonActivity" />
         <activity android:name=".Activity.PostStatusActivity" />
         <activity android:name=".Activity.TeacherChildHeathActivity2" />
@@ -43,15 +48,11 @@
         <activity android:name=".Activity.ParentHealthActivity" />
         <activity android:name=".Activity.ParentAbsentActivity" />
         <activity android:name=".Activity.ChangePasswordActivity" />
-        <activity android:name=".Activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ContactActivity" />
-        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainActivity">
+
+        </activity>
     </application>
 
 </manifest>
