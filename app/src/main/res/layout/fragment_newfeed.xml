@@ -35,6 +35,7 @@
         tools:ignore="Suspicious0dp">
 
         <RelativeLayout
+            android:id="@+id/teacherPostLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"

@@ -36,6 +36,7 @@ public class PostStatusActivity extends AppCompatActivity {
     ImageView imgPost;
     TextInputEditText txtPostInputText;
     private final int IMAGE_REQUEST_ID = 1;
+    String  _class, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,14 @@ public class PostStatusActivity extends AppCompatActivity {
 
         txtPostInputText = (TextInputEditText) findViewById( R.id.txtPostInputText );
 
+        Intent data = getIntent();
+        try {
+            _class = data.getStringExtra("_class");
+            name = data.getStringExtra("name");
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this,"Không lấy được intent",Toast.LENGTH_LONG).show();
+        }
         btClose.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,8 +127,8 @@ public class PostStatusActivity extends AppCompatActivity {
         }else if (imgPost.getDrawable() == null) {
             new SubmitPostTask(
                     this,
-                    "Họa Mi",
-                    "Lê Thị Thanh",
+                    _class,
+                    name,
                     description,
                     "",
                     "",
@@ -140,8 +149,8 @@ public class PostStatusActivity extends AppCompatActivity {
 
             new SubmitPostTask(
                     this,
-                    "Họa Mi",
-                    "Lê Thị Thanh",
+                    _class,
+                    name,
                     description,
                     originalBase64,
                     resizeBase64,

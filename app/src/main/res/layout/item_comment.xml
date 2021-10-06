@@ -26,17 +26,38 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/botron"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvNameComment"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Lê Thị Thanh"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp">
+                <TextView
+                    android:id="@+id/tvNameComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Lê Thị Thanh"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvTimeComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="30 phút"
+                    android:textColor="#3C3C3C"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tvComment"
@@ -63,63 +84,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
-            android:orientation="horizontal"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp">
 
-            <TextView
-                android:id="@+id/tvTimeComment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="sans-serif"
-                android:text="30 phút"
-                android:textColor="#3C3C3C"
-                android:textSize="16sp" />
-
-            <LinearLayout
-                android:id="@+id/btnLikeComment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center_horizontal|center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Thích"
-                    android:textColor="#3C3C3C"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_like" />
-
-                <TextView
-                    android:id="@+id/tvLikeComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="3"
-                    android:textColor="#3C3C3C"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

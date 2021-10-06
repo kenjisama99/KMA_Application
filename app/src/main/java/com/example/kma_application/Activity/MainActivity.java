@@ -58,8 +58,9 @@ public class MainActivity extends AppCompatActivity implements LoadInfosTask.Asy
         userFragment = new UserFragment();
         newfeedFragment = new NewfeedFragment();
 
-        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this,homeFragment,notificationFragment,userFragment);
+        LoadInfosTask loadInfosTask = new LoadInfosTask(phone, role, this,homeFragment,newfeedFragment,notificationFragment,userFragment);
         homeFragment.setLoadInfosTask(loadInfosTask);
+        newfeedFragment.setLoadInfosTask(loadInfosTask);
         loadInfosTask.execute();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
