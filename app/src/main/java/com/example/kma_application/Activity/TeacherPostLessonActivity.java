@@ -37,6 +37,11 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
     EditText  txtLessonContent, txtLessonTitle;
     ImageView imgLesson;
     String _class;
+    private EditText editTextDate;
+    private int lastSelectedYear;
+    private int lastSelectedMonth;
+    private int lastSelectedDayOfMonth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -50,6 +55,7 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
         ImageButton btDelLesson = (ImageButton)findViewById( R.id.btDelLesson);
         ImageButton btAddImgLesson = (ImageButton)findViewById( R.id.btAddImgLesson);
         Button btSchedule = (Button) findViewById( R.id.imgBtSchedule );
+        editTextDate = (EditText) findViewById(R.id.editTextDate);
 
         Intent data = getIntent();
         _class = data.getStringExtra("class");
@@ -108,32 +114,34 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
             }
         } );
 
-        // Get Current Date
-//        final Calendar c = Calendar.getInstance();
-//        this.lastSelectedYear = c.get(Calendar.YEAR);
-//        this.lastSelectedMonth = c.get(Calendar.MONTH);
-//        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+//         Get Current Date
+        final Calendar c = Calendar.getInstance();
+        this.lastSelectedYear = c.get(Calendar.YEAR);
+        this.lastSelectedMonth = c.get(Calendar.MONTH);
+        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
     }
 
     private void onClickSchedule() {
-//        DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                txtStartDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-//                lastSelectedYear = year;
-//                lastSelectedMonth = monthOfYear;
-//                lastSelectedDayOfMonth = dayOfMonth;
-//            }
-//        };
-//
-//        new DatePickerDialog(
-//                this,
-//                dateSetListenerStart,
-//                lastSelectedYear,
-//                lastSelectedMonth,
-//                lastSelectedDayOfMonth
-//        ).show();
+        DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                editTextDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                editTextDate.setVisibility( View.VISIBLE );
+                lastSelectedYear = year;
+                lastSelectedMonth = monthOfYear;
+                lastSelectedDayOfMonth = dayOfMonth;
+            }
+        };
+
+        new DatePickerDialog(
+                this,
+                dateSetListenerStart,
+                lastSelectedYear,
+                lastSelectedMonth,
+                lastSelectedDayOfMonth
+        ).show();
+
     }
 
     private void onClickImgLesson() {

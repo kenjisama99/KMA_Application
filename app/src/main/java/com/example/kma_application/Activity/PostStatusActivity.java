@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -66,10 +67,12 @@ public class PostStatusActivity extends AppCompatActivity {
                 submitPost();
             }
         } );
-        btPostPicture.setOnClickListener( new View.OnClickListener() {
+
+        btTakeAPhoto.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choosePicture();
+                Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
+                startActivityForResult( intent, 0 );
             }
         } );
 
@@ -104,27 +107,17 @@ public class PostStatusActivity extends AppCompatActivity {
         boolean OK = true;
 
         if (TextUtils.isEmpty(description)) {
-            notification ="Vui lòng nhập nội dung";
+            notification ="Vui lòng nhập mô tả";
             OK = false;
         }
-//        if (imgPost.getDrawable() == null) {
-//            notification = "Vui lòng chọn ảnh đính kèm";
-//            OK = false;
-//        }
+        if (imgPost.getDrawable() == null) {
+            notification = "Vui lòng chọn ảnh đính kèm";
+            OK = false;
+        }
 
         if ( !OK){
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
             return;
-        }else if (imgPost.getDrawable() == null) {
-            new SubmitPostTask(
-                    this,
-                    "Họa Mi",
-                    "Lê Thị Thanh",
-                    description,
-                    "",
-                    "",
-                    this
-            ).execute();
         }else {
             Bitmap originalBitmap =((BitmapDrawable)imgPost.getDrawable()).getBitmap();
             Bitmap resizeBitmap = resize(originalBitmap, 500, 500);
@@ -141,7 +134,6 @@ public class PostStatusActivity extends AppCompatActivity {
             new SubmitPostTask(
                     this,
                     "Họa Mi",
-                    "Lê Thị Thanh",
                     description,
                     originalBase64,
                     resizeBase64,
