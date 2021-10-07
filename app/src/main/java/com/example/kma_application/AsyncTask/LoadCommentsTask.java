@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.kma_application.Adapter.ListCommentAdapter;
 import com.example.kma_application.Adapter.ListNewfeedAdapter;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -20,26 +20,30 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class LoadPostsTask extends AsyncTask<Void,Void,String> {
+public class LoadCommentsTask extends AsyncTask<Void,Void,String> {
     Context context;
-    String _class;
-    ListNewfeedAdapter listNewfeedAdapter;
-    RecyclerView recyclerView;
+    String postId;
+    ListCommentAdapter listCommentAdapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public LoadPostsTask(Context context, String _class, ListNewfeedAdapter listNewfeedAdapter, RecyclerView recyclerView, SwipeRefreshLayout mSwipeRefreshLayout) {
+    public LoadCommentsTask(Context context, String postId, ListCommentAdapter listCommentAdapter, SwipeRefreshLayout mSwipeRefreshLayout) {
         this.context = context;
-        this._class = _class;
-        this.listNewfeedAdapter = listNewfeedAdapter;
-        this.recyclerView = recyclerView;
+        this.postId = postId;
+        this.listCommentAdapter = listCommentAdapter;
         this.mSwipeRefreshLayout = mSwipeRefreshLayout;
+    }
+
+    public LoadCommentsTask(Context context, String postId, ListCommentAdapter listCommentAdapter) {
+        this.context = context;
+        this.postId = postId;
+        this.listCommentAdapter = listCommentAdapter;
     }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
             String postResponse = doPostRequest(
-                    "https://nodejscloudkenji.herokuapp.com/getPosts", reqJSON()
+                    "https://nodejscloudkenji.herokuapp.com/getComments", reqJSON()
             );
             //String postResponse = doPostRequest("http://192.168.1.68:3000/login", jsons[0]);
             return postResponse;
@@ -61,23 +65,23 @@ public class LoadPostsTask extends AsyncTask<Void,Void,String> {
         }
         if (hasData){
             try {
-                listNewfeedAdapter.clear();
+                listCommentAdapter.clear();
                 JSONArray jsonarray = new JSONArray(postResponse);
-                for (int i = jsonarray.length() -1 ; i >= 0 ; i--) {
+                for (int i = 0; i < jsonarray.length(); i++) {
                     JSONObject jsonobject = jsonarray.getJSONObject(i);
-                    listNewfeedAdapter.addItem(jsonobject);
+                    listCommentAdapter.addItem(jsonobject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(this.context, "Lỗi tải Bảng tin", Toast.LENGTH_LONG).show();
+                Toast.makeText(this.context, "Lỗi tải bình luận", Toast.LENGTH_LONG).show();
             }
         }
-        mSwipeRefreshLayout.setRefreshing(false);
+        //mSwipeRefreshLayout.setRefreshing(false);
     }
 
     // post request code here
     String reqJSON() {
-        return "{\"_class\":\"" + _class + "\"}";
+        return "{\"postId\":\"" + postId + "\"}";
     }
 
     public static final MediaType JSON
@@ -96,4 +100,3 @@ public class LoadPostsTask extends AsyncTask<Void,Void,String> {
     }
 
 }
-

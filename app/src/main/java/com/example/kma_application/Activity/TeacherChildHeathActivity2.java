@@ -3,6 +3,7 @@ package com.example.kma_application.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.kma_application.AsyncTask.LoadClassHealthTask2;
@@ -18,10 +22,18 @@ import com.example.kma_application.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 public class TeacherChildHeathActivity2 extends AppCompatActivity {
+
+    private EditText editTextDateHealth;
+    private int lastSelectedYear;
+    private int lastSelectedMonth;
+    private int lastSelectedDayOfMonth;
+
     ImageView imgMainMeal, imgSubMeal;
-    Button btAddSubMeal, btAddMainMeal;
+    Button btAddSubMeal, btAddMainMeal, btScheduleHealth;
+    ImageButton btBackHealth;
     String _class;
     private final int MAIN_MEAL_REQUEST_ID = 1;
     private final int SUB_MEAL_REQUEST_ID = 2;
@@ -39,6 +51,10 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
         btAddMainMeal = (Button)findViewById(R.id.btMainMeal);
         imgMainMeal = (ImageView)findViewById(R.id.imgMainMeal);
         imgSubMeal = (ImageView)findViewById(R.id.imgSubMeal);
+        btBackHealth = (ImageButton)findViewById(R.id.btBackHealth);
+        btScheduleHealth = (Button)findViewById(R.id.btScheduleHealth);
+        editTextDateHealth = (EditText)findViewById( R.id.editTextDateHealth );
+
         if (role.equals("parent")){
             btAddMainMeal.setVisibility(View.INVISIBLE);
             btAddSubMeal.setVisibility(View.INVISIBLE);
@@ -62,6 +78,47 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
                 choosePicture(true);
             }
         });
+
+        btBackHealth.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        } );
+
+        btScheduleHealth.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBtScheduleHealth();
+            }
+        } );
+
+        //         Get Current Date
+        final Calendar c = Calendar.getInstance();
+        this.lastSelectedYear = c.get(Calendar.YEAR);
+        this.lastSelectedMonth = c.get(Calendar.MONTH);
+        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+    }
+
+    private void onClickBtScheduleHealth() {
+        DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                editTextDateHealth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                editTextDateHealth.setVisibility( View.VISIBLE );
+                lastSelectedYear = year;
+                lastSelectedMonth = monthOfYear;
+                lastSelectedDayOfMonth = dayOfMonth;
+            }
+        };
+
+        new DatePickerDialog(
+                this,
+                dateSetListenerStart,
+                lastSelectedYear,
+                lastSelectedMonth,
+                lastSelectedDayOfMonth
+        ).show();
     }
 
     private void choosePicture(boolean forMainMeal) {

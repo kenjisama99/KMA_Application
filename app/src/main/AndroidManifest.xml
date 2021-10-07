@@ -22,6 +22,7 @@
         <activity android:name=".Activity.TeacherPostLessonActivity"></activity>
         <activity android:name=".Activity.TeacherLessonActivity" />
         <activity android:name=".Activity.PostStatusActivity">
+
         </activity>
         <activity android:name=".Activity.TeacherChildHeathActivity2" />
         <activity android:name=".Activity.TeacherMessengerActivity" />

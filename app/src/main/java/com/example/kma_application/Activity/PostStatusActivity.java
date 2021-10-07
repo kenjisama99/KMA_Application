@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -37,6 +36,7 @@ public class PostStatusActivity extends AppCompatActivity {
     ImageView imgPost;
     TextInputEditText txtPostInputText;
     private final int IMAGE_REQUEST_ID = 1;
+    String  _class, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,14 @@ public class PostStatusActivity extends AppCompatActivity {
 
         txtPostInputText = (TextInputEditText) findViewById( R.id.txtPostInputText );
 
+        Intent data = getIntent();
+        try {
+            _class = data.getStringExtra("_class");
+            name = data.getStringExtra("name");
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this,"Không lấy được intent",Toast.LENGTH_LONG).show();
+        }
         btClose.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,12 +75,10 @@ public class PostStatusActivity extends AppCompatActivity {
                 submitPost();
             }
         } );
-
-        btTakeAPhoto.setOnClickListener( new View.OnClickListener() {
+        btPostPicture.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
-                startActivityForResult( intent, 0 );
+                choosePicture();
             }
         } );
 
@@ -107,17 +113,27 @@ public class PostStatusActivity extends AppCompatActivity {
         boolean OK = true;
 
         if (TextUtils.isEmpty(description)) {
-            notification ="Vui lòng nhập mô tả";
+            notification ="Vui lòng nhập nội dung";
             OK = false;
         }
-        if (imgPost.getDrawable() == null) {
-            notification = "Vui lòng chọn ảnh đính kèm";
-            OK = false;
-        }
+//        if (imgPost.getDrawable() == null) {
+//            notification = "Vui lòng chọn ảnh đính kèm";
+//            OK = false;
+//        }
 
         if ( !OK){
             Toast.makeText(this,notification,Toast.LENGTH_LONG).show();
             return;
+        }else if (imgPost.getDrawable() == null) {
+            new SubmitPostTask(
+                    this,
+                    _class,
+                    name,
+                    description,
+                    "",
+                    "",
+                    this
+            ).execute();
         }else {
             Bitmap originalBitmap =((BitmapDrawable)imgPost.getDrawable()).getBitmap();
             Bitmap resizeBitmap = resize(originalBitmap, 500, 500);
@@ -133,7 +149,8 @@ public class PostStatusActivity extends AppCompatActivity {
 
             new SubmitPostTask(
                     this,
-                    "Họa Mi",
+                    _class,
+                    name,
                     description,
                     originalBase64,
                     resizeBase64,

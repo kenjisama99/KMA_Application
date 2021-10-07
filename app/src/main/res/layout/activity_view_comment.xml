@@ -67,7 +67,7 @@
 
 
         <EditText
-            android:id="@+id/enterComment"
+            android:id="@+id/txtEnterComment"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal|center_vertical"

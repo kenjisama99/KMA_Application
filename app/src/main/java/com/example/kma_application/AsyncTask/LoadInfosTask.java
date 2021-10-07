@@ -39,6 +39,7 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
 
     public AsyncResponse mainActivity;
     public AsyncResponse homeFrag;
+    public AsyncResponse newfeedFragment;
     public AsyncResponse notifiFrag;
     public AsyncResponse userFrag;
 
@@ -49,14 +50,16 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
         this.mainActivity = mainActivity;
     }
 
-    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity, AsyncResponse homeFrag, AsyncResponse notifiFrag, AsyncResponse userFrag) {
+    public LoadInfosTask(String phone, String role, AsyncResponse mainActivity, AsyncResponse homeFrag, AsyncResponse newfeedFragment, AsyncResponse notifiFrag, AsyncResponse userFrag) {
         this.phone = phone;
         this.role = role;
         this.mainActivity = mainActivity;
         this.homeFrag = homeFrag;
+        this.newfeedFragment = newfeedFragment;
         this.notifiFrag = notifiFrag;
         this.userFrag = userFrag;
     }
+
 
     OkHttpClient client = new OkHttpClient();
 
@@ -111,6 +114,7 @@ public class LoadInfosTask extends AsyncTask<Void,Void,String> {
     private void passInfo(Person person, String role) {
         mainActivity.onLoadInfoTaskFinish(person, role);
         homeFrag.onLoadInfoTaskFinish(person, role);
+        newfeedFragment.onLoadInfoTaskFinish(person, role);
         notifiFrag.onLoadInfoTaskFinish(person, role);
         userFrag.onLoadInfoTaskFinish(person, role);
     }
