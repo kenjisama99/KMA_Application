@@ -136,7 +136,7 @@ public class PostStatusActivity extends AppCompatActivity {
             ).execute();
         }else {
             Bitmap originalBitmap =((BitmapDrawable)imgPost.getDrawable()).getBitmap();
-            Bitmap resizeBitmap = resize(originalBitmap, 500, 500);
+            Bitmap resizeBitmap = resize(originalBitmap, 400, 400);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             originalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);

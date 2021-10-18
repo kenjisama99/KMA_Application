@@ -23,9 +23,7 @@ public class TeacherChildAbsentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_child_absent);
-        Intent data = getIntent();
-        Absent absent = (Absent) data.getSerializableExtra("info");
-        this.txtContent = (EditText)this.findViewById(R.id.edit_contentReason);
+        this.txtContent = (EditText)this.findViewById(R.id.edit_content);
         this.txtStartDate = (EditText)this.findViewById(R.id.edit_dateStart);
         this.txtEndDate = (EditText)this.findViewById(R.id.edit_dateFinished);
         this.selectDateStart = (Button)this.findViewById(R.id.selectDateStart);
@@ -33,8 +31,13 @@ public class TeacherChildAbsentActivity extends AppCompatActivity {
         this.selectDateFinished = (Button)this.findViewById(R.id.selectDateFinished);
         this.submitAbsent = (Button)this.findViewById(R.id.submitAbsent);
 
-        //txtContent.setText(absent.getContent());
-        //txtStartDate.setText(absent.getStartDate());
-        //txtEndDate.setText(absent.getEndDate());
+        Intent data = getIntent();
+        try {
+            txtContent.setText(data.getStringExtra("content"));
+            txtStartDate.setText(data.getStringExtra("startDate"));
+            txtEndDate.setText(data.getStringExtra("endDate"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

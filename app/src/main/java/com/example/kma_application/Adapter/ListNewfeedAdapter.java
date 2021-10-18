@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +19,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.example.kma_application.Activity.PostStatusActivity;
 import com.example.kma_application.Activity.ViewCommentActivity;
 import com.example.kma_application.Activity.ViewStatusDetailActivity;
 import com.example.kma_application.AsyncTask.DeletePostTask;
-import com.example.kma_application.Fragment.NewfeedFragment;
+import com.example.kma_application.AsyncTask.LikePostTask;
+import com.example.kma_application.AsyncTask.UnlikePostTask;
 import com.example.kma_application.Models.ModelFeed;
 import com.example.kma_application.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +41,7 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
     Context context;
     ArrayList<ModelFeed> modelFeedArrayList = new ArrayList<>();
     List<JSONObject> posts = new ArrayList<>();
+    List<Boolean> isLikeList = new ArrayList<>();
     RequestManager glide;
     String name, phone;
 
@@ -93,6 +96,15 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
                 Bitmap bitmap = getBitmapFromString(previewImgB64);
                 holder.imgView_postPic.setImageBitmap(bitmap);
             }
+            JSONArray jsonArray = post.getJSONArray("likeList");
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject liker = jsonArray.getJSONObject(i);
+                if (phone.equals(liker.getString("phone"))){
+                    holder.txt_like_button.setText("Đã thích");
+                    holder.txt_like_button.setTextColor(Color.parseColor("#39569C"));
+                    break;
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -103,10 +115,16 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
                 onClickCmt(position);
             }
         });
+        holder.btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickLike(position, holder);
+            }
+        });
         holder.imgView_postPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickImagePost(position);
+                onClickImagePost(position, holder);
             }
         });
         holder.tv_del.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +133,32 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
                 onClickDelPost(position);
             }
         });
+    }
+
+    private void onClickLike(int position, MyViewHolder holder) {
+        try {
+            JSONObject post = posts.get(position);
+            if (holder.txt_like_button.getText().toString().trim().equals("Thích")){
+                new LikePostTask(
+                        context,
+                        post.getString("postId"),
+                        name,
+                        phone,
+                        holder.tv_likes,
+                        holder.txt_like_button
+                ).execute();
+            }else
+                new UnlikePostTask(
+                        context,
+                        post.getString("postId"),
+                        name,
+                        phone,
+                        holder.tv_likes,
+                        holder.txt_like_button
+                ).execute();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void onClickDelPost(int position) {
@@ -149,17 +193,23 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
         }
     }
 
-    private void onClickImagePost(int position) {
+    private void onClickImagePost(int position, MyViewHolder holder) {
         Intent intent = new Intent(context, ViewStatusDetailActivity.class );
         JSONObject post = posts.get(position);
         try {
             intent.putExtra("postId", post.getString("postId"));
             intent.putExtra("date", post.getString("date"));
             intent.putExtra("teacherName", post.getString("name"));
-            intent.putExtra("like", post.getInt("like"));
+            intent.putExtra("like", holder.tv_likes.getText().toString().trim());
             intent.putExtra("description", post.getString("description"));
-            intent.putExtra("comment", post.getInt("comment"));
+            intent.putExtra("comment", String.valueOf(post.getInt("comment")));
             intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            if (!holder.txt_like_button.getText().toString().trim().equals("Thích")){
+                intent.putExtra("isLike", true);
+            }else
+                intent.putExtra("isLike", false);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -181,9 +231,9 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_name, tv_time, tv_likes, tv_comments, tv_status, tv_del;
+        TextView tv_name, tv_time, tv_likes, txt_like_button, tv_comments, tv_status, tv_del;
         ImageView imgView_proPic, imgView_postPic;
-        LinearLayout btnComment;
+        LinearLayout btnComment, btnLike;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -192,10 +242,12 @@ public class ListNewfeedAdapter extends RecyclerView.Adapter<ListNewfeedAdapter.
             imgView_postPic = (ImageView) itemView.findViewById(R.id.imgView_postPic);
 
             btnComment = (LinearLayout) itemView.findViewById(R.id.btnComment);
+            btnLike = (LinearLayout) itemView.findViewById(R.id.btnLike);
 
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             tv_time = (TextView) itemView.findViewById(R.id.tv_time);
             tv_likes = (TextView) itemView.findViewById(R.id.tv_like);
+            txt_like_button = (TextView) itemView.findViewById(R.id.txt_like_button);
             tv_comments = (TextView) itemView.findViewById(R.id.tv_comment);
             tv_status = (TextView) itemView.findViewById(R.id.tv_status);
             tv_del = (TextView) itemView.findViewById(R.id.tv_del);

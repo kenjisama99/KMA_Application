@@ -29,14 +29,14 @@ public class LoadClassAbsentTask extends AsyncTask<Void,Void,String> {
     Context context;
     ListView lvClass;
     String _class;
+    ArrayList<Absent> absents;
 
-    public LoadClassAbsentTask(Context context, ListView lvClass, String _class) {
+    public LoadClassAbsentTask(Context context, ListView lvClass, String _class, ArrayList<Absent> absents) {
         this.context = context;
         this.lvClass = lvClass;
         this._class = _class;
+        this.absents = absents;
     }
-
-    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected String doInBackground(Void... voids) {
@@ -57,7 +57,6 @@ public class LoadClassAbsentTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String postResponse) {
         Gson gson = new Gson();
 
-        ArrayList<Absent> absents = new ArrayList<>();
         ArrayList<String> childrenName = new ArrayList<>();
         try {
             JSONArray jsonarray = new JSONArray(postResponse);
@@ -77,14 +76,7 @@ public class LoadClassAbsentTask extends AsyncTask<Void,Void,String> {
                     childrenName
             );
             lvClass.setAdapter(adapter);
-            lvClass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(context, TeacherChildAbsentActivity.class);
-                    intent.putExtra("info", absents.get(position));
-                    context.startActivity(intent);
-                }
-            });
+
         }else
             Toast.makeText(this.context, "absents.isEmpty", Toast.LENGTH_LONG).show();
 
@@ -100,6 +92,8 @@ public class LoadClassAbsentTask extends AsyncTask<Void,Void,String> {
             = MediaType.parse("application/json; charset=utf-8");
 
     String doPostRequest(String url, String json) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)

@@ -22,15 +22,17 @@ import java.util.Calendar;
 
 public class LoadClassHealthTask2 extends AsyncTask<Void,Void,String> {
     Context context;
-    String _class;
+    String _class, date;
     ImageView imgMainMeal, imgSubMeal;
 
-    public LoadClassHealthTask2(Context context, String _class, ImageView imgMainMeal, ImageView imgSubMeal) {
+    public LoadClassHealthTask2(Context context, String _class, String date, ImageView imgMainMeal, ImageView imgSubMeal) {
         this.context = context;
         this._class = _class;
+        this.date = date;
         this.imgMainMeal = imgMainMeal;
         this.imgSubMeal = imgSubMeal;
     }
+
     @Override
     protected String doInBackground(Void... voids) {
         try {
@@ -72,15 +74,7 @@ public class LoadClassHealthTask2 extends AsyncTask<Void,Void,String> {
 
     // post request code here
     String classJson() {
-        //get current day for fetch today meal
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
 
-        //to String
-        String date =
-                calendar.get(Calendar.DAY_OF_MONTH)+"/"+
-                        calendar.get(Calendar.MONTH)+"/"+
-                        calendar.get(Calendar.YEAR);
         String result = "{\"_class\":\"" + _class + "\","
                           +"\"date\":\"" + date +"\"}";
         //System.out.println(result);

@@ -30,11 +30,11 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
-
+    Calendar calendar = Calendar.getInstance();
     ImageView imgMainMeal, imgSubMeal;
     Button btAddSubMeal, btAddMainMeal, btScheduleHealth;
     ImageButton btBackHealth;
-    String _class;
+    String _class, date;
     private final int MAIN_MEAL_REQUEST_ID = 1;
     private final int SUB_MEAL_REQUEST_ID = 2;
 
@@ -54,7 +54,12 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
         btBackHealth = (ImageButton)findViewById(R.id.btBackHealth);
         btScheduleHealth = (Button)findViewById(R.id.btScheduleHealth);
         editTextDateHealth = (EditText)findViewById( R.id.editTextDateHealth );
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
 
+        //to String
+        date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+
+                calendar.get(Calendar.MONTH)+"/"+
+                calendar.get(Calendar.YEAR);
         if (role.equals("parent")){
             btAddMainMeal.setVisibility(View.INVISIBLE);
             btAddSubMeal.setVisibility(View.INVISIBLE);
@@ -62,6 +67,7 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
         LoadClassHealthTask2 loadClassHealthTask2 = new LoadClassHealthTask2(
                 this,
                 _class,
+                date,
                 imgMainMeal,
                 imgSubMeal
         );
@@ -109,6 +115,7 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
                 lastSelectedYear = year;
                 lastSelectedMonth = monthOfYear;
                 lastSelectedDayOfMonth = dayOfMonth;
+                loadMealOn(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
             }
         };
 
@@ -120,7 +127,16 @@ public class TeacherChildHeathActivity2 extends AppCompatActivity {
                 lastSelectedDayOfMonth
         ).show();
     }
-
+    void loadMealOn(String date){
+        LoadClassHealthTask2 loadClassHealthTask2 = new LoadClassHealthTask2(
+                this,
+                _class,
+                date,
+                imgMainMeal,
+                imgSubMeal
+        );
+        loadClassHealthTask2.execute();
+    }
     private void choosePicture(boolean forMainMeal) {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");

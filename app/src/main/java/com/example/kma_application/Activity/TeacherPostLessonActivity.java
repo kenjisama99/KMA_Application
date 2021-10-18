@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
 import com.example.kma_application.AsyncTask.LoadLessonTask;
 import com.example.kma_application.AsyncTask.SubmitLessonTask;
@@ -36,11 +37,13 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
     private final int IMAGE_REQUEST_ID = 1;
     EditText  txtLessonContent, txtLessonTitle;
     ImageView imgLesson;
-    String _class;
+    String _class,date;
     private EditText editTextDate;
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
+    Calendar calendar = Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +74,20 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
             txtLessonTitle.setFocusable(false);
             txtLessonTitle.setClickable(false);
         }
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        //to String
+         date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+
+                        calendar.get(Calendar.MONTH)+"/"+
+                        calendar.get(Calendar.YEAR);
 
         new LoadLessonTask(
                 this,
                 imgLesson,
                 txtLessonContent,
                 txtLessonTitle,
-                _class
+                _class,
+                date
         ).execute();
         btBackLesson.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -131,6 +141,7 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
                 lastSelectedYear = year;
                 lastSelectedMonth = monthOfYear;
                 lastSelectedDayOfMonth = dayOfMonth;
+                loadLessonOn(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
             }
         };
 
@@ -143,7 +154,16 @@ public class TeacherPostLessonActivity extends AppCompatActivity {
         ).show();
 
     }
-
+    void  loadLessonOn(String date){
+        new LoadLessonTask(
+                this,
+                imgLesson,
+                txtLessonContent,
+                txtLessonTitle,
+                _class,
+                date
+        ).execute();
+    }
     private void onClickImgLesson() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
