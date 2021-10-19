@@ -26,22 +26,57 @@
 
     </LinearLayout>
 
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="70dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="#FFFFFF"-->
+<!--        android:gravity="center_horizontal|center_vertical">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgView_postPic"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:srcCompat="@drawable/no_image" />-->
+
+<!--    </LinearLayout>-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_weight="1"
-        android:background="#FFFFFF"
-        android:gravity="center_horizontal|center_vertical">
+        android:layout_height="548dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgView_postPic"
+            android:id="@+id/imageDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/no_image" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:adjustViewBounds="true"
+            android:foregroundGravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btDeleteImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#80040404"
+            android:text="Xóa"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -180,6 +215,7 @@
                     android:src="@drawable/ic_like_btn" />
 
                 <TextView
+                    android:id="@+id/txt_like_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

@@ -25,14 +25,15 @@ public class LoadLessonTask extends AsyncTask<Void,Void,String> {
     Context context;
     ImageView imgLesson;
     EditText txtLessonContent, txtLessonTitle;
-    String _class;
+    String _class, date;
 
-    public LoadLessonTask(Context context, ImageView imgLesson, EditText txtLessonContent, EditText txtLessonTitle, String _class) {
+    public LoadLessonTask(Context context, ImageView imgLesson, EditText txtLessonContent, EditText txtLessonTitle, String _class, String date) {
         this.context = context;
         this.imgLesson = imgLesson;
         this.txtLessonContent = txtLessonContent;
         this.txtLessonTitle = txtLessonTitle;
         this._class = _class;
+        this.date = date;
     }
 
     @Override
@@ -75,15 +76,7 @@ public class LoadLessonTask extends AsyncTask<Void,Void,String> {
 
     // post request code here
     String classJson() {
-        //get current day for fetch today lesson
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
 
-        //to String
-        String date =
-                calendar.get(Calendar.DAY_OF_MONTH)+"/"+
-                        calendar.get(Calendar.MONTH)+"/"+
-                        calendar.get(Calendar.YEAR);
         String result = "{\"_class\":\"" + _class + "\","
                 +"\"date\":\"" + date +"\"}";
         //System.out.println(result);
